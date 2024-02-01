@@ -78,7 +78,8 @@ public class Board {
         for (Piece p : whitePieces) {
             board[p.standing.y-1][p.standing.x-1]=p.getSymbol();
         }
-        board[blackKing.standing.y-1][blackKing.standing.x-1]=blackKing.getSymbol();
+        if(blackKing!=null)
+            board[blackKing.standing.y-1][blackKing.standing.x-1]=blackKing.getSymbol();
 
         String res = "";
         for(int i=0;i<8;i++){

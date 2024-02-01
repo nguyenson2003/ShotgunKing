@@ -41,6 +41,7 @@ public class Gameplay {
                 }
                 if(Board.ins.getBlackKing().sheild>0 && countMate>0){
                     System.out.println("Vi tri nay bi "+countMate+" quan co chieu, moi ban di lai");
+                    Board.ins.getBlackKing().sheild--;
                 } else break;
             }while(true);
             
@@ -52,7 +53,9 @@ public class Gameplay {
                 if(piece.isMate(nextMoveOfKing)){
                     piece.mate(nextMoveOfKing);
                     System.out.println("Thua!");
-                    break;
+                    Board.ins.removePiece(Board.ins.getBlackKing());
+                    System.out.println(Board.ins);
+                    return;
                 }
             }
 
@@ -60,7 +63,8 @@ public class Gameplay {
             for (WhitePiece piece : Board.ins.getWhitePieces()) {
                 piece.move(piece.bestMove());
             }
+            Board.ins.getBlackKing().sheild=Board.ins.getBlackKing().maxSheild;
+
         }
-        System.out.println(Board.ins);
     }
 }
