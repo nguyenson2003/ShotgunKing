@@ -11,6 +11,7 @@ public class Pawn extends WhitePiece{
         if(nextCell.y==standing.y+1 && (nextCell.x==standing.x-1 || nextCell.x==standing.x+1))
             return true;
         return false;
+        
     }
 
     @Override
