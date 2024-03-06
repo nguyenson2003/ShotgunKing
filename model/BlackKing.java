@@ -23,7 +23,8 @@ public class BlackKing extends Piece {
         if(Board.ins.getPiece(nextMove)!=null)return false;
         if(Math.abs(nextMove.x-standing.x)<=1 && Math.abs(nextMove.y-standing.y)<=1)
             return true;
-        return false;
+        else
+            return false;
     }
 
     /**
@@ -35,6 +36,8 @@ public class BlackKing extends Piece {
             throw new IllegalArgumentException(
                 String.format("o %d,%d da co quan co", nextMove.x,nextMove.y)
             );
+        if(!canMoveTo(nextMove))
+            throw new IllegalArgumentException("quan co ko the di den o nay");
         standing = nextMove;
     }
 

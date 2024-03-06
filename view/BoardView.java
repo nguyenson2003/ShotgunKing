@@ -1,5 +1,6 @@
 package view;
 
+import model.BlackKing;
 import model.Board;
 import model.Piece;
 import model.Tile;
@@ -51,11 +52,33 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         return tileToPixel(t.x,t.y);
     }
     public Point tileToPixel(int tileX, int tileY){
-        int x = (int)(tileX*(getCloneIcon().getIconWidth()/8.0)+(getWidth() - getCloneIcon().getIconWidth())/2.0);
-        int y = (int)(tileY*(getCloneIcon().getIconHeight()/8.0)+(getHeight() - getCloneIcon().getIconHeight())/2.0);
+        int x = (int)((tileX-1)*(getCloneIcon().getIconWidth()/8.0)+(getWidth() - getCloneIcon().getIconWidth())/2.0);
+        int y = (int)((tileY-1)*(getCloneIcon().getIconHeight()/8.0)+(getHeight() - getCloneIcon().getIconHeight())/2.0);
         return new Point(x,y);
     }
+    public void updatePositionPiece(){
+        for(PieceView pv : whitePieceViewList){
+            Tile t = pv.getModel().getStanding();
+            Point temp = tileToPixel(t.x,t.y);
+            pv.setBounds(
+                    temp.x+3,
+                    temp.y+1,
+                    getCloneIcon().getIconWidth()/8-6,
+                    getCloneIcon().getIconHeight()/8-6
+            );
+            pv.setVisible(false);
+            pv.setVisible(true);
+        }
 
+        Tile t = blackPieceView.getModel().getStanding();
+        Point temp = tileToPixel(t.x,t.y);
+        blackPieceView.setBounds(
+                temp.x+3,
+                temp.y+1,
+                getCloneIcon().getIconWidth()/8-6,
+                getCloneIcon().getIconHeight()/8-6
+        );
+    }
     @Override
     public void mouseDragged(MouseEvent e) {
     }
@@ -73,7 +96,10 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        Tile t = pixelToTile(e.getX(),e.getY());
+        if(t!=null)
+            ((BlackKing)(blackPieceView.model)).move(t);
+        updatePositionPiece();
     }
 
     @Override
