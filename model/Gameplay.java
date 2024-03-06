@@ -64,7 +64,6 @@ public class Gameplay {
                 piece.move(piece.bestMove());
             }
             Board.ins.getBlackKing().sheild=Board.ins.getBlackKing().maxSheild;
-
         }
     }
 }

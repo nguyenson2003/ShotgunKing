@@ -18,6 +18,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     Board b;
     ArrayList<PieceView> whitePieceViewList = new ArrayList<>();
     PieceView blackPieceView;
+    TImage borderHover;
     public BoardView(Board b) {
         super(new ImageIcon(URLDecoder.decode(
                 Objects.requireNonNull(BoardView.class.getResource("../img/board.png")).getPath(),
@@ -35,6 +36,14 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
 
         blackPieceView = new PieceView(b.getBlackKing());
         this.add(blackPieceView);
+
+        borderHover = new TImage(
+                new ImageIcon(URLDecoder.decode(
+                        Objects.requireNonNull(BoardView.class.getResource("../img/border.png")).getPath(),
+                        StandardCharsets.UTF_8
+                ))
+        );
+        this.add(borderHover);
 
         this.addMouseMotionListener(this);
         this.addMouseListener(this);
@@ -56,7 +65,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         int y = (int)((tileY-1)*(getCloneIcon().getIconHeight()/8.0)+(getHeight() - getCloneIcon().getIconHeight())/2.0);
         return new Point(x,y);
     }
-    public void updatePositionPiece(){
+    public void updatePositionWhitePiece(){
         for(PieceView pv : whitePieceViewList){
             Tile t = pv.getModel().getStanding();
             Point temp = tileToPixel(t.x,t.y);
@@ -69,7 +78,8 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             pv.setVisible(false);
             pv.setVisible(true);
         }
-
+    }
+    public void updatePositionBlackPiece(){
         Tile t = blackPieceView.getModel().getStanding();
         Point temp = tileToPixel(t.x,t.y);
         blackPieceView.setBounds(
@@ -86,8 +96,16 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     @Override
     public void mouseMoved(MouseEvent e) {
         Tile t = pixelToTile(e.getX(),e.getY());
-        if(t!=null)
+        if(t!=null) {
             rm_Gameplay.getIns().showMsg(t.toString());
+            borderHover.setSize(
+                    tileToPixel(2,2).x-tileToPixel(1,1).x,
+                    tileToPixel(2,2).y-tileToPixel(1,1).y
+            );
+            borderHover.setLocation(tileToPixel(t));
+        }else{
+            borderHover.setSize(0,0);
+        }
     }
 
     @Override
@@ -99,7 +117,8 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         Tile t = pixelToTile(e.getX(),e.getY());
         if(t!=null)
             ((BlackKing)(blackPieceView.model)).move(t);
-        updatePositionPiece();
+        updatePositionBlackPiece();
+        updatePositionWhitePiece();
     }
 
     @Override
