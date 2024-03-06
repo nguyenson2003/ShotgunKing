@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 
-class TFrame extends JFrame {
+public class TFrame extends JFrame {
     private TRoom rm ;
 
     public TRoom getRm() {
@@ -45,14 +45,13 @@ class TFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setMinimumSize(new Dimension(800, 800));
         // chỉnh title game
-        this.setTitle("minigame");
+        this.setTitle("Shotgun King");
 
         // set icon game
-        this.setIconImage(new ImageIcon("img\\icon.jpg").getImage());
+//        this.setIconImage(new ImageIcon("img\\icon.jpg").getImage());
 
         // đổi background
         this.getContentPane().setBackground(new Color(0x0));
-
         
 
         // điều chỉnh kích thước
@@ -69,8 +68,6 @@ class TFrame extends JFrame {
         this.addComponentListener(new ComponentListener() {
             public void componentResized(ComponentEvent e) {
                 try{
-                    // rm.setSize(getContentPane().getWidth(), getContentPane().getHeight());
-                    // rm.setLocation(0, 0);
                     int wight1 = getContentPane().getWidth();
                     int height1 = (int) (getContentPane().getWidth()/1920.0*1080);
                     int width2 = (int) (getContentPane().getHeight()/1080.0*1920);

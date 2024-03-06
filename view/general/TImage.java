@@ -7,9 +7,10 @@ import java.awt.event.ComponentListener;
 
 public class TImage extends JLabel  {
     private final ImageIcon srcIcon;
+    private final ImageIcon cloneIcon;
     public TImage(ImageIcon icon){
         srcIcon = icon;
-        ImageIcon cloneIcon = new ImageIcon(srcIcon.getImage());
+        cloneIcon = new ImageIcon(srcIcon.getImage());
         this.setIcon(cloneIcon);
         this.setVerticalAlignment(JLabel.CENTER);
         this.setHorizontalAlignment(JLabel.CENTER);
@@ -44,5 +45,9 @@ public class TImage extends JLabel  {
 
     public ImageIcon getSrcIcon() {
         return srcIcon;
+    }
+
+    public ImageIcon getCloneIcon() {
+        return cloneIcon;
     }
 }

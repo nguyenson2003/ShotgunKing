@@ -1,11 +1,11 @@
 package model;
 
-abstract class Piece {
+abstract public class Piece {
     
     /**
      * Quân cờ đang đứng ở ô nào
      */
-    Tile standing; 
+    Tile standing;
 
     Piece(Tile t){
         standing=t;
@@ -22,5 +22,9 @@ abstract class Piece {
     @Override
     public String toString() {
         return getSymbol()+"";
+    }
+
+    public Tile getStanding() {
+        return standing;
     }
 }

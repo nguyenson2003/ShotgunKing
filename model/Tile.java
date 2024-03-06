@@ -20,4 +20,12 @@ public class Tile {
         Tile that = (Tile)obj;
         return this.x==that.x && this.y==that.y;
     }
+
+    @Override
+    public String toString() {
+        return "Tile{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

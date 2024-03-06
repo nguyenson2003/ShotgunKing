@@ -37,6 +37,18 @@ public class BlackKing extends Piece {
             );
         standing = nextMove;
     }
+
+    /**
+     *
+     * @param degree
+     */
+    public void shoot(int degree){
+        if(ammo<0)return;
+        ammo--;
+        //TODO: hàm bắn nhau
+    }
+
+
     @Override
     char getSymbol() {
         return 'k';

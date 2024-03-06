@@ -13,7 +13,7 @@ public class Board {
     }
 
     void init(){
-        addPiece(new BlackKing(new Tile(3, 7)));
+        addPiece(new BlackKing(new Tile(4, 7)));
         addPiece(new Pawn(new Tile(4, 1),3,3));
     }
     
