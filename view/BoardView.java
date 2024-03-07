@@ -15,26 +15,26 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class BoardView extends TImage implements MouseMotionListener,MouseListener, ComponentListener {
-    Board b;
+    Board board;
     ArrayList<PieceView> whitePieceViewList = new ArrayList<>();
     PieceView blackPieceView;
     TImage borderHover;
-    public BoardView(Board b) {
+    public BoardView(Board board_) {
         super(new ImageIcon(URLDecoder.decode(
                 Objects.requireNonNull(BoardView.class.getResource("../img/board.png")).getPath(),
                 StandardCharsets.UTF_8
         )));
         setLayout(null);
 
-        this.b=b;
-        for(Piece p : b.getWhitePieces()){
+        this.board=board_;
+        for(Piece p : board.getWhitePieces()){
             whitePieceViewList.add(new PieceView(p));
         }
         for(PieceView pv : whitePieceViewList){
             this.add(pv);
         }
 
-        blackPieceView = new PieceView(b.getBlackKing());
+        blackPieceView = new PieceView(board.getBlackKing());
         this.add(blackPieceView);
 
         borderHover = new TImage(

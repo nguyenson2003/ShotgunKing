@@ -7,8 +7,8 @@ abstract public class Piece {
      */
     Tile standing;
 
-    Piece(Tile t){
-        standing=t;
+    Piece(Tile standing_){
+        standing=standing_;
     }
     
     /**

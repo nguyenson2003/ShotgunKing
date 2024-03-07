@@ -1,10 +1,12 @@
 package model;
 
 public class BlackKing extends Piece {
+    //khiên
     int sheild,maxSheild;
+    //vỏ đạn, đạn
     int shellAmmo,maxShellAmmo,ammo,maxAmmo;
-    BlackKing(Tile t) {
-        super(t);
+    BlackKing(Tile standing) {
+        super(standing);
         sheild=maxSheild=2;
         shellAmmo=maxShellAmmo=2;
         ammo=maxAmmo=8;

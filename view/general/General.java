@@ -23,7 +23,8 @@ public class General {
     public static void setUIFont (){
         try {
             URL url = new General().getClass().getResource("FVF.ttf");
-            Font defaultFont = Font.createFont(Font.TRUETYPE_FONT, new File(URLDecoder.decode(url.getPath(), "UTF-8")));
+            Font defaultFont = Font.createFont(Font.TRUETYPE_FONT, new File(
+                URLDecoder.decode(url.getPath(), "UTF-8")));
             // Font defaultFont = Font.createFont(Font.TRUETYPE_FONT, new File("main\\FVF.ttf"));
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(defaultFont);

@@ -46,7 +46,8 @@ public class TFrame extends JFrame {
         this.setMinimumSize(new Dimension(800, 800));
         // chỉnh title game
         this.setTitle("Shotgun King");
-
+        // set logo game
+        this.setIconImage(new ImageIcon("img\\bishop.png").getImage());
         // set icon game
 //        this.setIconImage(new ImageIcon("img\\icon.jpg").getImage());
 
