@@ -14,7 +14,6 @@ public class Gameplay {
             //Bàn cờ
             System.out.println(Board.ins.toString());
 
-
             //vua đen di chuyển
             Tile nextMoveOfKing;
             do{
@@ -48,22 +47,25 @@ public class Gameplay {
             //đen di chuyển
             Board.ins.getBlackKing().move(nextMoveOfKing);
 
-            //nếu có chiếu hết, đen thua
-            for (WhitePiece piece : Board.ins.getWhitePieces()) {
-                if(piece.isMate(nextMoveOfKing)){
-                    piece.mate(nextMoveOfKing);
-                    System.out.println("Thua!");
-                    Board.ins.removePiece(Board.ins.getBlackKing());
-                    System.out.println(Board.ins);
-                    return;
-                }
-            }
-
-            //quân trắng di chuyển
-            for (WhitePiece piece : Board.ins.getWhitePieces()) {
-                piece.move(piece.bestMove());
-            }
-            Board.ins.getBlackKing().sheild=Board.ins.getBlackKing().maxSheild;
+            whiteAction();
         }
+    }
+    public void whiteAction(){
+        //nếu có chiếu hết, đen thua
+        for (WhitePiece piece : Board.ins.getWhitePieces()) {
+            if(piece.isMate(Board.ins.getBlackKing().getStanding())){
+                piece.mate(Board.ins.getBlackKing().getStanding());
+                System.out.println("Thua!");
+                Board.ins.removePiece(Board.ins.getBlackKing());
+                System.out.println(Board.ins);
+                return;
+            }
+        }
+
+        //quân trắng di chuyển
+        for (WhitePiece piece : Board.ins.getWhitePieces()) {
+            piece.move(piece.bestMove());
+        }
+        Board.ins.getBlackKing().sheild=Board.ins.getBlackKing().maxSheild;
     }
 }
