@@ -15,8 +15,8 @@ public abstract class WhitePiece extends Piece{
     int maxHP,hp;
     /**
      * kiểm tra có chiếu ô x, y hay ko
-     * @param nextCell nước đi tiếp theo
-     * @return nước đi tiếp theo có bị chiếu hay ko
+     * @param nextCell nước đi tiếp theo của vua đen
+     * @return nước đi tiếp theo của vua đen có bị chiếu bởi quân cờ này hay ko
      */
     abstract boolean isMate(Tile nextCell);
 
