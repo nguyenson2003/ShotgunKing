@@ -9,7 +9,10 @@ public class Knight extends WhitePiece{
 
     @Override
     boolean isMate(Tile nextCell) {
-        if(nextCell.y==standing.y+1 && (nextCell.x==standing.x-1 || nextCell.x==standing.x+1))
+        if((nextCell.y==standing.y+2 && (nextCell.x==standing.x-1 || nextCell.x==standing.x+1))||
+        (nextCell.y==standing.y-2 && (nextCell.x==standing.x-1 || nextCell.x==standing.x+1))||
+        (nextCell.x==standing.x+2 && (nextCell.y==standing.y-1 || nextCell.y==standing.y+1))||
+        (nextCell.x==standing.x-2 && (nextCell.y==standing.y-1 || nextCell.y==standing.y+1)))
             return true;
         return false;
     }
@@ -28,8 +31,7 @@ public class Knight extends WhitePiece{
 
     @Override
     char getSymbol() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSymbol'");
+        return 'K';
     }
 
 }
