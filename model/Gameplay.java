@@ -7,12 +7,18 @@ import java.util.Scanner;
  */
 public class Gameplay {
     static Scanner sc = new Scanner(System.in);
+    Board b;
+    public Gameplay(){
+        this(new Board());
+    }
+    public Gameplay(Board b){
+        this.b=b;
+    }
     public void testPlay(){
-        new Board();
         boolean isplay=true;
         while(isplay){
             //Bàn cờ
-            System.out.println(Board.ins.toString());
+            System.out.println(b.toString());
 
             //vua đen di chuyển
             Tile nextMoveOfKing;
@@ -27,45 +33,45 @@ public class Gameplay {
                     System.out.println(e);
                     continue;
                 }
-                if(!Board.ins.getBlackKing().canMoveTo(nextMoveOfKing)){
+                if(!b.getBlackKing().canMoveTo(nextMoveOfKing)){
                     System.out.println("Vua khong the di chuyen toi o nay");
                     continue;
                 }
                 //kiểm tra chiếu hết
                 int countMate=0;
-                for (WhitePiece piece : Board.ins.getWhitePieces()) {
+                for (WhitePiece piece : b.getWhitePieces()) {
                     if(piece.isMate(nextMoveOfKing)){
                         countMate++;
                     }
                 }
-                if(Board.ins.getBlackKing().sheild>0 && countMate>0){
+                if(b.getBlackKing().sheild>0 && countMate>0){
                     System.out.println("Vi tri nay bi "+countMate+" quan co chieu, moi ban di lai");
-                    Board.ins.getBlackKing().sheild--;
+                    b.getBlackKing().sheild--;
                 } else break;
             }while(true);
             
             //đen di chuyển
-            Board.ins.getBlackKing().move(nextMoveOfKing);
+            b.getBlackKing().move(nextMoveOfKing);
 
             whiteAction();
         }
     }
     public void whiteAction(){
         //nếu có chiếu hết, đen thua
-        for (WhitePiece piece : Board.ins.getWhitePieces()) {
-            if(piece.isMate(Board.ins.getBlackKing().getStanding())){
-                piece.mate(Board.ins.getBlackKing().getStanding());
+        for (WhitePiece piece : b.getWhitePieces()) {
+            if(piece.isMate(b.getBlackKing().getStanding())){
+                piece.mate(b.getBlackKing().getStanding());
                 System.out.println("Thua!");
-                Board.ins.removePiece(Board.ins.getBlackKing());
-                System.out.println(Board.ins);
+                b.removePiece(b.getBlackKing());
+                System.out.println(b);
                 return;
             }
         }
 
         //quân trắng di chuyển
-        for (WhitePiece piece : Board.ins.getWhitePieces()) {
+        for (WhitePiece piece : b.getWhitePieces()) {
             piece.move(piece.bestMove());
         }
-        Board.ins.getBlackKing().sheild=Board.ins.getBlackKing().maxSheild;
+        b.getBlackKing().sheild=b.getBlackKing().maxSheild;
     }
 }

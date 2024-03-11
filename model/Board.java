@@ -15,7 +15,7 @@ public class Board {
     void init(){
         addPiece(new BlackKing(new Tile(4, 7)));
         addPiece(new Pawn(new Tile(4, 1),3,3));
-        addPiece(new Knight(new Tile(1,1),3,3));
+//        addPiece(new Knight(new Tile(1,1),3,3));
     }
     
     /**

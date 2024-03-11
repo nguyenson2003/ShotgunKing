@@ -1,6 +1,6 @@
 package view.general;
 
-import view.rm_Gameplay;
+import view.GameplayRoom;
 
 import java.awt.*;
 import java.io.File;
@@ -16,7 +16,7 @@ public class General {
     public static void run(){
         setUIFont();
         GeneralFrame = new TFrame();
-        GeneralFrame.setRm(new rm_Gameplay());
+        GeneralFrame.setRm(new GameplayRoom());
     }
     private static TFrame GeneralFrame;
     public static final Color DEFAULT_COLOR = new Color(0x639bff);
