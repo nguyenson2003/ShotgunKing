@@ -1,6 +1,7 @@
 package view;
 
 import model.*;
+import view.general.General;
 import view.general.TImage;
 
 import javax.swing.*;
@@ -69,12 +70,15 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         for(PieceView pv : whitePieceViewList){
             Tile t = pv.getModel().getStanding();
             Point temp = tileToPixel(t.x,t.y);
-            pv.setBounds(
-                    temp.x+3,
-                    temp.y+1,
-                    getCloneIcon().getIconWidth()/8-6,
-                    getCloneIcon().getIconHeight()/8-6
-            );
+
+            General.ComponentAnimation.setLocation(pv,temp.x+3,temp.y+1,200);
+            General.ComponentAnimation.setSize(pv,getCloneIcon().getIconWidth()/8-6,getCloneIcon().getIconHeight()/8-6,100);
+//            pv.setBounds(
+//                    temp.x+3,
+//                    temp.y+1,
+//                    getCloneIcon().getIconWidth()/8-6,
+//                    getCloneIcon().getIconHeight()/8-6
+//            );
             pv.setVisible(false);
             pv.setVisible(true);
         }
@@ -82,12 +86,14 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     public void updatePositionBlackPiece(){
         Tile t = blackPieceView.getModel().getStanding();
         Point temp = tileToPixel(t.x,t.y);
-        blackPieceView.setBounds(
-                temp.x+3,
-                temp.y+1,
-                getCloneIcon().getIconWidth()/8-6,
-                getCloneIcon().getIconHeight()/8-6
-        );
+        General.ComponentAnimation.setLocation(blackPieceView,temp.x+3,temp.y+1,200);
+        General.ComponentAnimation.setSize(blackPieceView,getCloneIcon().getIconWidth()/8-6,getCloneIcon().getIconHeight()/8-6,100);
+//        blackPieceView.setBounds(
+//                temp.x+3,
+//                temp.y+1,
+//                getCloneIcon().getIconWidth()/8-6,
+//                getCloneIcon().getIconHeight()/8-6
+//        );
     }
     @Override
     public void mouseDragged(MouseEvent e) {
@@ -116,8 +122,9 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     public void mousePressed(MouseEvent e) {
         Tile t = pixelToTile(e.getX(),e.getY());
         if(t!=null) {
-            ((BlackKing) (blackPieceView.model)).move(t);
-            gp.whiteAction();
+//            ((BlackKing) (blackPieceView.model)).move(t);
+            gp.blackMoveAction(t);
+
         }
         updatePositionBlackPiece();
         updatePositionWhitePiece();

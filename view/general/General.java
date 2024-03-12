@@ -16,7 +16,7 @@ public class General {
     public static void run(){
         setUIFont();
         GeneralFrame = new TFrame();
-        GeneralFrame.setRm(new GameplayRoom());
+        GeneralFrame.setRoom(new GameplayRoom());
     }
     private static TFrame GeneralFrame;
     public static final Color DEFAULT_COLOR = new Color(0x639bff);
@@ -106,7 +106,6 @@ public class General {
                 for (int i = 1; i <= ms; i += delay_fpMs) {
                     if (stop)
                         return;
-                    System.out.println("test");
                     a.setLocation(
                             (int) ((x_start - x_end) / 2 * Math.cos(Math.PI / ms * i)) + x_start
                                     + (x_end - x_start) / 2,

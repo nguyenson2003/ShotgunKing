@@ -37,24 +37,29 @@ public class Gameplay {
                     System.out.println("Vua khong the di chuyen toi o nay");
                     continue;
                 }
-                //kiểm tra chiếu hết
-                int countMate=0;
-                for (WhitePiece piece : b.getWhitePieces()) {
-                    if(piece.isMate(nextMoveOfKing)){
-                        countMate++;
-                    }
-                }
-                if(b.getBlackKing().sheild>0 && countMate>0){
-                    System.out.println("Vi tri nay bi "+countMate+" quan co chieu, moi ban di lai");
-                    b.getBlackKing().sheild--;
-                } else break;
-            }while(true);
-            
-            //đen di chuyển
-            b.getBlackKing().move(nextMoveOfKing);
 
-            whiteAction();
+                //kiểm tra chiếu hết
+                blackMoveAction(nextMoveOfKing);
+            }while(true);
+
         }
+    }
+    public void blackMoveAction(Tile nextMove){
+        int countMate=0;
+        for (WhitePiece piece : b.getWhitePieces()) {
+            if(piece.isMate(nextMove)){
+                countMate++;
+            }
+        }
+        if(b.getBlackKing().sheild>0 && countMate>0){
+            System.out.println("Vi tri nay bi "+countMate+" quan co chieu, moi ban di lai");
+            b.getBlackKing().sheild--;
+            return;
+        }
+
+        b.getBlackKing().move(nextMove);
+
+        whiteAction();
     }
     public void whiteAction(){
         //nếu có chiếu hết, đen thua

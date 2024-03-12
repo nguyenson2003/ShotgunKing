@@ -17,7 +17,7 @@ public class Pawn extends WhitePiece{
     @Override
     Tile bestMove() {
         Tile temp = new Tile(standing.x, standing.y+1);
-        if(Board.ins.getPiece(temp)==null && temp.y<8)
+        if(Board.ins.getPiece(temp)==null && temp.y<=8)
             return temp;
         else return standing;
     }

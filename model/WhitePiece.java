@@ -37,10 +37,12 @@ public abstract class WhitePiece extends Piece{
      * <div> Tính điểm của quân cờ khi ở ô c </div>
      * Quy tắc tính điểm:
      * <ul>
-     *      <li>500: chiếu tướng</li>
+     *      <li>500: chiếu tướng trực tiếp</li>
+     *      <li>250: chiếu tướng gián tiếp</li>
+     *      <li>-250: chắn chiếu tướng (chưa cần làm vội)</li>
      *      <li>20: mỗi 1 ô xung quanh ô tướng</li>
-     *      <li>a (1 - 10): vị trí quân cờ trên bàn cờ (tùy thuộc vào loại quân cờ và vị trí tương đối với quân vua sẽ có 1 cách tính khác nhau)</li>
-     *      <li>b (1-10): giá trị của quân cờ (ví dụ tốt 1đ, hậu 9đ)
+     *      <li>a (1 -> 10): vị trí quân cờ trên bàn cờ (tùy thuộc vào loại quân cờ và vị trí tương đối với quân vua sẽ có 1 cách tính khác nhau)</li>
+     *      <li>b (1 -> 10): giá trị của quân cờ (ví dụ tốt 1đ, hậu 9đ)
      *      <li>2: với mỗi 1 hp của quân cờ</li>
      * </ul>
      * @return Trả về giá trị của quân cờ khi ở ô c

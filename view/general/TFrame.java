@@ -15,7 +15,7 @@ public class TFrame extends JFrame {
     public TRoom getRm() {
         return rm;
     }
-    public void setRm(TRoom nextRoom) {
+    public void setRoom(TRoom nextRoom) {
         if(this.rm!=null){
             this.remove(this.rm);
             this.removeKeyListener(this.rm);
