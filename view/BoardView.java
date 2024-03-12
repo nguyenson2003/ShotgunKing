@@ -1,9 +1,6 @@
 package view;
 
-import model.BlackKing;
-import model.Board;
-import model.Piece;
-import model.Tile;
+import model.*;
 import view.general.TImage;
 
 import javax.swing.*;
@@ -16,25 +13,28 @@ import java.util.Objects;
 
 public class BoardView extends TImage implements MouseMotionListener,MouseListener, ComponentListener {
     Board board;
+    Gameplay gp;
     ArrayList<PieceView> whitePieceViewList = new ArrayList<>();
     PieceView blackPieceView;
     TImage borderHover;
-    public BoardView(Board board_) {
+    public BoardView(Board board) {
         super(new ImageIcon(URLDecoder.decode(
                 Objects.requireNonNull(BoardView.class.getResource("../img/board.png")).getPath(),
                 StandardCharsets.UTF_8
         )));
         setLayout(null);
 
-        this.board=board_;
-        for(Piece p : board.getWhitePieces()){
+        this.board=board;
+        this.gp = new Gameplay(this.board);
+
+        for(Piece p : this.board.getWhitePieces()){
             whitePieceViewList.add(new PieceView(p));
         }
         for(PieceView pv : whitePieceViewList){
             this.add(pv);
         }
 
-        blackPieceView = new PieceView(board.getBlackKing());
+        blackPieceView = new PieceView(this.board.getBlackKing());
         this.add(blackPieceView);
 
         borderHover = new TImage(
@@ -97,7 +97,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     public void mouseMoved(MouseEvent e) {
         Tile t = pixelToTile(e.getX(),e.getY());
         if(t!=null) {
-            rm_Gameplay.getIns().showMsg(t.toString());
+            GameplayRoom.getIns().showMsg(t.toString());
             borderHover.setSize(
                     tileToPixel(2,2).x-tileToPixel(1,1).x,
                     tileToPixel(2,2).y-tileToPixel(1,1).y
@@ -115,8 +115,10 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     @Override
     public void mousePressed(MouseEvent e) {
         Tile t = pixelToTile(e.getX(),e.getY());
-        if(t!=null)
-            ((BlackKing)(blackPieceView.model)).move(t);
+        if(t!=null) {
+            ((BlackKing) (blackPieceView.model)).move(t);
+            gp.whiteAction();
+        }
         updatePositionBlackPiece();
         updatePositionWhitePiece();
     }

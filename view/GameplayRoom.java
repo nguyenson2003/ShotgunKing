@@ -7,17 +7,17 @@ import view.general.TRoom;
 import javax.swing.*;
 import java.awt.*;
 
-public class rm_Gameplay extends TRoom {
-    private static rm_Gameplay ins;
+public class GameplayRoom extends TRoom {
+    private static GameplayRoom ins;
 
-    public static rm_Gameplay getIns() {
+    public static GameplayRoom getIns() {
         return ins;
     }
 
     private BoardView board = new BoardView(new Board());
     private JLabel msgLabel =new JLabel();
     private JPanel northPanel = new JPanel();
-    public  rm_Gameplay(){
+    public GameplayRoom(){
         ins = this;
         setBackground(General.DEFAULT_COLOR);
         setLayout(new BorderLayout());
