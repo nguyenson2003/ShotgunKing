@@ -3,8 +3,8 @@ package model;
 public abstract class WhitePiece extends Piece{
     
 
-    WhitePiece(Tile t,int maxTurn, int maxHP) {
-        super(t);
+    WhitePiece(Tile t,int maxTurn, int maxHP,Board onBoard_) {
+        super(t,onBoard_);
         this.maxTurn=3;
         this.turn=(int) Math.round(this.maxTurn*Math.random());
         this.hp=this.maxHP=3;

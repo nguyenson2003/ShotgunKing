@@ -2,8 +2,8 @@ package model;
 
 public class WhiteKing extends WhitePiece{
 
-    WhiteKing(Tile t, int maxTurn, int maxHP) {
-        super(t, maxTurn, maxHP);
+    WhiteKing(Tile t, int maxTurn, int maxHP,Board onBoard_) {
+        super(t, maxTurn, maxHP,onBoard_);
         //TODO Auto-generated constructor stub
     }
     @Override

@@ -5,8 +5,8 @@ public class BlackKing extends Piece {
     int sheild,maxSheild;
     //vỏ đạn, đạn
     int shellAmmo,maxShellAmmo,ammo,maxAmmo;
-    BlackKing(Tile standing) {
-        super(standing);
+    BlackKing(Tile standing,Board onBoard) {
+        super(standing,onBoard);
         sheild=maxSheild=2;
         shellAmmo=maxShellAmmo=2;
         ammo=maxAmmo=8;

@@ -7,8 +7,11 @@ abstract public class Piece {
      */
     Tile standing;
 
-    Piece(Tile standing_){
+    Board onBoard;
+
+    Piece(Tile standing_,Board onBoard_){
         standing=standing_;
+        onBoard=onBoard_;
     }
     
     /**

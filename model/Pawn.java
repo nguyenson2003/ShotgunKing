@@ -2,8 +2,8 @@ package model;
 
 public class Pawn extends WhitePiece{
 
-    Pawn(Tile t,int maxTurn,int maxHP) {
-        super(t,maxTurn,maxHP);
+    Pawn(Tile t,int maxTurn,int maxHP,Board onBoard) {
+        super(t,maxTurn,maxHP,onBoard);
     }
 
     @Override
@@ -16,8 +16,11 @@ public class Pawn extends WhitePiece{
 
     @Override
     Tile bestMove() {
+        if(standing.y == 8){
+            return standing;
+        }
         Tile temp = new Tile(standing.x, standing.y+1);
-        if(Board.ins.getPiece(temp)==null && temp.y<=8)
+        if(Board.ins.getPiece(temp)==null && standing.y<8)
             return temp;
         else return standing;
     }

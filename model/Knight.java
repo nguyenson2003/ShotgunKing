@@ -2,8 +2,8 @@ package model;
 
 public class Knight extends WhitePiece{
 
-    Knight(Tile t, int maxTurn, int maxHP) {
-        super(t, maxTurn, maxHP);
+    Knight(Tile t, int maxTurn, int maxHP,Board onBoard) {
+        super(t, maxTurn, maxHP,onBoard);
         //TODO Auto-generated constructor stub
     }
 

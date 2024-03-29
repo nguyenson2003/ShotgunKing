@@ -1,8 +1,8 @@
 package model;
 
 public class Rook extends WhitePiece{
-    Rook(Tile t, int maxTurn, int maxHP) {
-        super(t, maxTurn, maxHP);
+    Rook(Tile t, int maxTurn, int maxHP,Board onBoard) {
+        super(t, maxTurn, maxHP,onBoard);
         //TODO Auto-generated constructor stub
     }
     @Override
