@@ -12,8 +12,11 @@ public class Tile {
      * @param y hàng của ô cờ
      */
     public Tile(int x,int y){
-        if(x<1 || y<1 || x>8 || y>8)throw new IllegalArgumentException("ko fai o ban co");
+        if(!isOnBoard(x, y))throw new IllegalArgumentException("ko fai o ban co");
         this.x=x;this.y=y;
+    }
+    public static boolean isOnBoard(int x, int y){
+        return x>0 && y>0 && x<9 && y<9;
     }
     @Override
     public boolean equals(Object obj) {

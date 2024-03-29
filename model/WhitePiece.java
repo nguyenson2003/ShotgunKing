@@ -54,7 +54,6 @@ public abstract class WhitePiece extends Piece{
      */
     abstract Tile bestMove();
 
-
     public void move(Tile nextMove){
         turn--;
         if(turn>0){
@@ -66,6 +65,28 @@ public abstract class WhitePiece extends Piece{
             );
         standing = nextMove;
         turn=maxTurn;
+    }
+    /**
+     * Kiểm tra xem có quân cờ nào nằm giữa Tile start và Tile end
+     * @param start Tile vị trí bắt đầu 
+     * @param end Tile vị trí kết thúc
+     * @param direction = -1 hướng ngang dọc
+     * @param direction = 0 hướng cả ngang dọc và chéo
+     * @param direction = 1 hướng chéo 
+     * @return trả về true false
+     */
+    boolean isHasPieceBetween(Tile start, Tile end,int direction){
+        if(start.x>end.x){
+            Tile temp=new Tile(direction, direction);
+            start=end;
+            end=temp;
+            return false;
+        }
+            
+        if(direction==-1)//ngang dọc
+            if(start.x==end.x)
+        return false;
+        return false;
     }
 
 }

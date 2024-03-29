@@ -1,6 +1,19 @@
 package model;
 
 public class Rook extends WhitePiece{
+    int scoreStanding[][]={ {0,0,0,0,0,0,0,0,0},
+
+                            {0, 4,4,4,4,4,4,4,4},
+                            {0, 5,6,6,6,6,6,6,5},
+                            {0, 1,3,3,3,3,3,3,1},
+                            {0, 1,3,3,3,3,3,3,1},
+                            {0, 1,3,3,3,3,3,3,1},
+                            {0, 1,3,3,3,3,3,3,1},
+                            {0, 1,3,3,3,3,3,3,1},
+                            {0, 3,3,4,5,5,4,3,3},
+                            };
+    //nếu tốt là 1 thì xe là 4
+    int valueOfRook=5;
     Rook(Tile t, int maxTurn, int maxHP,Board onBoard) {
         super(t, maxTurn, maxHP,onBoard);
         //TODO Auto-generated constructor stub

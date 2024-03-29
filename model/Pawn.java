@@ -1,6 +1,19 @@
 package model;
 
 public class Pawn extends WhitePiece{
+    int scoreStanding[][]={ {0,0,0,0,0,0,0,0,0},
+
+                            {0, 2,2,2,2,2,2,2,2},
+                            {0, 6,6,6,6,6,6,6,6},
+                            {0, 2,2,3,4,4,3,2,2},
+                            {0, 2,2,3,4,4,3,2,2},
+                            {0, 2,2,3,4,4,3,2,2},
+                            {0, 2,1,1,2,2,1,1,2},
+                            {0, 3,3,3,1,1,3,3,3},
+                            {0, 2,2,2,2,2,2,2,2},
+                            };
+    //tốt là 1
+    int valueOfPawn=1;
 
     Pawn(Tile t,int maxTurn,int maxHP,Board onBoard) {
         super(t,maxTurn,maxHP,onBoard);

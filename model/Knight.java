@@ -34,15 +34,53 @@ public class Knight extends WhitePiece{
 
     @Override
     int cacl(Tile c) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cacl'");
+        BlackKing bk=Board.ins.getBlackKing();//black king
+        //chiếu tướng
+        //8 vị trí của quân mã
+        int result=0;
+        int tempx[]={-2,-1,+1,+2,+2,+1,-1,-2};
+        int tempy[]={-1,-2,-2,-1,+1,+2,+2,+1};
+        //duyệt trong 8 ô
+        for(int i=0;i<8;i++){
+            //tọa độ x,y trong nước tiếp theo
+            int x=c.x+tempx[i];
+            int y=c.y+tempy[i];
+            //mỗi nước chiếu + 500
+            if(Tile.isOnBoard(x,y)&&x==bk.standing.x&&y==bk.standing.y)
+                result+=500;
+            //mỗi nước ở xung quanh +20
+            if(Tile.isOnBoard(x,y)&&Math.abs(x-bk.standing.x)==1&&Math.abs(y-bk.standing.y)==1)
+                result+=20;
+        }
+        // chắn chiếu tướng
+        //TODO: chắn chiếu tướng
+
+        //vị trí quân cờ trên bàn cờ, giá trị quân cờ, hp quân cờ *2
+        result+=scoreStanding[c.x][c.y];
+        result+=valueOfKnight;
+        result+=this.hp*2;
+
+        return result;
     }
 
     @Override
     Tile bestMove() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'bestMove'");
+        int bestScore=0;
+        Tile resTile=new Tile(this.standing.x, this.standing.y);
+        int tempx[]={-2,-1,+1,+2,+2,+1,-1,-2};
+        int tempy[]={-1,-2,-2,-1,+1,+2,+2,+1};
+        for(int i=0;i<8;i++){
+            if(!Tile.isOnBoard(this.standing.x+tempx[i], this.standing.y+tempy[i])) continue;
+            Tile tempTile=new Tile(this.standing.x+tempx[i], this.standing.y+tempy[i]);
+            int tempScore=cacl(tempTile);
+            if(bestScore<tempScore){
+                bestScore=tempScore;
+                resTile=tempTile;
+            }
+        }
+        return resTile;
     }
+    
 
     @Override
     char getSymbol() {

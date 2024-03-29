@@ -7,7 +7,7 @@ public class Board {
     @Deprecated
     public static Board ins;
     private ArrayList<WhitePiece> whitePieces = new ArrayList<>();
-    private BlackKing blackKing;
+    private static BlackKing blackKing;
     
     public Board(){
         ins = this;
@@ -24,7 +24,7 @@ public class Board {
      * Lấy ra quân vua đen của bàn cờ
      * @return trả về quân vua đen
      */
-    public BlackKing getBlackKing(){
+    public  BlackKing getBlackKing(){
         return blackKing;
     }
 
