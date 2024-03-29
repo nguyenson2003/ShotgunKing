@@ -39,12 +39,17 @@ public class Gameplay {
                 }
 
                 //kiểm tra chiếu hết
-                blackMoveAction(nextMoveOfKing);
+                blackMoveAction(nextMoveOfKing,0);
             }while(true);
 
         }
     }
-    public void blackMoveAction(Tile nextMove){
+    public void blackMoveAction(Tile nextMove, double shootAngle){
+        boolean willShoot = false;
+        if(!b.getBlackKing().canMoveTo(nextMove)){
+            nextMove=b.getBlackKing().standing;
+            willShoot=true;
+        }
         int countMate=0;
         for (WhitePiece piece : b.getWhitePieces()) {
             if(piece.isMate(nextMove)){

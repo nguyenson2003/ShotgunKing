@@ -121,9 +121,20 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     @Override
     public void mousePressed(MouseEvent e) {
         Tile t = pixelToTile(e.getX(),e.getY());
+        Point blackKingPoint = blackPieceView.getLocation();
+        blackKingPoint.x+=blackPieceView.getWidth()/2;
+        blackKingPoint.y+=blackPieceView.getHeight()/2;
+        Point mousePoint = e.getPoint();
+        double distance = Math.sqrt(Math.pow(blackKingPoint.x-mousePoint.x,2)+Math.pow(blackKingPoint.y-mousePoint.y,2));
+        double angleCos = Math.acos((mousePoint.x-blackKingPoint.x)/distance);
+        double angleSin = Math.asin((mousePoint.y-blackKingPoint.y)/distance);
+        double angle = angleCos;
+        if(angleSin<0)angle=-angle;
+
+        System.out.println(angle);
         if(t!=null) {
 //            ((BlackKing) (blackPieceView.model)).move(t);
-            gp.blackMoveAction(t);
+            gp.blackMoveAction(t,angle);
 
         }
         updatePositionBlackPiece();

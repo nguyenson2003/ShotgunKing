@@ -7,7 +7,7 @@ package model;
 public class Tile {
     public int x, y;
     /**
-     * Tạo ra 1 ô bàn cờ trong khoảng từ 1 đến 8
+     * Tạo ra 1 ô bàn cờ trong khoảng từ 1 đến 8 tinh từ góc trên bên trái
      * @param x cột của ô cờ
      * @param y hàng của ô cờ
      */
@@ -20,8 +20,10 @@ public class Tile {
     }
     @Override
     public boolean equals(Object obj) {
-        Tile that = (Tile)obj;
-        return this.x==that.x && this.y==that.y;
+        if(!(obj instanceof Tile that))return false;
+        else {
+            return this.x == that.x && this.y == that.y;
+        }
     }
 
     @Override
