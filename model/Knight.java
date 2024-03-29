@@ -1,7 +1,22 @@
 package model;
 
 public class Knight extends WhitePiece{
+    //đánh giá vị trí đứng trên bàn cờ dựa vào video sơn gửi
+    //theo như quan sát có 6 mức độ màu do đó số điểm sẽ từ 1-6
+    //do tile theo tọa độ từ 1-8 nên mảng này cũng vậy
+    int scoreStanding[][]={ {0,0,0,0,0,0,0,0,0},
 
+                            {0, 1,2,3,3,3,3,2,1},
+                            {0, 2,3,4,4,4,4,3,2},
+                            {0, 3,4,5,5,5,5,4,3},
+                            {0, 3,4,5,6,6,5,4,3},
+                            {0, 3,4,5,6,6,5,4,3},
+                            {0, 3,4,5,5,5,5,4,3},
+                            {0, 2,3,4,4,4,4,3,2},
+                            {0, 1,2,3,3,3,3,2,1},
+                            };
+    //nếu tốt là 1 thì mã tầm 3
+    int valueOfKnight=3;
     Knight(Tile t, int maxTurn, int maxHP,Board onBoard) {
         super(t, maxTurn, maxHP,onBoard);
         //TODO Auto-generated constructor stub
