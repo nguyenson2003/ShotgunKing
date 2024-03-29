@@ -1,6 +1,19 @@
 package model;
 
 public class Bishop extends WhitePiece{
+    int scoreStanding[][]={ {0,0,0,0,0,0,0,0,0},
+
+                            {0, 1,2,2,2,2,2,2,1},
+                            {0, 2,4,4,4,4,4,4,2},
+                            {0, 2,4,4,6,6,4,4,2},
+                            {0, 2,4,4,6,6,4,4,2},
+                            {0, 2,4,6,6,6,6,4,2},
+                            {0, 2,5,5,5,5,5,5,2},
+                            {0, 2,5,3,3,3,3,5,2},
+                            {0, 3,2,2,2,2,2,2,3},
+                            };
+    //nếu tốt là 1 thì tịnh là 3
+    int valueOfBishop=3;
     Bishop(Tile t, int maxTurn, int maxHP) {
         super(t, maxTurn, maxHP);
         //TODO Auto-generated constructor stub

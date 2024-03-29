@@ -52,6 +52,7 @@ public class BlackKing extends Piece {
         ammo--;
         //TODO: hàm bắn nhau
     }
+    
 
 
     @Override

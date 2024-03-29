@@ -34,7 +34,7 @@ public class Knight extends WhitePiece{
 
     @Override
     int cacl(Tile c) {
-        BlackKing bk=Board.getBlackKing();//black king
+        BlackKing bk=Board.ins.getBlackKing();//black king
         //chiếu tướng
         //8 vị trí của quân mã
         int result=0;
@@ -70,6 +70,7 @@ public class Knight extends WhitePiece{
         int tempx[]={-2,-1,+1,+2,+2,+1,-1,-2};
         int tempy[]={-1,-2,-2,-1,+1,+2,+2,+1};
         for(int i=0;i<8;i++){
+            if(!Tile.isOnBoard(this.standing.x+tempx[i], this.standing.y+tempy[i])) continue;
             Tile tempTile=new Tile(this.standing.x+tempx[i], this.standing.y+tempy[i]);
             int tempScore=cacl(tempTile);
             if(bestScore<tempScore){

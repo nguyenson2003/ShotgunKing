@@ -1,6 +1,19 @@
 package model;
 
 public class Queen extends WhitePiece{
+    int scoreStanding[][]={ {0,0,0,0,0,0,0,0,0},
+
+                            {0, 1,2,2,3,3,2,2,1},
+                            {0, 2,4,4,4,4,4,4,2},
+                            {0, 2,4,6,6,6,6,4,2},
+                            {0, 3,4,6,6,6,6,4,3},
+                            {0, 3,4,6,6,6,6,4,3},
+                            {0, 2,4,6,6,6,6,4,2},
+                            {0, 2,4,6,6,6,6,4,2},
+                            {0, 1,2,2,3,3,2,2,1},
+                            };
+    //nếu tốt là 1 thì queen là 9
+    int valueOfQueen=9;
     Queen(Tile t, int maxTurn, int maxHP) {
         super(t, maxTurn, maxHP);
         //TODO Auto-generated constructor stub
