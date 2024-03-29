@@ -56,9 +56,9 @@ public class Gameplay {
                 countMate++;
             }
         }
-        if(b.getBlackKing().sheild>0 && countMate>0){
+        if(b.getBlackKing().shield >0 && countMate>0){
             System.out.println("Vi tri nay bi "+countMate+" quan co chieu, moi ban di lai");
-            b.getBlackKing().sheild--;
+            b.getBlackKing().shield--;
             return;
         }
 
@@ -82,6 +82,6 @@ public class Gameplay {
         for (WhitePiece piece : b.getWhitePieces()) {
             piece.move(piece.bestMove());
         }
-        b.getBlackKing().sheild=b.getBlackKing().maxSheild;
+        b.getBlackKing().shield =b.getBlackKing().maxShield;
     }
 }

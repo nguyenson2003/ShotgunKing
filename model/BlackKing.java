@@ -1,28 +1,32 @@
 package model;
 
 public class BlackKing extends Piece {
-    //khiên
-    int sheild,maxSheild;
-    //vỏ đạn, đạn
-    int shellAmmo,maxShellAmmo,ammo,maxAmmo;
+    //shield: khiên
+    int shield, maxShield;
+    //shellAmmo: đạn trong súng, spareAmmo: đạn dự phòng
+    int shellAmmo,maxShellAmmo,spareAmmo,maxSpareAmmo;
+    //firePower: hỏa lực|số sát thương trong 1 lần bắn (chia đều các con trong vùng)
+    //fireRange: tầm bắn +-1
+    //spread: góc lệch
+    int firePower,fireRange,spread;
     BlackKing(Tile standing,Board onBoard) {
         super(standing,onBoard);
-        sheild=maxSheild=2;
+        shield = maxShield =2;
         shellAmmo=maxShellAmmo=2;
-        ammo=maxAmmo=8;
+        spareAmmo=maxSpareAmmo=8;
     }
     public void reloadAmmo(){
-        if(shellAmmo<maxShellAmmo && ammo>0){
-            int waitAmmo=Math.min(ammo,maxShellAmmo-shellAmmo);
+        if(shellAmmo<maxShellAmmo && spareAmmo>0){
+            int waitAmmo=Math.min(spareAmmo,maxShellAmmo-shellAmmo);
             shellAmmo+=waitAmmo;
-            ammo-=waitAmmo;
-        }else{
-            ammo++;
+            spareAmmo-=waitAmmo;
+        }else if(spareAmmo<maxSpareAmmo){
+            spareAmmo++;
         }
     }
 
     public boolean canMoveTo(Tile nextMove){
-        if(Board.ins.getPiece(nextMove)!=null)return false;
+        if(onBoard.getPiece(nextMove)!=null)return false;
         if(Math.abs(nextMove.x-standing.x)<=1 && Math.abs(nextMove.y-standing.y)<=1)
             return true;
         else
@@ -41,15 +45,17 @@ public class BlackKing extends Piece {
         if(!canMoveTo(nextMove))
             throw new IllegalArgumentException("quan co ko the di den o nay");
         standing = nextMove;
+
+        reloadAmmo();
     }
 
     /**
      *
-     * @param degree
+     * @param angle
      */
-    public void shoot(int degree){
-        if(ammo<0)return;
-        ammo--;
+    public void shoot(int angle){
+        if(shellAmmo<0)return;
+        shellAmmo--;
         //TODO: hàm bắn nhau
     }
     

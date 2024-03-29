@@ -66,6 +66,14 @@ public abstract class WhitePiece extends Piece{
         standing = nextMove;
         turn=maxTurn;
     }
+
+    public void takeDamage(){
+        hp--;
+    }
+    public boolean isDied(){
+        return hp<=0;
+    }
+
     /**
      * Kiểm tra xem có quân cờ nào nằm giữa Tile start và Tile end
      * @param start Tile vị trí bắt đầu 
