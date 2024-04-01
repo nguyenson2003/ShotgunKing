@@ -15,7 +15,7 @@ public class Board {
     }
 
     void init(){
-        addPiece(new BlackKing(new Tile(4, 7),this));
+        addPiece(new BlackKing(new Tile(4, 7),this,2,2,8,4,5,40));
         addPiece(new Pawn(new Tile(4, 1),3,3,this));
 //        addPiece(new Knight(new Tile(1,1),3,3));
     }
@@ -68,7 +68,10 @@ public class Board {
         return null;
     }
 
-    public ArrayList<WhitePiece> getWhitePieces(){
+    /**
+     * @return Trả về list các quân trắng
+     */
+    public List<WhitePiece> getWhitePieces(){
         return whitePieces;
     }
 

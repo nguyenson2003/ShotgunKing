@@ -49,6 +49,7 @@ public class Gameplay {
         if(!b.getBlackKing().canMoveTo(nextMove)){
             nextMove=b.getBlackKing().standing;
             willShoot=true;
+            if(!b.getBlackKing().isCanShoot())return;
         }
         int countMate=0;
         for (WhitePiece piece : b.getWhitePieces()) {
@@ -62,7 +63,8 @@ public class Gameplay {
             return;
         }
 
-        b.getBlackKing().move(nextMove);
+        if(!willShoot)b.getBlackKing().move(nextMove);
+        else b.getBlackKing().shoot(shootAngle);
 
         whiteAction();
     }

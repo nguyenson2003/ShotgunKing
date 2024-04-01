@@ -10,6 +10,7 @@ import java.awt.event.*;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class BoardView extends TImage implements MouseMotionListener,MouseListener, ComponentListener {
@@ -67,6 +68,14 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         return new Point(x,y);
     }
     public void updatePositionWhitePiece(){
+        Iterator<PieceView> it= whitePieceViewList.iterator();
+        while(it.hasNext()){
+            PieceView pv = it.next();
+            if(((WhitePiece)pv.getModel()).isDied()){
+                this.remove(pv);
+                it.remove();
+            }
+        }
         for(PieceView pv : whitePieceViewList){
             Tile t = pv.getModel().getStanding();
             Point temp = tileToPixel(t.x,t.y);
@@ -82,6 +91,8 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             pv.setVisible(false);
             pv.setVisible(true);
         }
+        this.setVisible(false);
+        this.setVisible(true);
     }
     public void updatePositionBlackPiece(){
         Tile t = blackPieceView.getModel().getStanding();

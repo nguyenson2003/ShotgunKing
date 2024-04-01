@@ -15,6 +15,13 @@ public class Tile {
         if(!isOnBoard(x, y))throw new IllegalArgumentException("ko fai o ban co");
         this.x=x;this.y=y;
     }
+
+    /**
+     * Kiểm tra ô x, y có hợp lệ không
+     * @param x tọa độ x
+     * @param y tọa độ y
+     * @return true nếu vị trí hợp lệ, false nếu vị trí ko hợp lệ
+     */
     public static boolean isOnBoard(int x, int y){
         return x>0 && y>0 && x<9 && y<9;
     }

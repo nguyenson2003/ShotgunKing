@@ -7,13 +7,26 @@ public class BlackKing extends Piece {
     int shellAmmo,maxShellAmmo,spareAmmo,maxSpareAmmo;
     //firePower: hỏa lực|số sát thương trong 1 lần bắn (chia đều các con trong vùng)
     //fireRange: tầm bắn +-1
-    //spread: góc lệch
-    int firePower,fireRange,spread;
-    BlackKing(Tile standing,Board onBoard) {
+    //spread: góc lệch tính theo radian
+    int firePower,fireRange;
+    double spread;
+    BlackKing(
+            Tile standing,
+            Board onBoard,
+            int maxShield,
+            int maxShellAmmo,
+            int maxSpareAmmo,
+            int firePower,
+            int fireRange,
+            int spread //tính theo degree
+    ) {
         super(standing,onBoard);
-        shield = maxShield =2;
-        shellAmmo=maxShellAmmo=2;
-        spareAmmo=maxSpareAmmo=8;
+        this.shield = this.maxShield =maxShield;
+        this.shellAmmo=this.maxShellAmmo=maxShellAmmo;
+        this.spareAmmo=this.maxSpareAmmo=maxSpareAmmo;
+        this.firePower=firePower;
+        this.fireRange=fireRange;
+        this.spread=Math.toRadians(spread);
     }
     public void reloadAmmo(){
         if(shellAmmo<maxShellAmmo && spareAmmo>0){
@@ -25,6 +38,11 @@ public class BlackKing extends Piece {
         }
     }
 
+
+    /**
+     * @param nextMove nước đi tiếp theo của quân vua
+     * @return trả về true nếu nước đi đó hợp lệ, false ngược lại
+     */
     public boolean canMoveTo(Tile nextMove){
         if(onBoard.getPiece(nextMove)!=null)return false;
         if(Math.abs(nextMove.x-standing.x)<=1 && Math.abs(nextMove.y-standing.y)<=1)
@@ -34,11 +52,12 @@ public class BlackKing extends Piece {
     }
 
     /**
-     * 
+     * Hành động di chuyển của quân vua
      * @param nextMove
+     * @throws IllegalArgumentException không phải nước đi hợp lệ
      */
     public void move(Tile nextMove){
-        if(Board.ins.getPiece(nextMove)!=null)
+        if(onBoard.getPiece(nextMove)!=null)
             throw new IllegalArgumentException(
                 String.format("o %d,%d da co quan co", nextMove.x,nextMove.y)
             );
@@ -50,13 +69,38 @@ public class BlackKing extends Piece {
     }
 
     /**
-     *
-     * @param angle
+     * Kiểm tra vua có thể bắn hay ko
+     * @return true nếu vua còn đạn trong hộp đạn dể bắn
      */
-    public void shoot(int angle){
+    public boolean isCanShoot(){
+        return shellAmmo<0;
+    }
+    /**
+     * Hành động bắn của quân vua
+     * @param angle góc tính theo radian
+     */
+    public void shoot(double angle){
         if(shellAmmo<0)return;
         shellAmmo--;
-        //TODO: hàm bắn nhau
+        loopBullet:
+        for(int i=0;i<firePower;i++){
+            double standingX = standing.x+0.5;
+            double standingY = standing.y+0.5;
+            double rangeOfBullet = fireRange+1-Math.random()*2;
+            for(double r = 0;r<rangeOfBullet;r+=0.1) {
+                double bulletAngle = angle + spread - Math.random()*spread/2;
+                double bulletX = standingX+r*Math.cos(bulletAngle);
+                double bulletY = standingY+r*Math.sin(bulletAngle);
+                if (Tile.isOnBoard((int) bulletX, (int) bulletY)) {
+                    Tile t = new Tile((int) bulletX, (int) bulletY);
+                    Piece p = onBoard.getPiece(t);
+                    if(p instanceof WhitePiece wp && !wp.isDied()) {
+                        wp.takeDamage();
+                        break ;
+                    }
+                }else break loopBullet;
+            }
+        }
     }
     
 
