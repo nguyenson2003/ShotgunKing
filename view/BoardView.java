@@ -67,6 +67,38 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         int y = (int)((tileY-1)*(getCloneIcon().getIconHeight()/8.0)+(getHeight() - getCloneIcon().getIconHeight())/2.0);
         return new Point(x,y);
     }
+    public Point tileDoubleToPixel(double tileX, double tileY){
+        int x = (int)((tileX-1)*(getCloneIcon().getIconWidth()/8.0)+(getWidth() - getCloneIcon().getIconWidth())/2.0);
+        int y = (int)((tileY-1)*(getCloneIcon().getIconHeight()/8.0)+(getHeight() - getCloneIcon().getIconHeight())/2.0);
+        return new Point(x,y);
+    }
+    public void drawABullet(double startBulletX, double startBulletY,double endBulletX, double endBulletY){
+        Point p1 = tileDoubleToPixel(startBulletX,startBulletY);
+        Point p12= tileDoubleToPixel((startBulletX+endBulletX)/2,(startBulletY+endBulletY)/2);
+        Point p2 = tileDoubleToPixel(endBulletX,endBulletY);
+        new Thread(() -> {
+            Graphics g = getGraphics();
+            int count = 0;
+//            do {
+//                count++;
+            g.setColor(Color.red);
+            g.drawLine(p1.x,p1.y,p12.x,p12.y);
+            try {
+                Thread.sleep(30);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            BoardView.this.repaint();
+            g.drawLine(p12.x,p12.y,p2.x,p2.y);
+//            } while (count < 2);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            BoardView.this.repaint();
+        }).start();
+    }
     public void updatePositionWhitePiece(){
         Iterator<PieceView> it= whitePieceViewList.iterator();
         while(it.hasNext()){
@@ -148,8 +180,16 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             gp.blackMoveAction(t,angle);
 
         }
-        updatePositionBlackPiece();
-        updatePositionWhitePiece();
+        new Thread(() -> {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+            updatePositionBlackPiece();
+            updatePositionWhitePiece();
+        }).start();
+
     }
 
     @Override

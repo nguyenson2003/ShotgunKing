@@ -46,6 +46,7 @@ public class Gameplay {
     }
     public void blackMoveAction(Tile nextMove, double shootAngle){
         boolean willShoot = false;
+        if(b.getBlackKing().standing.equals(nextMove))return;
         if(!b.getBlackKing().canMoveTo(nextMove)){
             nextMove=b.getBlackKing().standing;
             willShoot=true;

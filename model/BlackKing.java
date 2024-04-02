@@ -1,5 +1,8 @@
 package model;
 
+import view.BoardView;
+import view.GameplayRoom;
+
 public class BlackKing extends Piece {
     //shield: khiên
     int shield, maxShield;
@@ -73,7 +76,7 @@ public class BlackKing extends Piece {
      * @return true nếu vua còn đạn trong hộp đạn dể bắn
      */
     public boolean isCanShoot(){
-        return shellAmmo<0;
+        return shellAmmo>0;
     }
     /**
      * Hành động bắn của quân vua
@@ -87,10 +90,14 @@ public class BlackKing extends Piece {
             double standingX = standing.x+0.5;
             double standingY = standing.y+0.5;
             double rangeOfBullet = fireRange+1-Math.random()*2;
-            for(double r = 0;r<rangeOfBullet;r+=0.1) {
-                double bulletAngle = angle + spread - Math.random()*spread/2;
+            double bulletAngle = angle + spread/2 - Math.random()*spread;
+            double endBulletX = 0;
+            double endBulletY = 0;
+            for(double r = 0.5;r<rangeOfBullet;r+=0.1) {
                 double bulletX = standingX+r*Math.cos(bulletAngle);
                 double bulletY = standingY+r*Math.sin(bulletAngle);
+                endBulletX=bulletX;
+                endBulletY=bulletY;
                 if (Tile.isOnBoard((int) bulletX, (int) bulletY)) {
                     Tile t = new Tile((int) bulletX, (int) bulletY);
                     Piece p = onBoard.getPiece(t);
@@ -100,6 +107,7 @@ public class BlackKing extends Piece {
                     }
                 }else break loopBullet;
             }
+            GameplayRoom.getIns().getBoardView().drawABullet(standingX,standingY,endBulletX,endBulletY);
         }
     }
     

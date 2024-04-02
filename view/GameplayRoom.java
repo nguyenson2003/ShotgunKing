@@ -14,7 +14,7 @@ public class GameplayRoom extends TRoom {
         return ins;
     }
 
-    private BoardView board = new BoardView(new Board());
+    private BoardView boardView = new BoardView(new Board());
     private JLabel msgLabel =new JLabel();
     private JPanel northPanel = new JPanel();
     public GameplayRoom(){
@@ -30,12 +30,13 @@ public class GameplayRoom extends TRoom {
             msgLabel.setPreferredSize(new Dimension(50,50));
             msgLabel.setHorizontalAlignment(JLabel.CENTER);
         }
-
-
-
-        this.add(board,BorderLayout.CENTER);
+        this.add(boardView,BorderLayout.CENTER);
         this.add(msgLabel,BorderLayout.SOUTH);
         this.add(northPanel,BorderLayout.NORTH);
+    }
+
+    public BoardView getBoardView() {
+        return boardView;
     }
 
     public void showMsg(String msg) {

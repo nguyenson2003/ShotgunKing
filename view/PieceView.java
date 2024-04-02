@@ -1,8 +1,6 @@
 package view;
 
-import model.BlackKing;
-import model.Pawn;
-import model.Piece;
+import model.*;
 import view.general.TImage;
 
 import javax.swing.*;
@@ -18,6 +16,10 @@ public class PieceView extends JLabel {
         String relativePath;
         if(piece instanceof Pawn){
             relativePath = "../img/pawn.png";
+        } else if (piece instanceof Knight) {
+            relativePath = "../img/knight.png";
+        } else if (piece instanceof Bishop) {
+            relativePath = "../img/bishop.png";
         } else if (piece instanceof BlackKing) {
             relativePath = "../img/blackking.png";
         } else{
