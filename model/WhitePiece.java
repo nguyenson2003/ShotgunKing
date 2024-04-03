@@ -85,14 +85,14 @@ public abstract class WhitePiece extends Piece{
             return true;
         else{
             if(start.x==end.x){
-                for(int i=Math.min(start.y,end.y)+1;i<=Math.max(start.y,end.y);i++){
+                for(int i=Math.min(start.y,end.y)+1;i<Math.max(start.y,end.y);i++){
                     if(onBoard.getPiece(new Tile(start.x, i))!=null&&
                         onBoard.getPiece(new Tile(start.x, i))!=onBoard.getBlackKing())
                         return true;
                 }
                 return false;
             }else{
-                for(int i=Math.min(start.x,end.x)+1;i<=Math.max(start.x,end.x);i++){
+                for(int i=Math.min(start.x,end.x)+1;i<Math.max(start.x,end.x);i++){
                     if(onBoard.getPiece(new Tile(i, start.y))!=null&&
                     onBoard.getPiece(new Tile(i, start.y))!=onBoard.getBlackKing())
                         return true;
@@ -114,7 +114,7 @@ public abstract class WhitePiece extends Piece{
         else{
             //nếu cùng đường chéo thì
             if(start.x-start.y==end.x-end.y){
-                for(int i=Math.min(start.x,end.x)+1;i<=Math.max(start.x,end.x);i++){
+                for(int i=Math.min(start.x,end.x)+1;i<Math.max(start.x,end.x);i++){
                     // System.out.println("cheo1 "+i+" "+start.x+" "+start.y);
                     if(onBoard.getPiece(new Tile(i,i-start.x+start.y))!=null&&
                     onBoard.getPiece(new Tile(i,i-start.x+start.y))!=onBoard.getBlackKing())
@@ -122,7 +122,7 @@ public abstract class WhitePiece extends Piece{
                 }
                 return false;
             }else {
-                for(int i=Math.min(start.x,end.x)+1;i<=Math.max(start.x,end.x);i++){
+                for(int i=Math.min(start.x,end.x)+1;i<Math.max(start.x,end.x);i++){
                     // System.out.println("cheo2 "+i+" "+start.x+" "+start.y+" "+end.x+" "+end.y);
                     if(onBoard.getPiece(new Tile(i,-i+start.x+start.y))!=null&&
                     onBoard.getPiece(new Tile(i,-i+start.x+start.y))!=onBoard.getBlackKing())
