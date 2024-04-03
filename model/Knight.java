@@ -54,7 +54,7 @@ public class Knight extends WhitePiece{
                 result+=20;
             }
         }
-        
+
         if(Math.abs(c.x-bk.standing.x)<=1&&Math.abs(c.y-bk.standing.y)<=1&&this.hp<=bk.firePower)
             result-=20;
         // chắn chiếu tướng
@@ -77,6 +77,7 @@ public class Knight extends WhitePiece{
         for(int i=0;i<8;i++){
             if(!Tile.isOnBoard(this.standing.x+tempx[i], this.standing.y+tempy[i])) continue;
             Tile tempTile=new Tile(this.standing.x+tempx[i], this.standing.y+tempy[i]);
+            if(onBoard.getPiece(tempTile)!=null) continue;
             int tempScore=cacl(tempTile);
             if(bestScore<tempScore){
                 bestScore=tempScore;

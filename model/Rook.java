@@ -76,6 +76,7 @@ public class Rook extends WhitePiece{
             for(int i=1;i<=7;i++){
                 if(Tile.isOnBoard(x+i*di[j*2-2], y+i*di[j*2-1])){
                     Tile tempTile=new Tile(x+i*di[j*2-2], y+i*di[j*2-1]);
+                    if(onBoard.getPiece(tempTile)!=null) continue;
                     if(onBoard.getPiece(tempTile)==null){
                         int tempScore=cacl(tempTile);
                         if(bestScore<tempScore){
