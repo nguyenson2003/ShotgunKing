@@ -20,6 +20,12 @@ public class PieceView extends JLabel {
             relativePath = "../img/knight.png";
         } else if (piece instanceof Bishop) {
             relativePath = "../img/bishop.png";
+        } else if (piece instanceof Rook) {
+            relativePath = "../img/rook.png";
+        } else if (piece instanceof Queen) {
+            relativePath = "../img/queen.png";
+        } else if (piece instanceof WhiteKing) {
+            relativePath = "../img/king.png";
         } else if (piece instanceof BlackKing) {
             relativePath = "../img/blackking.png";
         } else{
