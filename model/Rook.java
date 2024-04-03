@@ -52,7 +52,8 @@ public class Rook extends WhitePiece{
         result+=scoreStanding[c.x][c.y];
         result+=valueOfRook;
         result+=this.hp*2;
-
+        //nếu nhiều hơn power fire của king thì +20
+        
         return result;
     }
 
