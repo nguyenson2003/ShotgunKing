@@ -115,11 +115,7 @@ public abstract class WhitePiece extends Piece{
             //nếu cùng đường chéo thì
             if(start.x-start.y==end.x-end.y){
                 for(int i=Math.min(start.x,end.x)+1;i<Math.max(start.x,end.x);i++){
-<<<<<<< Updated upstream
-                    // System.out.println("cheo1 "+i+" "+start.x+" "+start.y);
-=======
                     System.out.println("cheo1 "+i+" "+start.x+" "+start.y+" "+end.x+" "+end.y);
->>>>>>> Stashed changes
                     if(onBoard.getPiece(new Tile(i,i-start.x+start.y))!=null&&
                     onBoard.getPiece(new Tile(i,i-start.x+start.y))!=onBoard.getBlackKing())
                         return true;
@@ -127,11 +123,7 @@ public abstract class WhitePiece extends Piece{
                 return false;
             }else {
                 for(int i=Math.min(start.x,end.x)+1;i<Math.max(start.x,end.x);i++){
-<<<<<<< Updated upstream
-                    // System.out.println("cheo2 "+i+" "+start.x+" "+start.y+" "+end.x+" "+end.y);
-=======
                     System.out.println("cheo2 "+i+" "+start.x+" "+start.y+" "+end.x+" "+end.y);
->>>>>>> Stashed changes
                     if(onBoard.getPiece(new Tile(i,-i+start.x+start.y))!=null&&
                     onBoard.getPiece(new Tile(i,-i+start.x+start.y))!=onBoard.getBlackKing())
                         return true;
