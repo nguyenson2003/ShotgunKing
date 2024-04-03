@@ -34,7 +34,7 @@ public class Knight extends WhitePiece{
 
     @Override
     int cacl(Tile c) {
-        BlackKing bk=Board.ins.getBlackKing();//black king
+        BlackKing bk=onBoard.getBlackKing();//black king
         //chiếu tướng
         //8 vị trí của quân mã
         int result=0;
@@ -46,11 +46,13 @@ public class Knight extends WhitePiece{
             int x=c.x+tempx[i];
             int y=c.y+tempy[i];
             //mỗi nước chiếu + 500
-            if(Tile.isOnBoard(x,y)&&x==bk.standing.x&&y==bk.standing.y)
+            if(Tile.isOnBoard(x,y)&&x==bk.standing.x&&y==bk.standing.y){
                 result+=500;
+            }
             //mỗi nước ở xung quanh +20
-            if(Tile.isOnBoard(x,y)&&Math.abs(x-bk.standing.x)==1&&Math.abs(y-bk.standing.y)==1)
+            else if(Tile.isOnBoard(x,y)&&Math.abs(x-bk.standing.x)<=1&&Math.abs(y-bk.standing.y)<=1){
                 result+=20;
+            }
         }
         // chắn chiếu tướng
         //TODO: chắn chiếu tướng

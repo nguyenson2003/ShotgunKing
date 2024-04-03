@@ -76,26 +76,59 @@ public abstract class WhitePiece extends Piece{
     }
 
     /**
-     * Kiểm tra xem có quân cờ nào nằm giữa Tile start và Tile end
+     * Kiểm tra xem có quân cờ nào nằm giữa Tile start và Tile end theo đường thẳng không. Không tính vua đen
      * @param start Tile vị trí bắt đầu 
      * @param end Tile vị trí kết thúc
-     * @param direction = -1 hướng ngang dọc
-     * @param direction = 0 hướng cả ngang dọc và chéo
-     * @param direction = 1 hướng chéo 
-     * @return trả về true false
      */
-    boolean isHasPieceBetween(Tile start, Tile end,int direction){
-        if(start.x>end.x){
-            Tile temp=new Tile(direction, direction);
-            start=end;
-            end=temp;
-            return false;
+    boolean isHasPieceBetweenStraight (Tile start, Tile end){
+        if(start.x!=end.x&&start.y!=end.y)
+            return true;
+        else{
+            if(start.x==end.x){
+                for(int i=Math.min(start.y,end.y);i<=Math.max(start.y,end.y);i++){
+                    if(onBoard.getPiece(new Tile(start.x, i))!=null&&
+                        onBoard.getPiece(new Tile(start.x, i))!=onBoard.getBlackKing())
+                        return true;
+                }
+                return false;
+            }else{
+                for(int i=Math.min(start.x,end.x);i<=Math.max(start.x,end.x);i++){
+                    if(onBoard.getPiece(new Tile(i, start.y))!=null&&
+                    onBoard.getPiece(new Tile(i, start.y))!=onBoard.getBlackKing())
+                        return true;
+                }
+                return false;
+            }
         }
-            
-        if(direction==-1)//ngang dọc
-            if(start.x==end.x)
-        return false;
-        return false;
+    }
+    /**
+     * Kiểm tra xem có quân cờ nào nằm giữa Tile start và Tile end theo đường chéo không. Không tính vua đen
+     * @param start Tile vị trí bắt đầu 
+     * @param end Tile vị trí kết thúc
+     */
+    boolean isHasPieceBetweenDiagonal (Tile start, Tile end){
+        //kiểm tra xem có cùng đường chéo k
+        //nếu không cùng đường chéo sẽ coi như có 1 quân ở giữa và không thể chiếu
+        if(start.x-start.y!=end.x-end.y&&start.x+start.y!=end.x+end.y)
+            return true;
+        else{
+            //nếu cùng đường chéo thì
+            if(start.x-start.y==end.x-end.y){
+                for(int i=Math.min(start.x,end.x);i<=Math.max(start.x,end.x);i++){
+                    if(onBoard.getPiece(new Tile(i,i-start.x+start.y))!=null&&
+                    onBoard.getPiece(new Tile(i,i-start.x+start.y))!=onBoard.getBlackKing())
+                        return true;
+                }
+                return false;
+            }else {
+                for(int i=Math.min(start.x,end.x);i<=Math.max(start.x,end.x);i++){
+                    if(onBoard.getPiece(new Tile(i,-i+start.x+start.y))!=null&&
+                    onBoard.getPiece(new Tile(i,i-start.x+start.y))!=onBoard.getBlackKing())
+                        return true;
+                }
+                return false;
+            }
+        }
     }
 
 }

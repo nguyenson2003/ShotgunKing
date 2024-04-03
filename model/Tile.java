@@ -12,7 +12,7 @@ public class Tile {
      * @param y hàng của ô cờ
      */
     public Tile(int x,int y){
-        if(!isOnBoard(x, y))throw new IllegalArgumentException("ko fai o ban co");
+        if(!isOnBoard(x, y))throw new IllegalArgumentException(x+" "+y+"ko fai o ban co");
         this.x=x;this.y=y;
     }
 

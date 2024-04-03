@@ -20,44 +20,71 @@ public class Queen extends WhitePiece{
     }
     @Override
     boolean isMate(Tile nextCell) {
-        if((nextCell.x==standing.x && (nextCell.y==standing.y-1 || nextCell.y==standing.y+1 ||nextCell.y==standing.y-2
-                ||nextCell.y==standing.y+2 ||nextCell.y==standing.y-3 ||nextCell.y==standing.y+3
-                ||nextCell.y==standing.y-4 ||nextCell.y==standing.y+4 ||nextCell.y==standing.y-5 ||nextCell.y==standing.y+5
-                ||nextCell.y==standing.y-6||nextCell.y==standing.y+6 ||nextCell.y==standing.y-7 ||nextCell.y==standing.y+7 ))
-        ||
-        (nextCell.y==standing.y && (nextCell.x==standing.x-1 || nextCell.x==standing.x+1 ||nextCell.x==standing.x-2
-                ||nextCell.x==standing.x+2 ||nextCell.x==standing.x-3 ||nextCell.x==standing.x+3
-                ||nextCell.x==standing.x-4 ||nextCell.x==standing.x+4 ||nextCell.x==standing.x-5 ||nextCell.x==standing.x+5
-                ||nextCell.x==standing.x-6||nextCell.x==standing.x+6 ||nextCell.x==standing.x-7 ||nextCell.x==standing.x+7 ))
-        ||
-        (nextCell.y==standing.y+1 && (nextCell.x==standing.x-1 || nextCell.x==standing.x+1 ))||
-        (nextCell.y==standing.y-1 && (nextCell.x==standing.x-1 || nextCell.x==standing.x+1))||
-        (nextCell.y==standing.y+2 && (nextCell.x==standing.x-2 || nextCell.x==standing.x+2 ))||
-        (nextCell.y==standing.y-2 && (nextCell.x==standing.x-2 || nextCell.x==standing.x+2))||
-        (nextCell.y==standing.y+3 && (nextCell.x==standing.x-3 || nextCell.x==standing.x+3 ))||
-        (nextCell.y==standing.y-3 && (nextCell.x==standing.x-3 || nextCell.x==standing.x+3))||
-        (nextCell.y==standing.y+4 && (nextCell.x==standing.x-4 || nextCell.x==standing.x+4 ))||
-        (nextCell.y==standing.y-4 && (nextCell.x==standing.x-4 || nextCell.x==standing.x+4))||
-        (nextCell.y==standing.y+5 && (nextCell.x==standing.x-5 || nextCell.x==standing.x+5 ))||
-        (nextCell.y==standing.y-5 && (nextCell.x==standing.x-5 || nextCell.x==standing.x+5))||
-        (nextCell.y==standing.y+6 && (nextCell.x==standing.x-6 || nextCell.x==standing.x+6 ))||
-        (nextCell.y==standing.y-6 && (nextCell.x==standing.x-6 || nextCell.x==standing.x+6))||
-        (nextCell.y==standing.y+7 && (nextCell.x==standing.x-7 || nextCell.x==standing.x+7 ))||
-        (nextCell.y==standing.y-7 && (nextCell.x==standing.x-7 || nextCell.x==standing.x+7)))
-            return true;
-        return false;
+        return !isHasPieceBetweenDiagonal(nextCell, this.standing)||
+            !isHasPieceBetweenStraight(this.standing, nextCell);
     }
 
     @Override
     int cacl(Tile c) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cacl'");
+        BlackKing bk=onBoard.getBlackKing();//black king
+        int result=0;
+        //chiếu tướng
+        if(!isHasPieceBetweenDiagonal(bk.standing, c)
+            ||!isHasPieceBetweenStraight(bk.standing, c))
+            result+=500;
+        //tọa độ xung quanh quân vua
+        //thay vì kiểm tra xem quân tịnh soi đến vua không thì 
+        //mình kiểm tra xem 8 ô quanh vua có bị soi không với mỗi ô bị soi +20
+        int tempx[]={-1,0,1,-1,1,-1,0,1};
+        int tempy[]={-1,-1,-1,0,0,1,1,1};
+        //duyệt trong 8 ô
+        for(int i=0;i<8;i++){
+            //tọa độ temp là tọa độ xung quanh quân vua
+            if(!Tile.isOnBoard(bk.standing.x+tempx[i],bk.standing.y+tempy[i])) continue;
+            Tile temp=new Tile(bk.standing.x+tempx[i],bk.standing.y+tempy[i]);
+            //mỗi nước ở xung quanh +20
+            if(!isHasPieceBetweenDiagonal(temp, c)
+                ||!isHasPieceBetweenStraight(temp, c))
+                result+=20;
+        }
+        // chắn chiếu tướng
+        //TODO: chắn chiếu tướng
+
+        //vị trí quân cờ trên bàn cờ, giá trị quân cờ, hp quân cờ *2
+        result+=scoreStanding[c.x][c.y];
+        result+=valueOfQueen;
+        result+=this.hp*2;
+
+        return result;
     }
 
     @Override
     Tile bestMove() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'bestMove'");
+        int bestScore=0;
+        Tile resTile=new Tile(this.standing.x, this.standing.y);
+        //4 hướng, 2 phần tử là 1 hướng
+        int di[]={1,1,-1,1,1,-1,-1,-1,1,0,-1,0,0,1,0,-1};
+        int x=this.standing.x;
+        int y=this.standing.y;
+        //8 hướng
+        for(int j=1;j<=8;j++)
+            //khoảng cách từ 1 -> 7
+            for(int i=1;i<=7;i++){
+                if(Tile.isOnBoard(x+i*di[j*2-2], y+i*di[j*2-1])){
+                    Tile tempTile=new Tile(x+i*di[j*2-2], y+i*di[j*2-1]);
+                    if(onBoard.getPiece(tempTile)==null){
+                        int tempScore=cacl(tempTile);
+                        if(bestScore<tempScore){
+                            bestScore=tempScore;
+                            resTile=tempTile;
+                        }
+                    }else
+                        break;
+                }else
+                    break;
+            }
+
+        return resTile;
     }
     @Override
     char getSymbol() {
