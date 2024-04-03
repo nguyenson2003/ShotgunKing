@@ -42,8 +42,13 @@ public class Rook extends WhitePiece{
             if(!Tile.isOnBoard(bk.standing.x+tempx[i],bk.standing.y+tempy[i])) continue;
             Tile temp=new Tile(bk.standing.x+tempx[i],bk.standing.y+tempy[i]);
             //mỗi nước ở xung quanh +20
-            if(!isHasPieceBetweenStraight(temp, c))
+            if(!isHasPieceBetweenStraight(temp, c)){
+                if(temp.equals(c)&&bk.firePower>=this.hp){
+                    result-=20;
+                    System.out.println("\t\t-20 "+temp.x+' '+temp.y);
+                }
                 result+=20;
+            }
         }
         // chắn chiếu tướng
         //TODO: chắn chiếu tướng
