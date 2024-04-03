@@ -59,6 +59,8 @@ public class Knight extends WhitePiece{
             result-=20;
         // chắn chiếu tướng
         //TODO: chắn chiếu tướng
+        
+
 
         //vị trí quân cờ trên bàn cờ, giá trị quân cờ, hp quân cờ *2
         result+=scoreStanding[c.x][c.y];
