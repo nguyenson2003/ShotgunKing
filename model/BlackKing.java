@@ -1,6 +1,4 @@
 package model;
-
-import view.BoardView;
 import view.GameplayRoom;
 
 public class BlackKing extends Piece {

@@ -33,7 +33,7 @@ public class Pawn extends WhitePiece{
             return standing;
         }
         Tile temp = new Tile(standing.x, standing.y+1);
-        if(Board.ins.getPiece(temp)==null && standing.y<8)
+        if(onBoard.getPiece(temp)==null && standing.y<8)
             return temp;
         else return standing;
     }

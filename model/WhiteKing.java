@@ -31,7 +31,7 @@ public class WhiteKing extends WhitePiece{
     @Override
     int cacl(Tile c) {
         int res=0;
-        BlackKing blackKing=Board.ins.getBlackKing();
+        BlackKing blackKing=onBoard.getBlackKing();
 //      500: chiếu tướng trực tiếp
         if(Math.abs(c.x-blackKing.standing.x)<=1 &&
             Math.abs(c.y-blackKing.standing.y)<=1)
