@@ -1,7 +1,7 @@
 package view;
 
 import model.*;
-import view.general.General;
+import view.general.ComponentAnimation;
 import view.general.TImage;
 
 import javax.swing.*;
@@ -112,14 +112,18 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             Tile t = pv.getModel().getStanding();
             Point temp = tileToPixel(t.x,t.y);
 
-            General.ComponentAnimation.setLocation(pv,temp.x+3,temp.y+1,200);
-            General.ComponentAnimation.setSize(pv,getCloneIcon().getIconWidth()/8-6,getCloneIcon().getIconHeight()/8-6,100);
+            ComponentAnimation.setLocation(pv,temp.x+3,temp.y+1,200);
+            ComponentAnimation.setSize(pv,getCloneIcon().getIconWidth()/8-6,getCloneIcon().getIconHeight()/8-6,100);
 //            pv.setBounds(
 //                    temp.x+3,
 //                    temp.y+1,
 //                    getCloneIcon().getIconWidth()/8-6,
 //                    getCloneIcon().getIconHeight()/8-6
 //            );
+            ComponentAnimation.shakeStop(pv);
+            if(((WhitePiece)pv.getModel()).canMove()){
+                ComponentAnimation.shakeInfinity(pv,5,0);
+            }
             pv.setVisible(false);
             pv.setVisible(true);
         }
@@ -129,8 +133,8 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     public void updatePositionBlackPiece(){
         Tile t = blackPieceView.getModel().getStanding();
         Point temp = tileToPixel(t.x,t.y);
-        General.ComponentAnimation.setLocation(blackPieceView,temp.x+3,temp.y+1,200);
-        General.ComponentAnimation.setSize(blackPieceView,getCloneIcon().getIconWidth()/8-6,getCloneIcon().getIconHeight()/8-6,100);
+        ComponentAnimation.setLocation(blackPieceView,temp.x+3,temp.y+1,200);
+        ComponentAnimation.setSize(blackPieceView,getCloneIcon().getIconWidth()/8-6,getCloneIcon().getIconHeight()/8-6,100);
 //        blackPieceView.setBounds(
 //                temp.x+3,
 //                temp.y+1,

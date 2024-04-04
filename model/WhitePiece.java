@@ -31,7 +31,7 @@ public abstract class WhitePiece extends Piece{
     /**
      * kiểm tra đến lượt di chuyển chưa
      */
-    public boolean canMove(){return turn<=0;}
+    public boolean canMove(){return turn<=1;}
 
     /**
      * <div> Tính điểm của quân cờ khi ở ô c </div>

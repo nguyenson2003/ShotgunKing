@@ -35,14 +35,11 @@ public class TFrame extends JFrame {
         // JFrame.DISPOSE_ON_CLOSE:
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // hiển thị phòng
-        this.setVisible(true);
-
         // cho phép resize ko: true - false
         this.setResizable(true);
 
         //
-        this.setLocationRelativeTo(null);
+//        this.setLocationRelativeTo(null);
         this.setMinimumSize(new Dimension(800, 800));
         // chỉnh title game
         this.setTitle("Shotgun King");
@@ -105,6 +102,16 @@ public class TFrame extends JFrame {
             }
 
         });
+
+        // hiển thị phòng
+        new Thread(() -> {
+            try {
+                Thread.sleep(100);
+                this.setVisible(true);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
     }
 
     

@@ -4,6 +4,8 @@ import model.*;
 import view.general.TImage;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -37,7 +39,6 @@ public class PieceView extends JLabel {
         )));
         this.setLayout(new BorderLayout());
         this.add(img);
-
         this.model=piece;
     }
 

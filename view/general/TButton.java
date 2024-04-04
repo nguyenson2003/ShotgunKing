@@ -29,12 +29,12 @@ public class TButton extends JButton {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                General.ComponentAnimation.setBackground((JButton)e.getSource(),DEFAUT_COLOR2,300);
+                ComponentAnimation.setBackground((JButton)e.getSource(),DEFAUT_COLOR2,300);
             }
             
             @Override
             public void mouseExited(MouseEvent e) {
-                General.ComponentAnimation.setBackground((JButton)e.getSource(),DEFAUT_COLOR1,300);
+                ComponentAnimation.setBackground((JButton)e.getSource(),DEFAUT_COLOR1,300);
             }
             
         });

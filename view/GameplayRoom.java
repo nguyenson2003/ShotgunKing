@@ -33,6 +33,15 @@ public class GameplayRoom extends TRoom {
         this.add(boardView,BorderLayout.CENTER);
         this.add(msgLabel,BorderLayout.SOUTH);
         this.add(northPanel,BorderLayout.NORTH);
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+                this.setVisible(false);
+                this.setVisible(true);
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+        }).start();
     }
 
     public BoardView getBoardView() {

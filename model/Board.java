@@ -97,10 +97,10 @@ public class Board {
         if (blackKing != null)
             board[blackKing.standing.y - 1][blackKing.standing.x - 1] = blackKing.getSymbol();
 
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < 8; i++) {
-            res += String.valueOf(board[i]) + '\n';
+            res.append(String.valueOf(board[i])).append('\n');
         }
-        return res;
+        return res.toString();
     }
 }

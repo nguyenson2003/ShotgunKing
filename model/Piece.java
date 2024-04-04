@@ -15,8 +15,7 @@ abstract public class Piece {
     }
     
     /**
-     * Trả về ký từ quân cờ, ví dụ quân xe:R
-     * @param null
+     * Trả về ký từ quân cờ, ví dụ quân xe: R
      * @return trả về ký tự quân cờ
      */
     abstract char getSymbol();
