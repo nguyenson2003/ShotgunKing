@@ -22,6 +22,7 @@ public class ComponentAnimation {
     public static void shake(Component a,int xShake,int yShake,int ms){new ShakeAnimation(a,xShake,yShake,ms);}
     public static void shakeInfinity(Component a,int xShake,int yShake){new ShakeAnimation(a,xShake,yShake,-1);}
     public static void shakeStop(Component a){new ShakeAnimation(a,100,100,-1).stop();}
+    public static void twink(Component a,int ms){new TwinklingAnimation(a,ms);}
     private abstract static class Setnable implements Runnable {
         public Setnable(Component a,int ms){
             this.a=a;
@@ -220,13 +221,15 @@ public class ComponentAnimation {
         }
         @Override
         public void run() {
+            int temp = 0;
             for (int i = 1; i <= ms || ms<0; i += delay_fpMs) {
                 if (stop)
                     return;
                 a.setLocation(
-                        (int) (x_start+Math.random()*x_shake),
-                        (int) (y_start+Math.random()*y_shake)
+                        (int) (x_start+x_shake*temp),
+                        (int) (y_start+y_shake*temp)
                 );
+                temp=1-temp;
                 try {
                     Thread.sleep(delay_fpMs*10);
                 } catch (Exception e) {
@@ -236,4 +239,40 @@ public class ComponentAnimation {
             a.setLocation(x_start,y_start);
         }
     }
+
+    private static class TwinklingAnimation extends Setnable{
+        static HashMap<Component, Setnable> running = new HashMap<>();
+
+        @Override
+        public Setnable getRunning() {
+            return running.get(this.a);
+        }
+
+        @Override
+        public void setRunning(Setnable s) {
+            running.put(this.a,s);
+        }
+
+        public TwinklingAnimation(Component a, int ms) {
+            super(a,ms);
+            this.start();
+        }
+        @Override
+        public void run() {
+            boolean temp=true;
+            for (int i = 1; i <= ms || ms<0; i += delay_fpMs) {
+                if (stop)
+                    return;
+                temp^=true;
+                a.setVisible(temp);
+                try {
+                    Thread.sleep(delay_fpMs*5);
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
+            }
+            a.setVisible(true);
+        }
+    }
+
 }

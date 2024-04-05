@@ -13,6 +13,7 @@ public abstract class WhitePiece extends Piece{
 
     int maxTurn,turn;
     int maxHP,hp;
+    boolean mateFlag=false; //đánh dấu chiếu tướng ô tiếp theo, nhấp nháy view 1 lần
     /**
      * kiểm tra có chiếu ô x, y hay ko
      * @param nextCell nước đi tiếp theo của vua đen
@@ -73,6 +74,14 @@ public abstract class WhitePiece extends Piece{
     }
     public boolean isDied(){
         return hp<=0;
+    }
+
+    public boolean isMateFlag() {
+        if (mateFlag){
+            mateFlag = false;
+            return true;
+        }
+        return false;
     }
 
     /**

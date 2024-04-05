@@ -109,7 +109,8 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             }
         }
         for(PieceView pv : whitePieceViewList){
-            Tile t = pv.getModel().getStanding();
+            WhitePiece model = (WhitePiece)pv.getModel();
+            Tile t = model.getStanding();
             Point temp = tileToPixel(t.x,t.y);
             // ComponentAnimation.shakeStop(pv);
 
@@ -122,8 +123,11 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
 //                    getCloneIcon().getIconHeight()/8-6
 //            );
             ComponentAnimation.shakeStop(pv);
-            if(((WhitePiece)pv.getModel()).canMove() && gp.isPlaying()){
+            if(model.canMove() && gp.isPlaying()){
                 ComponentAnimation.shakeInfinity(pv,5,0);
+            }
+            if(model.isMateFlag() && gp.isPlaying()){
+                ComponentAnimation.twink(pv,100);
             }
             pv.setVisible(false);
             pv.setVisible(true);
@@ -131,6 +135,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         this.setVisible(false);
         this.setVisible(true);
     }
+
     public void updatePositionBlackPiece(){
         Tile t = blackPieceView.getModel().getStanding();
         Point temp = tileToPixel(t.x,t.y);

@@ -60,6 +60,7 @@ public class Gameplay {
         int countMate=0;
         for (WhitePiece piece : b.getWhitePieces()) {
             if(piece.isMate(nextMove)){
+                piece.mateFlag=true;
                 countMate++;
             }
         }
