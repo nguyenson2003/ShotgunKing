@@ -45,7 +45,7 @@ public class Bishop extends WhitePiece{
             Tile temp=new Tile(bk.standing.x+tempx[i],bk.standing.y+tempy[i]);
             //mỗi nước ở xung quanh +20
             if(!isHasPieceBetweenDiagonal(temp, c)){
-                if(temp.equals(c)&&bk.firePower>=this.hp){
+                if(temp.equals(c)&&bk.firePower>=this.hp&&bk.isCanShoot()){
                     result-=20;
                     System.out.println("\t\t-20 "+temp.x+' '+temp.y);
                 }

@@ -55,7 +55,7 @@ public class Knight extends WhitePiece{
             }
         }
 
-        if(Math.abs(c.x-bk.standing.x)<=1&&Math.abs(c.y-bk.standing.y)<=1&&this.hp<=bk.firePower)
+        if(Math.abs(c.x-bk.standing.x)<=1&&Math.abs(c.y-bk.standing.y)<=1&&this.hp<=bk.firePower&&bk.isCanShoot())
             result-=20;
         // chắn chiếu tướng
         //TODO: chắn chiếu tướng

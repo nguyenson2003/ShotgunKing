@@ -31,20 +31,31 @@ public class WhiteKing extends WhitePiece{
     @Override
     int cacl(Tile c) {
         int res=0;
-        BlackKing blackKing=onBoard.getBlackKing();
+        BlackKing bk=onBoard.getBlackKing();
 //      500: chiếu tướng trực tiếp
-        if(Math.abs(c.x-blackKing.standing.x)<=1 &&
-            Math.abs(c.y-blackKing.standing.y)<=1)
-            res+=500;
+        if(Math.abs(c.x-bk.standing.x)<=1 &&
+            Math.abs(c.y-bk.standing.y)<=1){
+                // System.out.println("\t\t+500 "+c.x+" "+c.y);
+                res+=500;
+            }
+        // 20: mỗi 1 ô xung quanh ô tướng
+        if(Math.abs(c.x-bk.standing.x)+Math.abs(c.y-bk.standing.y)>=2 &&
+        Math.abs(c.x-bk.standing.x)*Math.abs(c.y-bk.standing.y)!=1){
+            res+=Math.max((5-Math.abs(c.x-bk.standing.x)-Math.abs(c.y-bk.standing.y)),0)*20;
+            // System.out.println("\t\t+20 "+res+" "+c.x+" "+c.y);
+        }
 // 250: chiếu tướng gián tiếp //k có
 // -250: chắn chiếu tướng (chưa cần làm vội)
-// 20: mỗi 1 ô xung quanh ô tướng
-        if(Math.abs(c.x-blackKing.standing.x)<=1 &&
-            Math.abs(c.y-blackKing.standing.y)<=1)
-            res+=20*2;
+        //duy trì khoảng cách với vua đen khi yếu máu
+        if(bk.isCanShoot()&&this.hp<=bk.firePower&&
+            Math.abs(c.x-bk.standing.x)+Math.abs(c.y-bk.standing.y)<=2){
+                // System.out.println("\t\t-500 "+c.x+" "+c.y);
+                res-=500;
+            }
 // a (1 -> 10): vị trí quân cờ trên bàn cờ (tùy thuộc vào loại quân cờ và vị trí tương đối với quân vua sẽ có 1 cách tính khác nhau)
 // b (1 -> 10): giá trị của quân cờ (ví dụ tốt 1đ, hậu 9đ)
 // 2: với mỗi 1 hp của quân cờ
+
         res+=scoreStanding[c.x][c.y]+valueOfKing+2*this.hp;
         return res;
     }
@@ -56,9 +67,13 @@ public class WhiteKing extends WhitePiece{
         int tempx[]={-1,0,1,-1,1,-1,0,1};
         int tempy[]={-1,-1,-1,0,0,1,1,1};
         for(int i=0;i<8;i++){
+            //nếu nó k trên bàn cờ thì continue
             if(!Tile.isOnBoard(this.standing.x+tempx[i], this.standing.y+tempy[i])) continue;
             Tile tempTile=new Tile(this.standing.x+tempx[i], this.standing.y+tempy[i]);
+            //nếu vị trí này có quân cờ rồi thì continue
+            if(onBoard.getPiece(tempTile)!=null) continue;
             int tempScore=cacl(tempTile);
+            // System.out.println("diem vua trang: "+tempScore+" "+tempTile.x+" "+tempTile.y);
             if(bestScore<tempScore){
                 bestScore=tempScore;
                 resTile=tempTile;
