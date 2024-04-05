@@ -21,7 +21,7 @@ public class ComponentAnimation {
 
     public static void shake(Component a,int xShake,int yShake,int ms){new ShakeAnimation(a,xShake,yShake,ms);}
     public static void shakeInfinity(Component a,int xShake,int yShake){new ShakeAnimation(a,xShake,yShake,-1);}
-    public static void shakeStop(Component a){new ShakeAnimation(a,100,100,0);}
+    public static void shakeStop(Component a){new ShakeAnimation(a,100,100,-1).stop();}
     private abstract static class Setnable implements Runnable {
         public Setnable(Component a,int ms){
             this.a=a;

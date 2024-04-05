@@ -111,6 +111,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         for(PieceView pv : whitePieceViewList){
             Tile t = pv.getModel().getStanding();
             Point temp = tileToPixel(t.x,t.y);
+            // ComponentAnimation.shakeStop(pv);
 
             ComponentAnimation.setLocation(pv,temp.x+3,temp.y+1,200);
             ComponentAnimation.setSize(pv,getCloneIcon().getIconWidth()/8-6,getCloneIcon().getIconHeight()/8-6,100);
@@ -121,7 +122,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
 //                    getCloneIcon().getIconHeight()/8-6
 //            );
             ComponentAnimation.shakeStop(pv);
-            if(((WhitePiece)pv.getModel()).canMove()){
+            if(((WhitePiece)pv.getModel()).canMove() && gp.isPlaying()){
                 ComponentAnimation.shakeInfinity(pv,5,0);
             }
             pv.setVisible(false);
@@ -184,13 +185,13 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             gp.blackMoveAction(t,angle);
 
         }
+        updatePositionBlackPiece();
         new Thread(() -> {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
-            updatePositionBlackPiece();
             updatePositionWhitePiece();
         }).start();
 
@@ -213,8 +214,8 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
 
     @Override
     public void componentResized(ComponentEvent e) {
-
         for(PieceView pv : whitePieceViewList){
+            ComponentAnimation.shakeStop(pv);
             Tile t = pv.getModel().getStanding();
             Point temp = tileToPixel(t.x,t.y);
             pv.setBounds(
@@ -223,6 +224,10 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
                     getCloneIcon().getIconWidth()/8-6,
                     getCloneIcon().getIconHeight()/8-6
             );
+
+
+            if(((WhitePiece)pv.getModel()).canMove() && gp.isPlaying())
+                ComponentAnimation.shakeInfinity(pv,5,0);
             pv.setVisible(false);
             pv.setVisible(true);
         }

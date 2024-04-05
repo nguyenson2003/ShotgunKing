@@ -14,9 +14,14 @@ public class Gameplay {
     public Gameplay(Board b){
         this.b=b;
     }
+    boolean isPlaying=true;
+
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
     public void testPlay(){
-        boolean isplay=true;
-        while(isplay){
+        while(isPlaying){
             //Bàn cờ
             System.out.println(b.toString());
 
@@ -77,6 +82,7 @@ public class Gameplay {
                 System.out.println("Thua!");
                 b.removePiece(b.getBlackKing());
                 System.out.println(b);
+                isPlaying=false;
                 return;
             }
         }
