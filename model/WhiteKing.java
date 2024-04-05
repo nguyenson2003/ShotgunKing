@@ -47,11 +47,15 @@ public class WhiteKing extends WhitePiece{
 // 250: chiếu tướng gián tiếp //k có
 // -250: chắn chiếu tướng (chưa cần làm vội)
         //duy trì khoảng cách với vua đen khi yếu máu
-        if(bk.isCanShoot()&&this.hp<=bk.firePower&&
-            Math.abs(c.x-bk.standing.x)+Math.abs(c.y-bk.standing.y)<=2){
+        if(bk.isCanShoot()&&this.hp<=bk.firePower){
+            if(Math.abs(c.x-bk.standing.x)+Math.abs(c.y-bk.standing.y)<=4){
+                
                 // System.out.println("\t\t-500 "+c.x+" "+c.y);
                 res-=500;
             }
+            res+=(Math.abs(c.x-bk.standing.x)+Math.abs(c.y-bk.standing.y))*1000;
+        }
+            
 // a (1 -> 10): vị trí quân cờ trên bàn cờ (tùy thuộc vào loại quân cờ và vị trí tương đối với quân vua sẽ có 1 cách tính khác nhau)
 // b (1 -> 10): giá trị của quân cờ (ví dụ tốt 1đ, hậu 9đ)
 // 2: với mỗi 1 hp của quân cờ
