@@ -17,13 +17,13 @@ public class Board {
     void init() {
         addPiece(new BlackKing(new Tile(4, 7), this, 2, 2, 8,
                 4, 5, 40));
-        addPiece(new WhiteKing(new Tile(5, 1), 3, 10, this));
-        // addPiece(new Rook(new Tile(1, 1), 3, 3, this));
-        // addPiece(new Knight(new Tile(2, 1), 3, 3, this));
-        // addPiece(new Bishop(new Tile(3, 1), 3, 3, this));
-        // addPiece(new Queen(new Tile(4, 1), 3, 3, this));
-        // addPiece(new Bishop(new Tile(6, 1), 3, 3, this));
-        // addPiece(new Pawn(new Tile(4, 2), 3, 3, this));
+        addPiece(new King(new Tile(5, 1), 3, 3, this));
+         addPiece(new Rook(new Tile(1, 1), 3, 5, this));
+         addPiece(new Knight(new Tile(2, 1), 3, 3, this));
+         addPiece(new Bishop(new Tile(3, 1), 3, 3, this));
+         addPiece(new Queen(new Tile(4, 1), 3, 3, this));
+         addPiece(new Bishop(new Tile(6, 1), 3, 3, this));
+         addPiece(new Pawn(new Tile(4, 2), 3, 3, this));
     }
 
     /**
@@ -71,7 +71,7 @@ public class Board {
      * @param c ô cờ
      * @return Trả về quân cờ ở vị trí c
      */
-    Piece getPiece(Tile c) {
+    public Piece getPiece(Tile c) {
         if (blackKing != null && blackKing.standing.equals(c)) return blackKing;
         for (WhitePiece p : whitePieces) {
             if (p.standing.equals(c)) return p;

@@ -1,6 +1,6 @@
 package model;
 
-public class WhiteKing extends WhitePiece{
+public class King extends WhitePiece{
     int scoreStanding[][]={ {0,0,0,0,0,0,0,0,0},
 
                             {0, 3,2,2,1,1,2,2,3},
@@ -14,7 +14,7 @@ public class WhiteKing extends WhitePiece{
                             };
     //nếu tốt là 1 thì king là 3
     int valueOfKing=3;
-    WhiteKing(Tile t, int maxTurn, int maxHP,Board onBoard_) {
+    King(Tile t, int maxTurn, int maxHP, Board onBoard_) {
         super(t, maxTurn, maxHP,onBoard_);
         //TODO Auto-generated constructor stub
     }

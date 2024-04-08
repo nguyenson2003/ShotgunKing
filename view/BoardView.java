@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class BoardView extends TImage implements MouseMotionListener,MouseListener, ComponentListener {
+public class BoardView extends TImage implements MouseMotionListener,MouseListener,ComponentListener {
     Board board;
     Gameplay gp;
     ArrayList<PieceView> whitePieceViewList = new ArrayList<>();
@@ -126,12 +126,13 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             if(model.canMove() && gp.isPlaying()){
                 ComponentAnimation.shakeInfinity(pv,5,0);
             }
-            if(model.isMateFlag() && gp.isPlaying()){
+            if((model.isMateFlag() || model.isTakeDamageFlag()) && gp.isPlaying()){
                 ComponentAnimation.twink(pv,100);
             }
             pv.setVisible(false);
             pv.setVisible(true);
         }
+        GameplayRoom.getIns().reloadInfoWhitePiece();
         this.setVisible(false);
         this.setVisible(true);
     }
@@ -162,9 +163,16 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
                     tileToPixel(2,2).y-tileToPixel(1,1).y
             );
             borderHover.setLocation(tileToPixel(t));
+            Piece p = board.getPiece(t);
+            if(p instanceof WhitePiece wp){
+                GameplayRoom.getIns().showInfoWhitePiece(wp);
+            }else{
+                GameplayRoom.getIns().hideInfoWhitePiece();
+            }
         }else{
             borderHover.setSize(0,0);
         }
+
     }
 
     @Override
@@ -193,7 +201,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         updatePositionBlackPiece();
         new Thread(() -> {
             try {
-                Thread.sleep(100);
+                Thread.sleep(200);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
@@ -219,6 +227,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
 
     @Override
     public void componentResized(ComponentEvent e) {
+        super.componentResized(e);
         for(PieceView pv : whitePieceViewList){
             ComponentAnimation.shakeStop(pv);
             Tile t = pv.getModel().getStanding();

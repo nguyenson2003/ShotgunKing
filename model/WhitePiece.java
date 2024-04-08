@@ -6,7 +6,7 @@ public abstract class WhitePiece extends Piece{
     WhitePiece(Tile t,int maxTurn, int maxHP,Board onBoard_) {
         super(t,onBoard_);
         this.maxTurn=maxTurn;
-        this.turn=(int) Math.round(this.maxTurn*Math.random());
+        this.turn=(int) (this.maxTurn*Math.random()+1);
         this.hp=this.maxHP=maxHP;
     }
 
@@ -14,6 +14,7 @@ public abstract class WhitePiece extends Piece{
     int maxTurn,turn;
     int maxHP,hp;
     boolean mateFlag=false; //đánh dấu chiếu tướng ô tiếp theo, nhấp nháy view 1 lần
+    boolean takeDamageFlag=false;
     /**
      * kiểm tra có chiếu ô x, y hay ko
      * @param nextCell nước đi tiếp theo của vua đen
@@ -70,6 +71,7 @@ public abstract class WhitePiece extends Piece{
 
     public void takeDamage(){
         hp--;
+        takeDamageFlag=true;
         if(isDied())onBoard.removePiece(this);
     }
     public boolean isDied(){
@@ -82,6 +84,30 @@ public abstract class WhitePiece extends Piece{
             return true;
         }
         return false;
+    }
+
+    public boolean isTakeDamageFlag() {
+        if (takeDamageFlag){
+            takeDamageFlag = false;
+            return true;
+        }
+        return false;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getMaxHP() {
+        return maxHP;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public int getMaxTurn() {
+        return maxTurn;
     }
 
     /**

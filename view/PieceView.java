@@ -4,9 +4,9 @@ import model.*;
 import view.general.TImage;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
@@ -26,7 +26,7 @@ public class PieceView extends JLabel {
             relativePath = "../img/rook.png";
         } else if (piece instanceof Queen) {
             relativePath = "../img/queen.png";
-        } else if (piece instanceof WhiteKing) {
+        } else if (piece instanceof King) {
             relativePath = "../img/king.png";
         } else if (piece instanceof BlackKing) {
             relativePath = "../img/blackking.png";
@@ -40,9 +40,36 @@ public class PieceView extends JLabel {
         this.setLayout(new BorderLayout());
         this.add(img);
         this.model=piece;
+//        this.addMouseListener(this);
     }
 
     public Piece getModel() {
         return model;
     }
+
+//    @Override
+//    public void mouseClicked(MouseEvent e) {
+//
+//    }
+//
+//    @Override
+//    public void mousePressed(MouseEvent e) {
+//
+//    }
+//
+//    @Override
+//    public void mouseReleased(MouseEvent e) {
+//
+//    }
+//
+//    @Override
+//    public void mouseEntered(MouseEvent e) {
+//        if(model instanceof WhitePiece p)
+//            GameplayRoom.getIns().showInfoWhitePiece(p);
+//    }
+//
+//    @Override
+//    public void mouseExited(MouseEvent e) {
+//        GameplayRoom.getIns().hideInfoWhitePiece();
+//    }
 }

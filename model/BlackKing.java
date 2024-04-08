@@ -103,7 +103,7 @@ public class BlackKing extends Piece {
                         wp.takeDamage();
                         break ;
                     }
-                }else break loopBullet;
+                }else break;
             }
             GameplayRoom.getIns().getBoardView().drawABullet(standingX,standingY,endBulletX,endBulletY);
         }
