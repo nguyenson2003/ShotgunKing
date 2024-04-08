@@ -6,48 +6,21 @@ import java.util.Scanner;
  * Gameplay
  */
 public class Gameplay {
-    static Scanner sc = new Scanner(System.in);
     Board b;
+    boolean isPlaying=true;
+    /**
+     * biến ktra buff: phải giết tất cả tốt để chiến thắng
+     */
+    private boolean killAllPawnToWin = false;
     public Gameplay(){
         this(new Board());
     }
     public Gameplay(Board b){
         this.b=b;
     }
-    boolean isPlaying=true;
 
     public boolean isPlaying() {
         return isPlaying;
-    }
-
-    public void testPlay(){
-        while(isPlaying){
-            //Bàn cờ
-            System.out.println(b.toString());
-
-            //vua đen di chuyển
-            Tile nextMoveOfKing;
-            do{
-                System.out.print("Moi ban nhap x de vua di chuyen: ");
-                int x = sc.nextInt();
-                System.out.print("Moi ban nhap y de vua di chuyen: ");
-                int y = sc.nextInt();
-                try {
-                    nextMoveOfKing=new Tile(x, y);
-                } catch (Exception e) {
-                    System.out.println(e);
-                    continue;
-                }
-                if(!b.getBlackKing().canMoveTo(nextMoveOfKing)){
-                    System.out.println("Vua khong the di chuyen toi o nay");
-                    continue;
-                }
-
-                //kiểm tra chiếu hết
-                blackMoveAction(nextMoveOfKing,0);
-            }while(true);
-
-        }
     }
 
     public void blackMoveAction(Tile nextMove, double shootAngle){
@@ -100,11 +73,6 @@ public class Gameplay {
         }
         b.getBlackKing().shield =b.getBlackKing().maxShield;
     }
-
-    /**
-     * biến ktra buff: phải giết tất cả tốt để chiến thắng
-     */
-    private boolean killAllPawnToWin = false;
 
     /**
      * @return true nếu black thắng, false nếu black chưa thắng

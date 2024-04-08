@@ -42,7 +42,12 @@ public class Pawn extends WhitePiece{
     public void move(Tile nextMove) {
         super.move(nextMove);
         if(nextMove.y==8){
-            //TODO: Phong hậu
+            onBoard.removePiece(this);
+            int choice = (int) (Math.random()*4);
+            if(choice==0)onBoard.addPiece(new Queen(standing,3,3,onBoard));
+            else if(choice==1)onBoard.addPiece(new Rook(standing,3,3,onBoard));
+            else if(choice==2)onBoard.addPiece(new Knight(standing,3,3,onBoard));
+            else onBoard.addPiece(new Bishop(standing,3,3,onBoard));
         }
     }
 
