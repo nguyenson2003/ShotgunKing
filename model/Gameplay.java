@@ -49,7 +49,10 @@ public class Gameplay {
 
         }
     }
+
     public void blackMoveAction(Tile nextMove, double shootAngle){
+        if(checkBlackWinGame())return;//check black is win game
+        //calculator move or shoot (before black action)
         boolean willShoot = false;
         if(b.getBlackKing().standing.equals(nextMove))return;
         if(!b.getBlackKing().canMoveTo(nextMove)){
@@ -57,6 +60,7 @@ public class Gameplay {
             willShoot=true;
             if(!b.getBlackKing().isCanShoot())return;
         }
+        //check all piece checkmate (before black action)
         int countMate=0;
         for (WhitePiece piece : b.getWhitePieces()) {
             if(piece.isMate(nextMove)){
@@ -69,10 +73,12 @@ public class Gameplay {
             b.getBlackKing().shield--;
             return;
         }
-
+        //black action
         if(!willShoot)b.getBlackKing().move(nextMove);
         else b.getBlackKing().shoot(shootAngle);
-
+        //end black action
+        if(checkBlackWinGame())return;// check black is win game?
+        //start white action
         whiteAction();
     }
     public void whiteAction(){
@@ -93,5 +99,30 @@ public class Gameplay {
             piece.move(piece.bestMove());
         }
         b.getBlackKing().shield =b.getBlackKing().maxShield;
+    }
+
+    /**
+     * biến ktra buff: phải giết tất cả tốt để chiến thắng
+     */
+    private boolean killAllPawnToWin = false;
+
+    /**
+     * @return true nếu black thắng, false nếu black chưa thắng
+     */
+    public boolean checkBlackWinGame(){
+        //có buff: phải giết hết tốt mới thắng
+        if(killAllPawnToWin){
+            int countPawn = 0;
+            for(WhitePiece p : b.getWhitePieces()){
+                if(p instanceof Pawn)countPawn++;
+            }
+            return countPawn==0;
+        }
+        //Cơ bản:
+        int countKing = 0;
+        for(WhitePiece p : b.getWhitePieces()){
+            if(p instanceof King)countKing++;
+        }
+        return countKing==0;
     }
 }

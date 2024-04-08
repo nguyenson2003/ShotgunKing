@@ -19,6 +19,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     ArrayList<PieceView> whitePieceViewList = new ArrayList<>();
     PieceView blackPieceView;
     TImage borderHover;
+    boolean canClickMouse = false;
     public BoardView(Board board) {
         super(new ImageIcon(URLDecoder.decode(
                 Objects.requireNonNull(BoardView.class.getResource("../img/board.png")).getPath(),
@@ -47,6 +48,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         );
         this.add(borderHover);
 
+        canClickMouse=true;
         this.addMouseMotionListener(this);
         this.addMouseListener(this);
         this.addComponentListener(this);
@@ -84,7 +86,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             g.setColor(Color.red);
             g.drawLine(p1.x,p1.y,p12.x,p12.y);
             try {
-                Thread.sleep(30);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -92,7 +94,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             g.drawLine(p12.x,p12.y,p2.x,p2.y);
 //            } while (count < 2);
             try {
-                Thread.sleep(50);
+                Thread.sleep(150);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -115,13 +117,6 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             // ComponentAnimation.shakeStop(pv);
 
             ComponentAnimation.setLocation(pv,temp.x+3,temp.y+1,200);
-            ComponentAnimation.setSize(pv,getCloneIcon().getIconWidth()/8-6,getCloneIcon().getIconHeight()/8-6,100);
-//            pv.setBounds(
-//                    temp.x+3,
-//                    temp.y+1,
-//                    getCloneIcon().getIconWidth()/8-6,
-//                    getCloneIcon().getIconHeight()/8-6
-//            );
             ComponentAnimation.shakeStop(pv);
             if(model.canMove() && gp.isPlaying()){
                 ComponentAnimation.shakeInfinity(pv,5,0);
@@ -141,13 +136,6 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         Tile t = blackPieceView.getModel().getStanding();
         Point temp = tileToPixel(t.x,t.y);
         ComponentAnimation.setLocation(blackPieceView,temp.x+3,temp.y+1,200);
-        ComponentAnimation.setSize(blackPieceView,getCloneIcon().getIconWidth()/8-6,getCloneIcon().getIconHeight()/8-6,100);
-//        blackPieceView.setBounds(
-//                temp.x+3,
-//                temp.y+1,
-//                getCloneIcon().getIconWidth()/8-6,
-//                getCloneIcon().getIconHeight()/8-6
-//        );
     }
     @Override
     public void mouseDragged(MouseEvent e) {
@@ -181,31 +169,32 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
 
     @Override
     public void mousePressed(MouseEvent e) {
-        Tile t = pixelToTile(e.getX(),e.getY());
-        Point blackKingPoint = blackPieceView.getLocation();
-        blackKingPoint.x+=blackPieceView.getWidth()/2;
-        blackKingPoint.y+=blackPieceView.getHeight()/2;
-        Point mousePoint = e.getPoint();
-        double distance = Math.sqrt(Math.pow(blackKingPoint.x-mousePoint.x,2)+Math.pow(blackKingPoint.y-mousePoint.y,2));
-        double angleCos = Math.acos((mousePoint.x-blackKingPoint.x)/distance);
-        double angleSin = Math.asin((mousePoint.y-blackKingPoint.y)/distance);
-        double angle = angleCos;
-        if(angleSin<0)angle=-angle;
-
-        System.out.println(angle);
-        if(t!=null) {
-//            ((BlackKing) (blackPieceView.model)).move(t);
-            gp.blackMoveAction(t,angle);
-
-        }
-        updatePositionBlackPiece();
+        if(!canClickMouse)return;
         new Thread(() -> {
+
+            Tile t = pixelToTile(e.getX(),e.getY());
+            Point blackKingPoint = blackPieceView.getLocation();
+            blackKingPoint.x+=blackPieceView.getWidth()/2;
+            blackKingPoint.y+=blackPieceView.getHeight()/2;
+            Point mousePoint = e.getPoint();
+            double distance = Math.sqrt(Math.pow(blackKingPoint.x-mousePoint.x,2)+Math.pow(blackKingPoint.y-mousePoint.y,2));
+            double angleCos = Math.acos((mousePoint.x-blackKingPoint.x)/distance);
+            double angleSin = Math.asin((mousePoint.y-blackKingPoint.y)/distance);
+            double angle = angleCos;
+            if(angleSin<0)angle=-angle;
+            if(t!=null) {
+    //            ((BlackKing) (blackPieceView.model)).move(t);
+                gp.blackMoveAction(t,angle);
+
+            }
+            updatePositionBlackPiece();
             try {
                 Thread.sleep(200);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
             updatePositionWhitePiece();
+            canClickMouse=true;
         }).start();
 
     }
