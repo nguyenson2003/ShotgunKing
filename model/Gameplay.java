@@ -1,5 +1,9 @@
 package model;
 
+import model.card.Card;
+
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -12,11 +16,42 @@ public class Gameplay {
      * biến ktra buff: phải giết tất cả tốt để chiến thắng
      */
     private boolean killAllPawnToWin = false;
+    private int numberOfTurn = 1;
+    ArrayList<Card> buffCards = new ArrayList<>();
+    ArrayList<Card> debuffCards = new ArrayList<>();
     public Gameplay(){
         this(new Board());
     }
     public Gameplay(Board b){
+        for(Card c:buffCards){
+            if(c.isFlip())continue;
+            c.actionBeforeInitBoard(this);
+        }
+        for(Card c:debuffCards){
+            if(c.isFlip())continue;
+            c.actionBeforeInitBoard(this);
+        }
         this.b=b;
+        for(Card c:buffCards){
+            if(c.isFlip())continue;
+            c.actionAfterInitBoard(this);
+        }
+        for(Card c:debuffCards){
+            if(c.isFlip())continue;
+            c.actionAfterInitBoard(this);
+        }
+    }
+
+
+    /**
+     * Khi muốn tạo lại 1 màn chơi, nên xài hàm này
+     * @return trả về 1 gameplay mới, các thẻ bài vẫn sẽ được giữ nguyên
+     */
+    protected Gameplay clone() {
+        Gameplay willClone = new Gameplay();
+        willClone.buffCards=this.buffCards;
+        willClone.debuffCards=this.debuffCards;
+        return willClone;
     }
 
     public boolean isPlaying() {
@@ -51,6 +86,7 @@ public class Gameplay {
         else b.getBlackKing().shoot(shootAngle);
         //end black action
         if(checkBlackWinGame())return;// check black is win game?
+        numberOfTurn++;
         //start white action
         whiteAction();
     }

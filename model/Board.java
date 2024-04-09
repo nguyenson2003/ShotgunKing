@@ -11,7 +11,7 @@ public class Board {
 
     public Board() {
         ins = this;
-        init();
+//        init();
     }
     private int initPawn = 4,initTurnPawn=5,initHpPawn=3;
     private int initKnight = 1,initTurnKnight=3,initHpKnight = 3;
@@ -19,7 +19,7 @@ public class Board {
     private int initKing = 1,initTurnKing=4,initHpKing=8;
     private int initRook = 0,initTurnRook=4,initHpRook=5;
     private int initQueen = 0,initTurnQueen=4,initHpQueen=5;
-    void init() {
+    public void init() {
         addPiece(new BlackKing(new Tile(4, 7), this, 2, 2, 8,
                 4, 5, 40));
         addPiece(new King(new Tile(5, 1), 3, 10, this));

@@ -95,7 +95,9 @@ public abstract class Card {
         System.out.println(cardClassList.size());
     }
 
-    public void actionInit(Gameplay gp){}
+    public void actionBeforeInitBoard(Gameplay gp){}
+    public void actionAfterInitBoard(Gameplay gp){}
+    public void actionBeforeBlackAction(Gameplay gp){}
     public void actionAfterBlackAction(Gameplay gp){}
     public void actionAfterWhiteAction(Gameplay gp){}
 
