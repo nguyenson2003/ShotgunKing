@@ -41,8 +41,9 @@ public class Pawn extends WhitePiece{
     @Override
     public void move(Tile nextMove) {
         super.move(nextMove);
-        if(nextMove.y==8){
+        if(standing.y==8){
             onBoard.removePiece(this);
+            hp=0;
             int choice = (int) (Math.random()*4);
             if(choice==0)onBoard.addPiece(new Queen(standing,3,3,onBoard));
             else if(choice==1)onBoard.addPiece(new Rook(standing,3,3,onBoard));

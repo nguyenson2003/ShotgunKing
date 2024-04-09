@@ -81,6 +81,9 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     public void showInfoBlackPiece(BlackKing p){
         infoBlackKingView.showInfo(p);
     }
+    public void reloadInfoBlackPiece(){
+        infoBlackKingView.reload();
+    }
 
     @Override
     public void componentResized(ComponentEvent e) {
