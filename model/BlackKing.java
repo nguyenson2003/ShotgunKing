@@ -115,5 +115,40 @@ public class BlackKing extends Piece {
     char getSymbol() {
         return 'k';
     }
-    
+
+    public int getShield() {
+        return shield;
+    }
+
+    public int getMaxShield() {
+        return maxShield;
+    }
+
+    public int getShellAmmo() {
+        return shellAmmo;
+    }
+
+    public int getMaxShellAmmo() {
+        return maxShellAmmo;
+    }
+
+    public int getSpareAmmo() {
+        return spareAmmo;
+    }
+
+    public int getMaxSpareAmmo() {
+        return maxSpareAmmo;
+    }
+
+    public int getFirePower() {
+        return firePower;
+    }
+
+    public int getFireRange() {
+        return fireRange;
+    }
+
+    public double getSpread() {
+        return spread;
+    }
 }
