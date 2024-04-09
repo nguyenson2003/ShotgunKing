@@ -16,7 +16,7 @@ public class Board {
         ins = this;
 //        init();
     }
-    private int initPawn = 0,initTurnPawn=5,initHpPawn=3;
+    private int initPawn = 4,initTurnPawn=5,initHpPawn=3;
     private int initKnight = 0,initTurnKnight=3,initHpKnight = 3;
     private int initBishop = 0,initTurnBishop=5,initHpBishop=4;
     private int initKing = 1,initTurnKing=4,initHpKing=8;
@@ -46,10 +46,7 @@ public class Board {
             row=indexCol/colList.length+1;
             if(cntKing<initKing){
                 cntKing++;
-                if(this.getDataBuff().isGiapCot){
-                    addPiece(new King(new Tile(col, row), initTurnKing, initHpKing+1, this));
-                }else
-                    addPiece(new King(new Tile(col, row), initTurnKing, initHpKing, this));
+                addPiece(new King(new Tile(col, row), initTurnKing, initHpKing, this));
                 numberOfPieceWithoutPawn--;
             }else if(cntQueen<initQueen){
                 cntQueen++;
@@ -73,7 +70,7 @@ public class Board {
         indexCol=((initBishop+initKing+initQueen+initKnight+initRook)/colList.length)*colList.length;
         while(cntPawn++<initPawn){
             col=colList[indexCol%colList.length];
-            row=indexCol/colList.length+1;
+            row=Math.max(2,indexCol/colList.length+1);
             if(this.getPiece(new Tile(col,row))!=null)
                 row+=1;
             addPiece(new Pawn(new Tile(col, row), initTurnPawn, initHpPawn, this));
@@ -81,9 +78,7 @@ public class Board {
             indexCol++;
             // System.out.println(col+" "+row);
         }
-        if(this.getDataBuff().isGiapCot){
-            blackKing.maxShield=blackKing.shield=blackKing.maxShield+4;
-        }
+        
     }
     public void debugInit() {
         addPiece(new BlackKing(new Tile(4, 7), this, 2, 2, 8,

@@ -8,5 +8,4 @@ public class DataBuff {
     public boolean isBachPhatBachTrung=false;
     public boolean isDichBenh=false;
     public boolean isSuyGiamNhueKhi=false;
-    public boolean isGiapCot=false;
 }

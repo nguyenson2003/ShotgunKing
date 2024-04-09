@@ -4,7 +4,6 @@ import model.card.BachPhatBachTrung;
 import model.card.BuocNhayVanNang;
 import model.card.Card;
 import model.card.DichBenh;
-import model.card.GiapCot;
 import model.card.KheUocQuyDu;
 import model.card.QuaDen;
 import model.card.SuyGiamNhueKhi;
@@ -172,6 +171,6 @@ public class Gameplay {
         return countKing==0;
     }
     public void debugAddCards(){
-        buffCards.add(new GiapCot());
+        buffCards.add(new SuyGiamNhueKhi());
     }
 }

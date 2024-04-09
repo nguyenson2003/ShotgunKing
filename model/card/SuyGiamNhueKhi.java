@@ -1,15 +1,24 @@
 package model.card;
 
 import model.Gameplay;
+import model.WhitePiece;
 
 public class SuyGiamNhueKhi extends Card{
-
+    int numberOfWhitePieceBefore=0;
+    int numberOfWhitePieceAfter=0;
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
-        // TODO Auto-generated method stub
-        
+        numberOfWhitePieceAfter=gp.getBoard().getWhitePieces().size();
+        if(numberOfWhitePieceAfter!=numberOfWhitePieceBefore){
+            int random=((int) (Math.random()*100))%numberOfWhitePieceAfter;
+            WhitePiece wp=gp.getBoard().getWhitePieces().get(random);
+            // System.out.println(wp.getStanding().x+" "+wp.getStanding().y);
+            wp.takeDamage();
+            if(wp.isDied())
+                actionAfterBlackAction(gp);
+        }
     }
-
+    
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
@@ -24,8 +33,7 @@ public class SuyGiamNhueKhi extends Card{
 
     @Override
     public void actionBeforeBlackAction(Gameplay gp) {
-        // TODO Auto-generated method stub
-        
+        numberOfWhitePieceBefore=gp.getBoard().getWhitePieces().size();
     }
 
     @Override
