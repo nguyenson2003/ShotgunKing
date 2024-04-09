@@ -95,6 +95,10 @@ public abstract class Card {
         System.out.println(cardClassList.size());
     }
 
+    /**
+     * hàm sẽ được gọi trước khi tạo ra bàn cờ
+     * @param gp gameplay truyền vào bao gồm cả bàn cờ và các thông tin của game
+     */
     public void actionBeforeInitBoard(Gameplay gp){}
     public void actionAfterInitBoard(Gameplay gp){}
     public void actionBeforeBlackAction(Gameplay gp){}
@@ -110,4 +114,3 @@ public abstract class Card {
         this.flip = flip;
     }
 }
-

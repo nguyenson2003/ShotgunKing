@@ -7,7 +7,7 @@ public class Board {
     @Deprecated
     public static Board ins;
     private ArrayList<WhitePiece> whitePieces = new ArrayList<>();
-    private static BlackKing blackKing;
+    private BlackKing blackKing;
 
     public Board() {
         ins = this;

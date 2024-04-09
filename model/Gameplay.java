@@ -23,6 +23,7 @@ public class Gameplay {
         this(new Board());
     }
     public Gameplay(Board b){
+        this.b=b;
         for(Card c:buffCards){
             if(c.isFlip())continue;
             c.actionBeforeInitBoard(this);
@@ -31,7 +32,7 @@ public class Gameplay {
             if(c.isFlip())continue;
             c.actionBeforeInitBoard(this);
         }
-        this.b=b;
+        b.init();
         for(Card c:buffCards){
             if(c.isFlip())continue;
             c.actionAfterInitBoard(this);
@@ -58,6 +59,14 @@ public class Gameplay {
         return isPlaying;
     }
 
+    public Board getBoard() {
+        return b;
+    }
+
+    public int getNumberOfTurn() {
+        return numberOfTurn;
+    }
+
     public void blackMoveAction(Tile nextMove, double shootAngle){
         if(checkBlackWinGame())return;//check black is win game
         //calculator move or shoot (before black action)
@@ -81,14 +90,39 @@ public class Gameplay {
             b.getBlackKing().shield--;
             return;
         }
+
+        for(Card c:buffCards){
+            if(c.isFlip())continue;
+            c.actionBeforeBlackAction(this);
+        }
+        for(Card c:debuffCards){
+            if(c.isFlip())continue;
+            c.actionBeforeBlackAction(this);
+        }
         //black action
         if(!willShoot)b.getBlackKing().move(nextMove);
         else b.getBlackKing().shoot(shootAngle);
         //end black action
         if(checkBlackWinGame())return;// check black is win game?
-        numberOfTurn++;
+        for(Card c:buffCards){
+            if(c.isFlip())continue;
+            c.actionAfterBlackAction(this);
+        }
+        for(Card c:debuffCards){
+            if(c.isFlip())continue;
+            c.actionAfterBlackAction(this);
+        }
         //start white action
         whiteAction();
+        numberOfTurn++;
+        for(Card c:buffCards){
+            if(c.isFlip())continue;
+            c.actionAfterWhiteAction(this);
+        }
+        for(Card c:debuffCards){
+            if(c.isFlip())continue;
+            c.actionAfterWhiteAction(this);
+        }
     }
     public void whiteAction(){
         //nếu có chiếu hết, đen thua
