@@ -110,7 +110,6 @@ public class Gameplay {
         if(!willShoot)b.getBlackKing().move(nextMove);
         else b.getBlackKing().shoot(shootAngle);
         //end black action
-        if(checkBlackWinGame())return;// check black is win game?
         for(Card c:buffCards){
             if(c.isFlip())continue;
             c.actionAfterBlackAction(this);
@@ -119,6 +118,7 @@ public class Gameplay {
             if(c.isFlip())continue;
             c.actionAfterBlackAction(this);
         }
+        if(checkBlackWinGame())return;// check black is win game?
         //start white action
         whiteAction();
         numberOfTurn++;
