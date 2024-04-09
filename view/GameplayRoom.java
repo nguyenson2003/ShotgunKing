@@ -1,5 +1,6 @@
 package view;
 
+import model.BlackKing;
 import model.Board;
 import model.WhitePiece;
 import view.general.General;
@@ -17,7 +18,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         return ins;
     }
 
-    private BoardView boardView = new BoardView(new Board());
+    private BoardView boardView;
     private JLabel msgLabel =new JLabel();
     private JPanel northPanel = new JPanel();
     private JPanel buffPanel = new JPanel();
@@ -27,6 +28,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     private InfoBlackKingView infoBlackKingView=new InfoBlackKingView();
     public GameplayRoom(){
         ins = this;
+        boardView = new BoardView(new Board());
         setBackground(General.DEFAULT_COLOR);
         setLayout(new BorderLayout());
 
@@ -48,7 +50,6 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         centerPanel.add(infoWhitePieceView,BorderLayout.EAST);
         this.add(buffPanel,BorderLayout.WEST);
         this.add(debuffPanel,BorderLayout.EAST);
-
         this.addComponentListener(this);
         new Thread(() -> {
             try {
@@ -76,6 +77,9 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     }
     public void hideInfoWhitePiece(){
         infoWhitePieceView.hideInfo();
+    }
+    public void showInfoBlackPiece(BlackKing p){
+        infoBlackKingView.showInfo(p);
     }
 
     @Override

@@ -38,6 +38,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         }
 
         blackPieceView = new PieceView(this.board.getBlackKing());
+        GameplayRoom.getIns().showInfoBlackPiece((BlackKing) blackPieceView.getModel());
         this.add(blackPieceView);
 
         borderHover = new TImage(
