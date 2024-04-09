@@ -8,18 +8,84 @@ public class Board {
     public static Board ins;
     private ArrayList<WhitePiece> whitePieces = new ArrayList<>();
     private BlackKing blackKing;
-
+    private DataBuff dataBuff = new DataBuff();
+    public DataBuff getDataBuff() {
+        return dataBuff;
+    }
     public Board() {
         ins = this;
 //        init();
     }
-    private int initPawn = 4,initTurnPawn=5,initHpPawn=3;
-    private int initKnight = 1,initTurnKnight=3,initHpKnight = 3;
-    private int initBishop = 1,initTurnBishop=5,initHpBishop=4;
+    private int initPawn = 0,initTurnPawn=5,initHpPawn=3;
+    private int initKnight = 0,initTurnKnight=3,initHpKnight = 3;
+    private int initBishop = 0,initTurnBishop=5,initHpBishop=4;
     private int initKing = 1,initTurnKing=4,initHpKing=8;
     private int initRook = 0,initTurnRook=4,initHpRook=5;
     private int initQueen = 0,initTurnQueen=4,initHpQueen=5;
+    
     public void init() {
+        addPiece(new BlackKing(new Tile(4, 8), this, 2, 2, 8,
+            4, 5, 40));
+        if(this.getDataBuff().isKheUocQuyDuAction){
+            blackKing.firePower+=2;
+            blackKing.maxSpareAmmo=Math.max(1,blackKing.maxSpareAmmo-3);
+        }
+        if(this.getDataBuff().isQuaDen){
+            blackKing.fireRange+=2;
+        }
+        if(this.getDataBuff().isBachPhatBachTrung){
+            blackKing.firePower=Math.max(1,blackKing.firePower-2);
+            blackKing.spread=0;
+        }
+        int numberOfPieceWithoutPawn=initBishop+initKing+initQueen+initKnight+initRook;
+        int colList[]={4,5,3,6,2,7,1,8};
+        int row=1,indexCol=0,col=0;
+        int cntPawn=0,cntKnight=0,cntBishop=0,cntKing=0,cntRook=0,cntQueen=0;
+        while(numberOfPieceWithoutPawn>0){
+            col=colList[indexCol%colList.length];
+            row=indexCol/colList.length+1;
+            if(cntKing<initKing){
+                cntKing++;
+                if(this.getDataBuff().isGiapCot){
+                    addPiece(new King(new Tile(col, row), initTurnKing, initHpKing+1, this));
+                }else
+                    addPiece(new King(new Tile(col, row), initTurnKing, initHpKing, this));
+                numberOfPieceWithoutPawn--;
+            }else if(cntQueen<initQueen){
+                cntQueen++;
+                addPiece(new Queen(new Tile(col, row), initTurnQueen, initHpQueen, this));
+                numberOfPieceWithoutPawn--;
+            }else if(cntBishop<initBishop){
+                cntBishop++;
+                addPiece(new Bishop(new Tile(col, row), initTurnBishop, initHpBishop, this));
+                numberOfPieceWithoutPawn--;
+            }else if(cntKnight<initKnight){
+                cntKnight++;
+                addPiece(new Knight(new Tile(col, row), initTurnKnight, initHpKnight, this));
+                numberOfPieceWithoutPawn--;
+            }else if(cntRook<initRook){
+                cntRook++;
+                addPiece(new Rook(new Tile(col, row), initTurnRook, initHpRook, this));
+                numberOfPieceWithoutPawn--;
+            }
+            indexCol++;
+        }
+        indexCol=((initBishop+initKing+initQueen+initKnight+initRook)/colList.length)*colList.length;
+        while(cntPawn++<initPawn){
+            col=colList[indexCol%colList.length];
+            row=indexCol/colList.length+1;
+            if(this.getPiece(new Tile(col,row))!=null)
+                row+=1;
+            addPiece(new Pawn(new Tile(col, row), initTurnPawn, initHpPawn, this));
+            
+            indexCol++;
+            // System.out.println(col+" "+row);
+        }
+        if(this.getDataBuff().isGiapCot){
+            blackKing.maxShield=blackKing.shield=blackKing.maxShield+4;
+        }
+    }
+    public void debugInit() {
         addPiece(new BlackKing(new Tile(4, 7), this, 2, 2, 8,
                 4, 5, 40));
         addPiece(new King(new Tile(5, 1), 3, 10, this));
@@ -47,7 +113,12 @@ public class Board {
      */
     public void addPiece(Piece p) {
         if (getPiece(p.standing) != null) throw new IllegalArgumentException("Ô này đã có quân cờ");
-        if (p instanceof WhitePiece) whitePieces.add((WhitePiece) p);
+        if (p instanceof WhitePiece) {
+            if(this.getDataBuff().isDichBenh)
+                ((WhitePiece)p).hp=((WhitePiece)p).maxHP=Math.max(1, ((WhitePiece)p).maxHP-1);
+            // System.out.println("con lai "+((WhitePiece)p).maxHP);
+            whitePieces.add((WhitePiece) p);
+        }
         else blackKing = (BlackKing) p;
     }
 

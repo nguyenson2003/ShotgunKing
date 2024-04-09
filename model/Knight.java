@@ -63,9 +63,7 @@ public class Knight extends WhitePiece{
 
 
         //vị trí quân cờ trên bàn cờ, giá trị quân cờ, hp quân cờ *2
-        result+=scoreStanding[c.x][c.y];
-        result+=valueOfKnight;
-        result+=this.hp*2;
+        result+=scoreStanding[c.x][c.y]+valueOfKnight+this.hp*2;
 
         return result;
     }

@@ -31,7 +31,7 @@ public class Bishop extends WhitePiece{
         //chiếu tướng
         if(!isHasPieceBetweenDiagonal(bk.standing, c)){
             result+=500;
-            System.out.println("\t+500 "+c.x+' '+c.y);
+            // System.out.println("\t+500 "+c.x+' '+c.y);
         }
         //tọa độ xung quanh quân vua
         //thay vì kiểm tra xem quân tịnh soi đến vua không thì 
@@ -47,20 +47,17 @@ public class Bishop extends WhitePiece{
             if(!isHasPieceBetweenDiagonal(temp, c)){
                 if(temp.equals(c)&&bk.firePower>=this.hp&&bk.isCanShoot()){
                     result-=20;
-                    System.out.println("\t\t-20 "+temp.x+' '+temp.y);
+                    // System.out.println("\t\t-20 "+temp.x+' '+temp.y);
                 }
-                    
                 result+=20;
-                System.out.println("\t+20 "+temp.x+' '+temp.y);
+                // System.out.println("\t+20 "+temp.x+' '+temp.y);
             }
         }
         // chắn chiếu tướng
         //TODO: chắn chiếu tướng
 
         //vị trí quân cờ trên bàn cờ, giá trị quân cờ, hp quân cờ *2
-        result+=scoreStanding[c.x][c.y];
-        result+=valueOfBishop;
-        result+=this.hp*2;
+        result+=scoreStanding[c.x][c.y]+valueOfBishop+this.hp*2;
 
         return result;
     }
@@ -85,7 +82,7 @@ public class Bishop extends WhitePiece{
                             bestScore=tempScore;
                             resTile=tempTile;
                         }
-                        System.out.println("."+tempScore+' '+tempTile.x+' '+tempTile.y);   
+                        // System.out.println("."+tempScore+' '+tempTile.x+' '+tempTile.y);   
                     }else
                         break;
                 }else

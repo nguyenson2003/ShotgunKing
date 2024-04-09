@@ -1,6 +1,13 @@
 package model;
 
+import model.card.BachPhatBachTrung;
+import model.card.BuocNhayVanNang;
 import model.card.Card;
+import model.card.DichBenh;
+import model.card.GiapCot;
+import model.card.KheUocQuyDu;
+import model.card.QuaDen;
+import model.card.SuyGiamNhueKhi;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -24,6 +31,7 @@ public class Gameplay {
     }
     public Gameplay(Board b){
         this.b=b;
+        debugAddCards();
         for(Card c:buffCards){
             if(c.isFlip())continue;
             c.actionBeforeInitBoard(this);
@@ -162,5 +170,8 @@ public class Gameplay {
             if(p instanceof King)countKing++;
         }
         return countKing==0;
+    }
+    public void debugAddCards(){
+        buffCards.add(new GiapCot());
     }
 }

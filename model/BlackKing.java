@@ -46,7 +46,11 @@ public class BlackKing extends Piece {
      */
     public boolean canMoveTo(Tile nextMove){
         if(onBoard.getPiece(nextMove)!=null)return false;
-        if(Math.abs(nextMove.x-standing.x)<=1 && Math.abs(nextMove.y-standing.y)<=1)
+        int kc=1;
+        if(onBoard.getDataBuff().isBuocNhayVanNangAction){
+            kc=2;
+        }
+        if(Math.abs(nextMove.x-standing.x)<=kc && Math.abs(nextMove.y-standing.y)<=kc)
             return true;
         else
             return false;
@@ -64,6 +68,10 @@ public class BlackKing extends Piece {
             );
         if(!canMoveTo(nextMove))
             throw new IllegalArgumentException("quan co ko the di den o nay");
+        int absx=Math.abs(nextMove.x-standing.x),absy=Math.abs(nextMove.y-standing.y);
+        if(absx+absy>=2&&absx*absy!=1){
+            onBoard.getDataBuff().isBuocNhayVanNangAction=false;
+        }
         standing = nextMove;
 
         reloadAmmo();

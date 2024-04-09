@@ -47,7 +47,7 @@ public class Queen extends WhitePiece{
                 ||!isHasPieceBetweenStraight(temp, c)){
                 if(temp.equals(c)&&bk.firePower>=this.hp&&bk.isCanShoot()){
                     result-=20;
-                    System.out.println("\t\t-20 "+temp.x+' '+temp.y);
+                    // System.out.println("\t\t-20 "+temp.x+' '+temp.y);
                 }
                 result+=20;
             }
@@ -56,9 +56,7 @@ public class Queen extends WhitePiece{
         //TODO: chắn chiếu tướng
 
         //vị trí quân cờ trên bàn cờ, giá trị quân cờ, hp quân cờ *2
-        result+=scoreStanding[c.x][c.y];
-        result+=valueOfQueen;
-        result+=this.hp*2;
+        result+=scoreStanding[c.x][c.y]+valueOfQueen+this.hp*2;
 
         return result;
     }

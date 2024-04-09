@@ -33,27 +33,29 @@ public class King extends WhitePiece{
         int res=0;
         BlackKing bk=onBoard.getBlackKing();
 //      500: chiếu tướng trực tiếp
-        if(Math.abs(c.x-bk.standing.x)<=1 &&
-            Math.abs(c.y-bk.standing.y)<=1){
+        int absx=Math.abs(c.x-bk.standing.x),absy=Math.abs(c.y-bk.standing.y);
+        if(absx<=1 && absy<=1){
                 // System.out.println("\t\t+500 "+c.x+" "+c.y);
                 res+=500;
-            }
+        }
         // 20: mỗi 1 ô xung quanh ô tướng
-        if(Math.abs(c.x-bk.standing.x)+Math.abs(c.y-bk.standing.y)>=2 &&
-        Math.abs(c.x-bk.standing.x)*Math.abs(c.y-bk.standing.y)!=1){
-            res+=Math.max((5-Math.abs(c.x-bk.standing.x)-Math.abs(c.y-bk.standing.y)),0)*20;
+        if(absx+absy>=2 && absx*absy!=1){
+            res+=Math.max((5-absx-absy),0)*20;
             // System.out.println("\t\t+20 "+res+" "+c.x+" "+c.y);
         }
 // 250: chiếu tướng gián tiếp //k có
 // -250: chắn chiếu tướng (chưa cần làm vội)
         //duy trì khoảng cách với vua đen khi yếu máu
         if(bk.isCanShoot()&&this.hp<=bk.firePower){
-            if(Math.abs(c.x-bk.standing.x)+Math.abs(c.y-bk.standing.y)<=4){
-                
+            if(absx+absy<=4){
                 // System.out.println("\t\t-500 "+c.x+" "+c.y);
                 res-=500;
             }
-            res+=(Math.abs(c.x-bk.standing.x)+Math.abs(c.y-bk.standing.y))*1000;
+            res+=(absx+absy)*1000;
+            // System.out.println("\t\t+1000 "+c.x+" "+c.y);
+        }else{
+            res-=(absx+absy)*1000;
+            // System.out.println("\t\t-1000 "+c.x+" "+c.y);
         }
             
 // a (1 -> 10): vị trí quân cờ trên bàn cờ (tùy thuộc vào loại quân cờ và vị trí tương đối với quân vua sẽ có 1 cách tính khác nhau)
@@ -66,7 +68,7 @@ public class King extends WhitePiece{
 
     @Override
     Tile bestMove() {
-        int bestScore=0;
+        int bestScore=Integer.MIN_VALUE;
         Tile resTile=new Tile(this.standing.x, this.standing.y);
         int tempx[]={-1,0,1,-1,1,-1,0,1};
         int tempy[]={-1,-1,-1,0,0,1,1,1};

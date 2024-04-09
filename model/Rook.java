@@ -55,9 +55,7 @@ public class Rook extends WhitePiece{
         //TODO: chắn chiếu tướng
 
         //vị trí quân cờ trên bàn cờ, giá trị quân cờ, hp quân cờ *2
-        result+=scoreStanding[c.x][c.y];
-        result+=valueOfRook;
-        result+=this.hp*2;
+        result+=scoreStanding[c.x][c.y]+valueOfRook+this.hp*2;
         //nếu nhiều hơn power fire của king thì +20
         
         return result;
