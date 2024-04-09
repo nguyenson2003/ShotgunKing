@@ -26,17 +26,9 @@ public class Board {
     public void init() {
         addPiece(new BlackKing(new Tile(4, 8), this, 2, 2, 8,
             4, 5, 40));
-        if(this.getDataBuff().isKheUocQuyDuAction){
-            blackKing.firePower+=2;
-            blackKing.maxSpareAmmo=Math.max(1,blackKing.maxSpareAmmo-3);
-        }
-        if(this.getDataBuff().isQuaDen){
-            blackKing.fireRange+=2;
-        }
-        if(this.getDataBuff().isBachPhatBachTrung){
-            blackKing.firePower=Math.max(1,blackKing.firePower-2);
-            blackKing.spread=0;
-        }
+        
+        
+        
         int numberOfPieceWithoutPawn=initBishop+initKing+initQueen+initKnight+initRook;
         int colList[]={4,5,3,6,2,7,1,8};
         int row=1,indexCol=0,col=0;

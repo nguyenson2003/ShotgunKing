@@ -6,90 +6,99 @@ public class BlackKing extends Piece {
     int shield, maxShield;
     //shellAmmo: đạn trong súng, spareAmmo: đạn dự phòng
     int shellAmmo,maxShellAmmo,spareAmmo,maxSpareAmmo;
+    public void setMaxSpareAmmo(int maxSpareAmmo) {
+        this.maxSpareAmmo = maxSpareAmmo;
+    }
+
     //firePower: hỏa lực|số sát thương trong 1 lần bắn (chia đều các con trong vùng)
     //fireRange: tầm bắn +-1
     //spread: góc lệch tính theo radian
     int firePower,fireRange;
+    
+
     double spread;
+    
+    double oldAngle;
     BlackKing(
-            Tile standing,
-            Board onBoard,
-            int maxShield,
-            int maxShellAmmo,
+        Tile standing,
+        Board onBoard,
+        int maxShield,
+        int maxShellAmmo,
             int maxSpareAmmo,
             int firePower,
             int fireRange,
             int spread //tính theo degree
-    ) {
-        super(standing,onBoard);
-        this.shield = this.maxShield =maxShield;
-        this.shellAmmo=this.maxShellAmmo=maxShellAmmo;
-        this.spareAmmo=this.maxSpareAmmo=maxSpareAmmo;
-        this.firePower=firePower;
-        this.fireRange=fireRange;
-        this.spread=Math.toRadians(spread);
-    }
-    public void reloadAmmo(){
-        if(shellAmmo<maxShellAmmo && spareAmmo>0){
-            int waitAmmo=Math.min(spareAmmo,maxShellAmmo-shellAmmo);
-            shellAmmo+=waitAmmo;
-            spareAmmo-=waitAmmo;
-        }else if(spareAmmo<maxSpareAmmo){
-            spareAmmo++;
-        }
-    }
-
-
-    /**
-     * @param nextMove nước đi tiếp theo của quân vua
-     * @return trả về true nếu nước đi đó hợp lệ, false ngược lại
-     */
-    public boolean canMoveTo(Tile nextMove){
-        if(onBoard.getPiece(nextMove)!=null)return false;
-        int kc=1;
-        if(onBoard.getDataBuff().isBuocNhayVanNangAction){
-            kc=2;
-        }
-        if(Math.abs(nextMove.x-standing.x)<=kc && Math.abs(nextMove.y-standing.y)<=kc)
-            return true;
-        else
-            return false;
-    }
-
-    /**
-     * Hành động di chuyển của quân vua
-     * @param nextMove
-     * @throws IllegalArgumentException không phải nước đi hợp lệ
-     */
-    public void move(Tile nextMove){
-        if(onBoard.getPiece(nextMove)!=null)
-            throw new IllegalArgumentException(
-                String.format("o %d,%d da co quan co", nextMove.x,nextMove.y)
-            );
-        if(!canMoveTo(nextMove))
-            throw new IllegalArgumentException("quan co ko the di den o nay");
-        int absx=Math.abs(nextMove.x-standing.x),absy=Math.abs(nextMove.y-standing.y);
-        if(absx+absy>=2&&absx*absy!=1){
-            onBoard.getDataBuff().isBuocNhayVanNangAction=false;
-        }
-        standing = nextMove;
-
-        reloadAmmo();
-    }
-
-    /**
-     * Kiểm tra vua có thể bắn hay ko
-     * @return true nếu vua còn đạn trong hộp đạn dể bắn
-     */
-    public boolean isCanShoot(){
-        return shellAmmo>0;
-    }
-    /**
-     * Hành động bắn của quân vua
-     * @param angle góc tính theo radian
+            ) {
+                super(standing,onBoard);
+                this.shield = this.maxShield =maxShield;
+                this.shellAmmo=this.maxShellAmmo=maxShellAmmo;
+                this.spareAmmo=this.maxSpareAmmo=maxSpareAmmo;
+                this.firePower=firePower;
+                this.fireRange=fireRange;
+                this.spread=Math.toRadians(spread);
+            }
+            public void reloadAmmo(){
+                if(shellAmmo<maxShellAmmo && spareAmmo>0){
+                    int waitAmmo=Math.min(spareAmmo,maxShellAmmo-shellAmmo);
+                    shellAmmo+=waitAmmo;
+                    spareAmmo-=waitAmmo;
+                }else if(spareAmmo<maxSpareAmmo){
+                    spareAmmo++;
+                }
+            }
+            
+            
+            /**
+             * @param nextMove nước đi tiếp theo của quân vua
+             * @return trả về true nếu nước đi đó hợp lệ, false ngược lại
+             */
+            public boolean canMoveTo(Tile nextMove){
+                if(onBoard.getPiece(nextMove)!=null)return false;
+                int kc=1;
+                if(onBoard.getDataBuff().isBuocNhayVanNangAction){
+                    kc=2;
+                }
+                if(Math.abs(nextMove.x-standing.x)<=kc && Math.abs(nextMove.y-standing.y)<=kc)
+                return true;
+                else
+                return false;
+            }
+            
+            /**
+             * Hành động di chuyển của quân vua
+             * @param nextMove
+             * @throws IllegalArgumentException không phải nước đi hợp lệ
+             */
+            public void move(Tile nextMove){
+                if(onBoard.getPiece(nextMove)!=null)
+                throw new IllegalArgumentException(
+                    String.format("o %d,%d da co quan co", nextMove.x,nextMove.y)
+                    );
+                    if(!canMoveTo(nextMove))
+                    throw new IllegalArgumentException("quan co ko the di den o nay");
+                    int absx=Math.abs(nextMove.x-standing.x),absy=Math.abs(nextMove.y-standing.y);
+                    if(absx+absy>=2&&absx*absy!=1){
+                        onBoard.getDataBuff().isBuocNhayVanNangAction=false;
+                    }
+                    standing = nextMove;
+                    
+                    reloadAmmo();
+                }
+                
+                /**
+                 * Kiểm tra vua có thể bắn hay ko
+                 * @return true nếu vua còn đạn trong hộp đạn dể bắn
+                 */
+                public boolean isCanShoot(){
+                    return shellAmmo>0;
+                }
+                /**
+                 * Hành động bắn của quân vua
+                 * @param angle góc tính theo radian
      */
     public void shoot(double angle){
         if(shellAmmo<0)return;
+        oldAngle=angle;
         shellAmmo--;
         loopBullet:
         for(int i=0;i<firePower;i++){
@@ -117,13 +126,24 @@ public class BlackKing extends Piece {
         }
     }
     
-
-
+    
+    
     @Override
     char getSymbol() {
         return 'k';
     }
-
+    public void setFireRange(int fireRange) {
+        this.fireRange = fireRange;
+    }
+    public void setFirePower(int firePower) {
+        this.firePower = firePower;
+    }
+    public void setSpread(double spread) {
+        this.spread = spread;
+    }
+    public double getOldAngle() {
+        return oldAngle;
+    }
     public int getShield() {
         return shield;
     }

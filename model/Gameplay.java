@@ -6,7 +6,9 @@ import model.card.Card;
 import model.card.DichBenh;
 import model.card.KheUocQuyDu;
 import model.card.QuaDen;
+import model.card.SungVinhQuang;
 import model.card.SuyGiamNhueKhi;
+import model.card.XaSung;
 
 import java.awt.*;
 import java.util.ArrayList;
