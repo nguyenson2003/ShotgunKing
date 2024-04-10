@@ -1,6 +1,7 @@
 package model.card;
 
 import model.Gameplay;
+import model.WhitePiece;
 
 public class QuaDen extends Card{
 
@@ -20,6 +21,11 @@ public class QuaDen extends Card{
     public void actionAfterWhiteAction(Gameplay gp) {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece) {
+
     }
 
     @Override

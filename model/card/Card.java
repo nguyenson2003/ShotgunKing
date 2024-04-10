@@ -2,6 +2,7 @@ package model.card;
 
 import model.Board;
 import model.Gameplay;
+import model.WhitePiece;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -104,7 +105,7 @@ public abstract class Card {
     abstract public void actionBeforeBlackAction(Gameplay gp);
     abstract public void actionAfterBlackAction(Gameplay gp);
     abstract public void actionAfterWhiteAction(Gameplay gp);
-
+    abstract public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece);
 
     public boolean isFlip() {
         return flip;

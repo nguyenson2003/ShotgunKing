@@ -1,6 +1,7 @@
 package model.card;
 
 import model.Gameplay;
+import model.WhitePiece;
 
 public class BuocNhayVanNang extends Card{
 
@@ -41,5 +42,10 @@ public class BuocNhayVanNang extends Card{
     @Override
     public void actionAfterWhiteAction(Gameplay gp) {
         // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece) {
+
     }
 }

@@ -32,6 +32,11 @@ public class SuyGiamNhueKhi extends Card{
     }
 
     @Override
+    public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece) {
+
+    }
+
+    @Override
     public void actionBeforeBlackAction(Gameplay gp) {
         numberOfWhitePieceBefore=gp.getBoard().getWhitePieces().size();
     }

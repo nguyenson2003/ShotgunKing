@@ -14,30 +14,28 @@ import java.util.Iterator;
 import java.util.Objects;
 
 public class BoardView extends TImage implements MouseMotionListener,MouseListener,ComponentListener {
-    Board board;
     Gameplay gp;
     ArrayList<PieceView> whitePieceViewList = new ArrayList<>();
     PieceView blackPieceView;
     TImage borderHover;
     boolean canClickMouse = false;
-    public BoardView(Board board) {
+    public BoardView() {
         super(new ImageIcon(URLDecoder.decode(
                 Objects.requireNonNull(BoardView.class.getResource("../img/board.png")).getPath(),
                 StandardCharsets.UTF_8
         )));
         setLayout(null);
 
-        this.board=board;
-        this.gp = new Gameplay(this.board);
+        this.gp = new Gameplay();
 
-        for(Piece p : this.board.getWhitePieces()){
+        for(Piece p : this.gp.getBoard().getWhitePieces()){
             whitePieceViewList.add(new PieceView(p));
         }
         for(PieceView pv : whitePieceViewList){
             this.add(pv);
         }
 
-        blackPieceView = new PieceView(this.board.getBlackKing());
+        blackPieceView = new PieceView(this.gp.getBoard().getBlackKing());
         GameplayRoom.getIns().showInfoBlackPiece((BlackKing) blackPieceView.getModel());
         this.add(blackPieceView);
 
@@ -112,7 +110,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             }
         }
         loopAddPieceView:
-        for(WhitePiece whitePiece:board.getWhitePieces()){
+        for(WhitePiece whitePiece:gp.getBoard().getWhitePieces()){
             for(PieceView pieceView:whitePieceViewList){
                 if(whitePiece==pieceView.getModel())continue loopAddPieceView;
             }
@@ -170,7 +168,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
                     tileToPixel(2,2).y-tileToPixel(1,1).y
             );
             borderHover.setLocation(tileToPixel(t));
-            Piece p = board.getPiece(t);
+            Piece p = gp.getBoard().getPiece(t);
             if(p instanceof WhitePiece wp){
                 GameplayRoom.getIns().showInfoWhitePiece(wp);
             }else{

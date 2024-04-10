@@ -26,10 +26,21 @@ public class Gameplay {
     ArrayList<Card> buffCards = new ArrayList<>();
     ArrayList<Card> debuffCards = new ArrayList<>();
     public Gameplay(){
-        this(new Board());
-    }
-    public Gameplay(Board b){
-        this.b=b;
+        this.b=new Board(){
+            @Override
+            public void removePiece(Piece p) {
+                super.removePiece(p);
+                WhitePiece wp = (WhitePiece) p;
+                for(Card c:buffCards){
+                    if(c.isFlip())continue;
+                    c.actionAfterWhiteDieAction(Gameplay.this,wp);
+                }
+                for(Card c:debuffCards){
+                    if(c.isFlip())continue;
+                    c.actionAfterWhiteDieAction(Gameplay.this,wp);
+                }
+            }
+        };
         debugAddCards();
         for(Card c:buffCards){
             if(c.isFlip())continue;

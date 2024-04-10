@@ -28,7 +28,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     private InfoBlackKingView infoBlackKingView=new InfoBlackKingView();
     public GameplayRoom(){
         ins = this;
-        boardView = new BoardView(new Board());
+        boardView = new BoardView();
         setBackground(General.DEFAULT_COLOR);
         setLayout(new BorderLayout());
 
