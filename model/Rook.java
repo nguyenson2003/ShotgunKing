@@ -46,7 +46,7 @@ public class Rook extends WhitePiece{
             if(!isHasPieceBetweenStraight(temp, c)){
                 if(temp.equals(c)&&bk.firePower>=this.hp&&bk.isCanShoot()){
                     result-=20;
-                    System.out.println("\t\t-20 "+temp.x+' '+temp.y);
+                    //System.out.println("\t\t-20 "+temp.x+' '+temp.y);
                 }
                 result+=20;
             }

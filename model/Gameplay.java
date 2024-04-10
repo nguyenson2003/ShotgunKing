@@ -1,5 +1,6 @@
 package model;
 
+import model.card.Card;
 import model.card.BachPhatBachTrung;
 import model.card.BuocNhayVanNang;
 import model.card.Card;
