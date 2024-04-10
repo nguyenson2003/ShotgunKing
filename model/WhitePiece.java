@@ -13,6 +13,15 @@ public abstract class WhitePiece extends Piece{
 
     int maxTurn,turn;
     int maxHP,hp;
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
+    }
+
+
     boolean mateFlag=false; //đánh dấu chiếu tướng ô tiếp theo, nhấp nháy view 1 lần
     boolean takeDamageFlag=false;
     /**

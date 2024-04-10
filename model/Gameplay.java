@@ -6,10 +6,13 @@ import model.card.BuocNhayVanNang;
 import model.card.Card;
 import model.card.DichBenh;
 import model.card.DiemBanHoanHao;
+import model.card.DongCamCongKho;
 import model.card.KeDiSan;
 import model.card.KheUocQuyDu;
 import model.card.NgamNhinConMoi;
 import model.card.QuaDen;
+import model.card.QuanSu;
+import model.card.SongSinhDangSo;
 import model.card.SucManhVoHan;
 import model.card.SungVinhQuang;
 import model.card.SuyGiamNhueKhi;
@@ -190,6 +193,6 @@ public class Gameplay {
         return countKing==0;
     }
     public void debugAddCards(){
-        buffCards.add(new UyQuyenQuanVuong());
+        buffCards.add(new QuanSu());
     }
 }

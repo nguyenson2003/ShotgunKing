@@ -14,15 +14,69 @@ public class Board {
     }
     public Board() {
         ins = this;
-//        init();
+        //        init();
     }
     
-    private int initPawn = 1,initTurnPawn=5,initHpPawn=1;
-    private int initKnight = 1,initTurnKnight=3,initHpKnight = 3;
+    private int initPawn = 8,initTurnPawn=5,initHpPawn=1;
+    private int initKnight = 0,initTurnKnight=3,initHpKnight = 3;
     private int initBishop = 1,initTurnBishop=5,initHpBishop=4;
+    private int initRook = 0,initTurnRook=4,initHpRook=5;
     private int initKing = 1,initTurnKing=4,initHpKing=8;
-    private int initRook = 1,initTurnRook=4,initHpRook=5;
-    private int initQueen = 1,initTurnQueen=4,initHpQueen=5;
+    private int initQueen = 0,initTurnQueen=4,initHpQueen=5;
+    public int getInitBishop() {
+        return initBishop;
+    }
+    public void setInitBishop(int initBishop) {
+        this.initBishop = initBishop;
+    }
+
+    public int getInitHpKing() {
+        return initHpKing;
+    }
+    public void setInitHpKing(int initHpKing) {
+        this.initHpKing = initHpKing;
+    }
+    public int getInitHpPawn() {
+        return initHpPawn;
+    }
+    public void setInitHpPawn(int initHpPawn) {
+        this.initHpPawn = initHpPawn;
+    }
+
+    public int getInitHpKnight() {
+        return initHpKnight;
+    }
+    public void setInitHpKnight(int initHpKnight) {
+        this.initHpKnight = initHpKnight;
+    }
+
+    public int getInitHpBishop() {
+        return initHpBishop;
+    }
+    public void setInitHpBishop(int initHpBishop) {
+        this.initHpBishop = initHpBishop;
+    }
+
+    public int getInitHpRook() {
+        return initHpRook;
+    }
+    public void setInitHpRook(int initHpRook) {
+        this.initHpRook = initHpRook;
+    }
+
+    
+    public int getInitHpQueen() {
+        return initHpQueen;
+    }
+    public void setInitHpQueen(int initHpQueen) {
+        this.initHpQueen = initHpQueen;
+    }
+    public int getInitQueen() {
+        return initQueen;
+    }
+    public void setInitQueen(int initQueen) {
+        this.initQueen = initQueen;
+    }
     public int getInitRook() {
         return initRook;
     }

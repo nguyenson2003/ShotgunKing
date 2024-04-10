@@ -74,10 +74,16 @@ public class Bishop extends WhitePiece{
         Tile resTile=new Tile(this.standing.x, this.standing.y);
         //4 hướng, 2 phần tử là 1 hướng
         int di[]={1,1,-1,1,1,-1,-1,-1};
+        int numberOfDi=4;
+        int queenDi[]={1,1,-1,1,1,-1,-1,-1,1,0,-1,0,0,1,0,-1};
+        if(onBoard.getDataBuff().isQuanSu){
+            di=queenDi;
+            numberOfDi=8;
+        }
         int x=this.standing.x;
         int y=this.standing.y;
         //4 hướng
-        for(int j=1;j<=4;j++)
+        for(int j=1;j<=numberOfDi;j++)
             //khoảng cách từ 1 -> 7
             for(int i=1;i<=7;i++){
                 if(Tile.isOnBoard(x+i*di[j*2-2], y+i*di[j*2-1])){

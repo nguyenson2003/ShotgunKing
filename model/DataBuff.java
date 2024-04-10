@@ -23,4 +23,8 @@ public class DataBuff {
     public boolean isDiemBanHoanHao=false;
     public boolean isVuaSung=false;
     public boolean isUyQuyenQuanVuong=false;
+    public boolean isSongSinhDangSo=false;
+    public boolean isDongCamCongKho=false;
+    public boolean isBoSungQuanLuc=false;
+    public boolean isQuanSu=false;
 }
