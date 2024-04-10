@@ -1,10 +1,14 @@
 package model.card;
 
-import model.BlackKing;
+import java.awt.List;
+import java.util.ArrayList;
+
 import model.Gameplay;
+import model.Pawn;
+import model.Rook;
 import model.WhitePiece;
 
-public class TinhChinhSung extends Card{
+public class NghiBinh extends Card{
 
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
@@ -14,12 +18,7 @@ public class TinhChinhSung extends Card{
 
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
-        // TODO Auto-generated method stub
-        BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getBoard().getDataBuff().isTinhChinhSung){
-            bk.setSpread(Math.max(0, bk.getSpread()-40*Math.PI/180));
-            bk.setFirePower(bk.getFirePower()+1);
-        }
+
     }
 
     @Override
@@ -37,23 +36,29 @@ public class TinhChinhSung extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isTinhChinhSung=true;
+        gp.getBoard().getDataBuff().isNghiBinh=true;
+        if(gp.getBoard().getDataBuff().isNghiBinh){
+            gp.getBoard().setInitPawn(gp.getBoard().getInitPawn()-2);
+            gp.getBoard().setInitRook(gp.getBoard().getInitRook()-1);
+        }
+        
     }
 
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Độ lệch giảm 40 độ và tăng thêm 1 dame cho vua đen";
+        return "Triệt tiêu ngẫu nhiên 2 tốt trắng và 1 xe trắng";
     }
 
     @Override
     public String getName() {
         // TODO Auto-generated method stub
-        return "Tinh Chỉnh Súng";
+        return "Nghi Binh";
     }
 
     @Override
     boolean isBuffCard() {
+        // TODO Auto-generated method stub
         return true;
     }
 

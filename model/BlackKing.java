@@ -6,6 +6,9 @@ public class BlackKing extends Piece {
     int shield, maxShield;
     //shellAmmo: đạn trong súng, spareAmmo: đạn dự phòng
     int shellAmmo,maxShellAmmo,spareAmmo,maxSpareAmmo;
+    public void setSpareAmmo(int spareAmmo) {
+        this.spareAmmo = spareAmmo;
+    }
     public void setMaxShellAmmo(int maxShellAmmo) {
         this.maxShellAmmo = maxShellAmmo;
     }
@@ -58,7 +61,7 @@ public class BlackKing extends Piece {
             public boolean canMoveTo(Tile nextMove){
                 if(onBoard.getPiece(nextMove)!=null)return false;
                 int kc=1;
-                if(onBoard.getDataBuff().isBuocNhayVanNangAction){
+                if(onBoard.getDataBuff().isBuocNhayVanNang){
                     kc=2;
                 }
                 if(Math.abs(nextMove.x-standing.x)<=kc && Math.abs(nextMove.y-standing.y)<=kc)
@@ -81,7 +84,7 @@ public class BlackKing extends Piece {
                     throw new IllegalArgumentException("quan co ko the di den o nay");
                     int absx=Math.abs(nextMove.x-standing.x),absy=Math.abs(nextMove.y-standing.y);
                     if(absx+absy>=2&&absx*absy!=1){
-                        onBoard.getDataBuff().isBuocNhayVanNangAction=false;
+                        onBoard.getDataBuff().isBuocNhayVanNang=false;
                     }
                     standing = nextMove;
                     

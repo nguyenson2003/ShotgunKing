@@ -4,11 +4,15 @@ import model.card.BachPhatBachTrung;
 import model.card.BuocNhayVanNang;
 import model.card.Card;
 import model.card.DichBenh;
+import model.card.DiemBanHoanHao;
+import model.card.KeDiSan;
 import model.card.KheUocQuyDu;
 import model.card.NgamNhinConMoi;
 import model.card.QuaDen;
+import model.card.SucManhVoHan;
 import model.card.SungVinhQuang;
 import model.card.SuyGiamNhueKhi;
+import model.card.UyQuyenQuanVuong;
 import model.card.XaSung;
 
 import java.awt.*;
@@ -185,6 +189,6 @@ public class Gameplay {
         return countKing==0;
     }
     public void debugAddCards(){
-        buffCards.add(new NgamNhinConMoi());
+        buffCards.add(new UyQuyenQuanVuong());
     }
 }

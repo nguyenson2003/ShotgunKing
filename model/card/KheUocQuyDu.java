@@ -26,14 +26,14 @@ public class KheUocQuyDu extends Card{
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
-        gp.getBoard().getDataBuff().isKheUocQuyDuAction=true;
+        gp.getBoard().getDataBuff().isKheUocQuyDu=true;
     }
 
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getBoard().getDataBuff().isKheUocQuyDuAction){
+        if(gp.getBoard().getDataBuff().isKheUocQuyDu){
             bk.setFirePower(bk.getFirePower()+2);
             bk.setMaxSpareAmmo(Math.max(1,bk.getMaxSpareAmmo()-3));
         }

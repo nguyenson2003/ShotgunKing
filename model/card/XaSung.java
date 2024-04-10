@@ -3,6 +3,7 @@ package model.card;
 import model.BlackKing;
 import model.Gameplay;
 import model.Tile;
+import model.WhitePiece;
 
 public class XaSung extends Card {
     Tile bkStandingBef=new Tile(1, 1);
@@ -53,6 +54,11 @@ public class XaSung extends Card {
     @Override
     boolean isBuffCard() {
         return true;
+    }
+
+    @Override
+    public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece) {
+        // TODO Auto-generated method stub
     }
     
 }

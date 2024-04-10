@@ -2,6 +2,7 @@ package model.card;
 
 import model.BlackKing;
 import model.Gameplay;
+import model.WhitePiece;
 
 public class NgamNhinConMoi extends Card{
 
@@ -52,6 +53,11 @@ public class NgamNhinConMoi extends Card{
     @Override
     boolean isBuffCard() {
         return true;
+    }
+
+    @Override
+    public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece) {
+        // TODO Auto-generated method stub
     }
     
 }

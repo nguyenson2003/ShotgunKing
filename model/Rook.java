@@ -58,6 +58,13 @@ public class Rook extends WhitePiece{
         result+=scoreStanding[c.x][c.y]+valueOfRook+this.hp*2;
         //nếu nhiều hơn power fire của king thì +20
         
+        //ủy quyền quân vương
+        if(onBoard.getDataBuff().isUyQuyenQuanVuong){
+            if(Math.abs(bk.standing.x-c.x)<=1&&Math.abs(bk.standing.y-c.y)<=1){
+                result-=Integer.MAX_VALUE;
+            }
+        }
+
         return result;
     }
 

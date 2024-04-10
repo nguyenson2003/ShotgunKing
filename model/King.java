@@ -63,6 +63,13 @@ public class King extends WhitePiece{
 // 2: với mỗi 1 hp của quân cờ
 
         res+=scoreStanding[c.x][c.y]+valueOfKing+2*this.hp;
+        //ủy quyền quân vương
+        if(onBoard.getDataBuff().isUyQuyenQuanVuong){
+            if(Math.abs(bk.standing.x-c.x)<=1&&Math.abs(bk.standing.y-c.y)<=1){
+                res-=Integer.MAX_VALUE;
+            }
+        }
+
         return res;
     }
 

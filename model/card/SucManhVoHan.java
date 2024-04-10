@@ -4,8 +4,7 @@ import model.BlackKing;
 import model.Gameplay;
 import model.WhitePiece;
 
-public class TinhChinhSung extends Card{
-
+public class SucManhVoHan extends Card{
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
@@ -15,11 +14,7 @@ public class TinhChinhSung extends Card{
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getBoard().getDataBuff().isTinhChinhSung){
-            bk.setSpread(Math.max(0, bk.getSpread()-40*Math.PI/180));
-            bk.setFirePower(bk.getFirePower()+1);
-        }
+        
     }
 
     @Override
@@ -31,29 +26,33 @@ public class TinhChinhSung extends Card{
     @Override
     public void actionBeforeBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
-        
+        BlackKing bk=gp.getBoard().getBlackKing();
+        if(gp.getNumberOfTurn()%10==0){
+            bk.setFirePower(bk.getFirePower()+1);
+        }
     }
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isTinhChinhSung=true;
+        gp.getBoard().getDataBuff().isSucManhVoHan=true;
     }
 
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Độ lệch giảm 40 độ và tăng thêm 1 dame cho vua đen";
+        return "Tăng 1 hỏa lực sau mỗi 10 lượt";
     }
 
     @Override
     public String getName() {
         // TODO Auto-generated method stub
-        return "Tinh Chỉnh Súng";
+        return "Sức Mạnh Vô Hạn";
     }
 
     @Override
     boolean isBuffCard() {
+        // TODO Auto-generated method stub
         return true;
     }
 

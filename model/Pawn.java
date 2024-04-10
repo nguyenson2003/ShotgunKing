@@ -29,13 +29,20 @@ public class Pawn extends WhitePiece{
 
     @Override
     Tile bestMove() {
+        BlackKing bk=onBoard.getBlackKing();
         if(standing.y == 8){
             return standing;
         }
         Tile temp = new Tile(standing.x, standing.y+1);
-        if(onBoard.getPiece(temp)==null && standing.y<8)
+        if(onBoard.getPiece(temp)==null && standing.y<8){
+                //ủy quyền quân vương
+            if(onBoard.getDataBuff().isUyQuyenQuanVuong){
+                if(Math.abs(bk.standing.x-temp.x)<=1&&Math.abs(bk.standing.y-temp.y)<=1){
+                    return standing;
+                }
+            }
             return temp;
-        else return standing;
+        }else return standing;
     }
 
     @Override

@@ -1,9 +1,10 @@
 package model;
 
 public class DataBuff {
-    
-    public boolean isBuocNhayVanNangAction=false;
-    public boolean isKheUocQuyDuAction=false;
+    // hầu hết các buff = true tức là đang được áp dụng false thì ngược lại
+    //còn 
+    public boolean isBuocNhayVanNang=false;
+    public boolean isKheUocQuyDu=false;
     public boolean isQuaDen=false;
     public boolean isBachPhatBachTrung=false;
     public boolean isDichBenh=false;
@@ -12,4 +13,14 @@ public class DataBuff {
     public boolean isSungVinhQuang=false;
     public boolean isNgamNhinConMoi=false;
     public boolean isTinhChinhSung=false;
+    public boolean isDanDuTru=false;
+    public boolean isNguyenRua=false;
+    public boolean isBatTotQuaDuong=false;
+    public boolean isNghiBinh=false;
+    public boolean isTapChungCaoDo=false;
+    public boolean isKeDiSan=false;
+    public boolean isSucManhVoHan=false;
+    public boolean isDiemBanHoanHao=false;
+    public boolean isVuaSung=false;
+    public boolean isUyQuyenQuanVuong=false;
 }

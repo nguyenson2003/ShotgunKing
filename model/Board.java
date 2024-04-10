@@ -16,13 +16,25 @@ public class Board {
         ins = this;
 //        init();
     }
-    private int initPawn = 5,initTurnPawn=5,initHpPawn=1;
-    private int initKnight = 0,initTurnKnight=3,initHpKnight = 3;
-    private int initBishop = 0,initTurnBishop=5,initHpBishop=4;
-    private int initKing = 1,initTurnKing=4,initHpKing=8;
-    private int initRook = 0,initTurnRook=4,initHpRook=5;
-    private int initQueen = 0,initTurnQueen=4,initHpQueen=5;
     
+    private int initPawn = 1,initTurnPawn=5,initHpPawn=1;
+    private int initKnight = 1,initTurnKnight=3,initHpKnight = 3;
+    private int initBishop = 1,initTurnBishop=5,initHpBishop=4;
+    private int initKing = 1,initTurnKing=4,initHpKing=8;
+    private int initRook = 1,initTurnRook=4,initHpRook=5;
+    private int initQueen = 1,initTurnQueen=4,initHpQueen=5;
+    public int getInitRook() {
+        return initRook;
+    }
+    public void setInitRook(int initRook) {
+        this.initRook = initRook;
+    }
+    public int getInitPawn() {
+        return initPawn;
+    }
+    public void setInitPawn(int initPawn) {
+        this.initPawn = initPawn;
+    }
     public void init() {
         addPiece(new BlackKing(new Tile(4, 8), this, 2, 2, 8,
             4, 5, 40));
@@ -103,7 +115,6 @@ public class Board {
         if (p instanceof WhitePiece) {whitePieces.add((WhitePiece) p);
         }else blackKing = (BlackKing) p;
     }
-
     /**
      * Xóa 1 quân cờ ra khỏi bàn cờ
      *

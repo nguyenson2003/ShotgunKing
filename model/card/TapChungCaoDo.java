@@ -4,7 +4,7 @@ import model.BlackKing;
 import model.Gameplay;
 import model.WhitePiece;
 
-public class TinhChinhSung extends Card{
+public class TapChungCaoDo extends Card{
 
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
@@ -16,9 +16,8 @@ public class TinhChinhSung extends Card{
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getBoard().getDataBuff().isTinhChinhSung){
-            bk.setSpread(Math.max(0, bk.getSpread()-40*Math.PI/180));
-            bk.setFirePower(bk.getFirePower()+1);
+        if(gp.getBoard().getDataBuff().isTapChungCaoDo){
+            bk.setSpread(Math.max(0,bk.getSpread()-30*Math.PI/180));
         }
     }
 
@@ -37,23 +36,24 @@ public class TinhChinhSung extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isTinhChinhSung=true;
+        gp.getBoard().getDataBuff().isTapChungCaoDo=true;
     }
 
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Độ lệch giảm 40 độ và tăng thêm 1 dame cho vua đen";
+        return "Độ lệch được giảm 30";
     }
 
     @Override
     public String getName() {
         // TODO Auto-generated method stub
-        return "Tinh Chỉnh Súng";
+        return "Tập Chung Cao Độ";
     }
 
     @Override
     boolean isBuffCard() {
+        // TODO Auto-generated method stub
         return true;
     }
 

@@ -65,6 +65,12 @@ public class Knight extends WhitePiece{
         //vị trí quân cờ trên bàn cờ, giá trị quân cờ, hp quân cờ *2
         result+=scoreStanding[c.x][c.y]+valueOfKnight+this.hp*2;
 
+        //ủy quyền quân vương
+        if(onBoard.getDataBuff().isUyQuyenQuanVuong){
+            if(Math.abs(bk.standing.x-c.x)<=1&&Math.abs(bk.standing.y-c.y)<=1){
+                result-=Integer.MAX_VALUE;
+            }
+        }
         return result;
     }
 

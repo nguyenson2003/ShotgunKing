@@ -63,5 +63,10 @@ public class NguyenRua extends Card {
         // TODO Auto-generated method stub
         return true;
     }
+
+    @Override
+    public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece) {
+        // TODO Auto-generated method stub
+    }
     
 }
