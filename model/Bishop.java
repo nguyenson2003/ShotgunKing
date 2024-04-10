@@ -1,5 +1,7 @@
 package model;
 
+import model.card.CuoiNguaHanhQuan;
+
 public class Bishop extends WhitePiece{
     int scoreStanding[][]={ {0,0,0,0,0,0,0,0,0},
 
@@ -88,7 +90,11 @@ public class Bishop extends WhitePiece{
             for(int i=1;i<=7;i++){
                 if(Tile.isOnBoard(x+i*di[j*2-2], y+i*di[j*2-1])){
                     Tile tempTile=new Tile(x+i*di[j*2-2], y+i*di[j*2-1]);
-                    if(onBoard.getPiece(tempTile)==null){
+                    if(onBoard.getPiece(tempTile)==null||
+                        //cưỡi ngựa hành quân
+                        (onBoard.getDataBuff().isCuoiNguaHanhQuan &&
+                            CuoiNguaHanhQuan.isHasKnight && 
+                            !(onBoard.getPiece(tempTile) instanceof Pawn))){
                         int tempScore=cacl(tempTile);
                         if(bestScore<tempScore){
                             bestScore=tempScore;

@@ -195,6 +195,6 @@ public class Gameplay {
         return countKing==0;
     }
     public void debugAddCards(){
-        buffCards.add(new LaChanThep());
+        buffCards.add(new SuyGiamNhueKhi());
     }
 }

@@ -32,4 +32,6 @@ public class DataBuff {
     public boolean isHienTe=false;
     public boolean isHoangHauSatThu=false;
     public boolean isLaChanThep=false;
+    public boolean isCanXung=false;
+    public boolean isCuoiNguaHanhQuan=false;
 }

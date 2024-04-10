@@ -17,10 +17,10 @@ public class Board {
         //        init();
     }
     
-    private int initPawn = 0,initTurnPawn=5,initHpPawn=1;
+    private int initPawn = 8,initTurnPawn=5,initHpPawn=1;
     private int initKnight = 0,initTurnKnight=3,initHpKnight = 3;
     
-    private int initBishop = 1,initTurnBishop=5,initHpBishop=4;
+    private int initBishop = 0,initTurnBishop=5,initHpBishop=4;
     private int initRook = 0,initTurnRook=4,initHpRook=5;
     private int initKing = 1,initTurnKing=4,initHpKing=8;
     public int getInitTurnKing() {
