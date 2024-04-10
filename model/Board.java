@@ -16,7 +16,7 @@ public class Board {
         ins = this;
 //        init();
     }
-    private int initPawn = 4,initTurnPawn=5,initHpPawn=3;
+    private int initPawn = 5,initTurnPawn=5,initHpPawn=1;
     private int initKnight = 0,initTurnKnight=3,initHpKnight = 3;
     private int initBishop = 0,initTurnBishop=5,initHpBishop=4;
     private int initKing = 1,initTurnKing=4,initHpKing=8;
@@ -100,13 +100,8 @@ public class Board {
      */
     public void addPiece(Piece p) {
         if (getPiece(p.standing) != null) throw new IllegalArgumentException("Ô này đã có quân cờ");
-        if (p instanceof WhitePiece) {
-            if(this.getDataBuff().isDichBenh)
-                ((WhitePiece)p).hp=((WhitePiece)p).maxHP=Math.max(1, ((WhitePiece)p).maxHP-1);
-            // System.out.println("con lai "+((WhitePiece)p).maxHP);
-            whitePieces.add((WhitePiece) p);
-        }
-        else blackKing = (BlackKing) p;
+        if (p instanceof WhitePiece) {whitePieces.add((WhitePiece) p);
+        }else blackKing = (BlackKing) p;
     }
 
     /**

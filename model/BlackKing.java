@@ -6,6 +6,9 @@ public class BlackKing extends Piece {
     int shield, maxShield;
     //shellAmmo: đạn trong súng, spareAmmo: đạn dự phòng
     int shellAmmo,maxShellAmmo,spareAmmo,maxSpareAmmo;
+    public void setMaxShellAmmo(int maxShellAmmo) {
+        this.maxShellAmmo = maxShellAmmo;
+    }
     public void setMaxSpareAmmo(int maxSpareAmmo) {
         this.maxSpareAmmo = maxSpareAmmo;
     }

@@ -10,4 +10,6 @@ public class DataBuff {
     public boolean isSuyGiamNhueKhi=false;
     public boolean isXaSung=false;
     public boolean isSungVinhQuang=false;
+    public boolean isNgamNhinConMoi=false;
+    public boolean isTinhChinhSung=false;
 }

@@ -1,9 +1,9 @@
 package model.card;
 
+import model.BlackKing;
 import model.Gameplay;
-import model.WhitePiece;
 
-public class DichBenh extends Card{
+public class TinhChinhSung extends Card{
 
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
@@ -14,9 +14,10 @@ public class DichBenh extends Card{
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        if(gp.getBoard().getDataBuff().isDichBenh){
-            for(WhitePiece wp : gp.getBoard().getWhitePieces())
-                wp.takeDamage();
+        BlackKing bk=gp.getBoard().getBlackKing();
+        if(gp.getBoard().getDataBuff().isTinhChinhSung){
+            bk.setSpread(Math.max(0, bk.getSpread()-40*Math.PI/180));
+            bk.setFirePower(bk.getFirePower()+1);
         }
     }
 
@@ -34,18 +35,20 @@ public class DichBenh extends Card{
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
-        gp.getBoard().getDataBuff().isDichBenh=true;
-        
+        // TODO Auto-generated method stub
+        gp.getBoard().getDataBuff().isTinhChinhSung=true;
     }
 
     @Override
     public String getDescription() {
-        return "Tất cả quân trắng sẽ trừ 1 máu nếu có nhiều hơn 1 máu";
+        // TODO Auto-generated method stub
+        return "Độ lệch giảm 40 độ và tăng thêm 1 dame cho vua đen";
     }
 
     @Override
     public String getName() {
-        return "Dịch Bệnh";
+        // TODO Auto-generated method stub
+        return "Tinh Chỉnh Súng";
     }
 
     @Override

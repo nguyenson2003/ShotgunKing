@@ -5,6 +5,7 @@ import model.card.BuocNhayVanNang;
 import model.card.Card;
 import model.card.DichBenh;
 import model.card.KheUocQuyDu;
+import model.card.NgamNhinConMoi;
 import model.card.QuaDen;
 import model.card.SungVinhQuang;
 import model.card.SuyGiamNhueKhi;
@@ -173,6 +174,6 @@ public class Gameplay {
         return countKing==0;
     }
     public void debugAddCards(){
-        buffCards.add(new SuyGiamNhueKhi());
+        buffCards.add(new NgamNhinConMoi());
     }
 }
