@@ -1,9 +1,9 @@
 package model.card;
 
+import model.BlackKing;
 import model.Gameplay;
-import model.WhitePiece;
 
-public class DichBenh extends Card{
+public class DanDuTru extends Card{
 
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
@@ -14,9 +14,11 @@ public class DichBenh extends Card{
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        if(gp.getBoard().getDataBuff().isDichBenh){
-            for(WhitePiece wp : gp.getBoard().getWhitePieces())
-                wp.takeDamage();
+        BlackKing bk=gp.getBoard().getBlackKing();
+        if(gp.getBoard().getDataBuff().isDanDuTru){
+            
+            bk.setMaxShellAmmo(bk.getMaxShellAmmo()+1);
+            bk.setMaxSpareAmmo(Math.max(1, bk.getMaxSpareAmmo()-1));
         }
     }
 
@@ -27,11 +29,6 @@ public class DichBenh extends Card{
     }
 
     @Override
-    public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece) {
-
-    }
-
-    @Override
     public void actionBeforeBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
         
@@ -39,22 +36,25 @@ public class DichBenh extends Card{
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
-        gp.getBoard().getDataBuff().isDichBenh=true;
-        
+        // TODO Auto-generated method stub
+        gp.getBoard().getDataBuff().isDanDuTru=true;
     }
 
     @Override
     public String getDescription() {
-        return "Tất cả quân trắng sẽ trừ 1 máu nếu có nhiều hơn 1 máu";
+        // TODO Auto-generated method stub
+        return "Đạn trong băng tăng thêm 1 nhưng đạn dự phòng giảm đi 1";
     }
 
     @Override
     public String getName() {
-        return "Dịch Bệnh";
+        // TODO Auto-generated method stub
+        return "Đạn Dự Trữ";
     }
 
     @Override
     boolean isBuffCard() {
+        // TODO Auto-generated method stub
         return true;
     }
     

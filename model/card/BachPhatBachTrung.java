@@ -1,5 +1,6 @@
 package model.card;
 
+import model.BlackKing;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -17,7 +18,11 @@ public class BachPhatBachTrung extends Card{
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        
+        BlackKing bk=gp.getBoard().getBlackKing();
+        if(gp.getBoard().getDataBuff().isBachPhatBachTrung){
+            bk.setFirePower(Math.max(1,bk.getFirePower()-2));
+            bk.setSpread(0);
+        }
     }
 
     @Override

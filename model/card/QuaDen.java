@@ -1,5 +1,6 @@
 package model.card;
 
+import model.BlackKing;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -14,6 +15,10 @@ public class QuaDen extends Card{
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
+        BlackKing bk=gp.getBoard().getBlackKing();
+        if(gp.getBoard().getDataBuff().isQuaDen){
+            bk.setFireRange(bk.getFireRange()+2);
+        }
         
     }
 

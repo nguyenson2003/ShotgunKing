@@ -1,23 +1,26 @@
 package model.card;
 
+import model.BlackKing;
 import model.Gameplay;
-import model.WhitePiece;
+import model.Tile;
 
-public class DichBenh extends Card{
-
+public class XaSung extends Card {
+    Tile bkStandingBef=new Tile(1, 1);
+    Tile bkStandingAft=new Tile(1, 1);
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
-        // TODO Auto-generated method stub
+        BlackKing bk=gp.getBoard().getBlackKing();
+        bkStandingAft=bk.getStanding();
+        if(bkStandingAft.equals(bkStandingBef))
+            while(bk.getShellAmmo()>0) 
+                bk.shoot(bk.getOldAngle());
         
     }
 
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        if(gp.getBoard().getDataBuff().isDichBenh){
-            for(WhitePiece wp : gp.getBoard().getWhitePieces())
-                wp.takeDamage();
-        }
+        
     }
 
     @Override
@@ -27,30 +30,24 @@ public class DichBenh extends Card{
     }
 
     @Override
-    public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece) {
-
-    }
-
-    @Override
     public void actionBeforeBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
-        
+        bkStandingBef=gp.getBoard().getBlackKing().getStanding();
     }
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
-        gp.getBoard().getDataBuff().isDichBenh=true;
-        
+        gp.getBoard().getDataBuff().isXaSung=true;
     }
 
     @Override
     public String getDescription() {
-        return "Tất cả quân trắng sẽ trừ 1 máu nếu có nhiều hơn 1 máu";
+        return "Bắn 1 phát sẽ bắn hết tất cả đạn còn lại trong súng";
     }
 
     @Override
     public String getName() {
-        return "Dịch Bệnh";
+        return "Xả súng";
     }
 
     @Override

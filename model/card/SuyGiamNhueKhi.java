@@ -9,13 +9,15 @@ public class SuyGiamNhueKhi extends Card{
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
         numberOfWhitePieceAfter=gp.getBoard().getWhitePieces().size();
-        if(numberOfWhitePieceAfter!=numberOfWhitePieceBefore){
+        if(numberOfWhitePieceAfter!=numberOfWhitePieceBefore&&numberOfWhitePieceAfter!=0){
             int random=((int) (Math.random()*100))%numberOfWhitePieceAfter;
             WhitePiece wp=gp.getBoard().getWhitePieces().get(random);
             // System.out.println(wp.getStanding().x+" "+wp.getStanding().y);
             wp.takeDamage();
-            if(wp.isDied())
+            while(numberOfWhitePieceBefore-->numberOfWhitePieceAfter){
                 actionAfterBlackAction(gp);
+                // System.out.println(numberOfWhitePieceBefore);
+            }
         }
     }
     
