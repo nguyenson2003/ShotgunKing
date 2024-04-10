@@ -1,5 +1,7 @@
 package model;
 
+import model.card.LaChanThep;
+
 public class King extends WhitePiece{
     int scoreStanding[][]={ {0,0,0,0,0,0,0,0,0},
 
@@ -14,7 +16,7 @@ public class King extends WhitePiece{
                             };
     //nếu tốt là 1 thì king là 3
     int valueOfKing=3;
-    King(Tile t, int maxTurn, int maxHP, Board onBoard_) {
+    public King(Tile t, int maxTurn, int maxHP, Board onBoard_) {
         super(t, maxTurn, maxHP,onBoard_);
         //TODO Auto-generated constructor stub
     }
@@ -30,6 +32,8 @@ public class King extends WhitePiece{
 
     @Override
     int cacl(Tile c) {
+        //la chan thep co bao ve khong
+        boolean isProtectedLaChanThep = LaChanThep.isHasBishop && onBoard.getDataBuff().isLaChanThep;
         int res=0;
         BlackKing bk=onBoard.getBlackKing();
 //      500: chiếu tướng trực tiếp
@@ -45,8 +49,8 @@ public class King extends WhitePiece{
         }
 // 250: chiếu tướng gián tiếp //k có
 // -250: chắn chiếu tướng (chưa cần làm vội)
-        //duy trì khoảng cách với vua đen khi yếu máu
-        if(bk.isCanShoot()&&this.hp<=bk.firePower){
+        //duy trì khoảng cách với vua đen khi yếu máu và không được bảo vệ bở lá chắn thép
+        if(!isProtectedLaChanThep&&bk.isCanShoot()&&this.hp<=bk.firePower){
             if(absx+absy<=4){
                 // System.out.println("\t\t-500 "+c.x+" "+c.y);
                 res-=500;
@@ -69,7 +73,6 @@ public class King extends WhitePiece{
                 res-=Integer.MAX_VALUE;
             }
         }
-
         return res;
     }
 

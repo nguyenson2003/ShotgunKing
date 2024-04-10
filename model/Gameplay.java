@@ -1,6 +1,7 @@
 package model;
 
 import model.card.Card;
+import model.card.ChienMa;
 import model.card.BachPhatBachTrung;
 import model.card.BuocNhayVanNang;
 import model.card.Card;
@@ -9,6 +10,7 @@ import model.card.DiemBanHoanHao;
 import model.card.DongCamCongKho;
 import model.card.KeDiSan;
 import model.card.KheUocQuyDu;
+import model.card.LaChanThep;
 import model.card.NgamNhinConMoi;
 import model.card.QuaDen;
 import model.card.QuanSu;
@@ -193,6 +195,6 @@ public class Gameplay {
         return countKing==0;
     }
     public void debugAddCards(){
-        buffCards.add(new QuanSu());
+        buffCards.add(new LaChanThep());
     }
 }

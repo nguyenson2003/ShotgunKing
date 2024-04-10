@@ -1,4 +1,5 @@
 package model;
+import model.card.LaChanThep;
 import view.GameplayRoom;
 
 public class BlackKing extends Piece {
@@ -123,6 +124,11 @@ public class BlackKing extends Piece {
                     Tile t = new Tile((int) bulletX, (int) bulletY);
                     Piece p = onBoard.getPiece(t);
                     if(p instanceof WhitePiece wp && !wp.isDied()) {
+                        if(onBoard.getDataBuff().isLaChanThep && wp instanceof King && wp.getHp() == 1){
+                            if(!LaChanThep.isHasBishop)
+                                wp.takeDamage();
+                            break;
+                        }
                         wp.takeDamage();
                         break ;
                     }

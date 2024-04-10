@@ -17,7 +17,7 @@ public class Knight extends WhitePiece{
                             };
     //nếu tốt là 1 thì mã tầm 3
     int valueOfKnight=3;
-    Knight(Tile t, int maxTurn, int maxHP,Board onBoard) {
+    public Knight(Tile t, int maxTurn, int maxHP,Board onBoard) {
         super(t, maxTurn, maxHP,onBoard);
         //TODO Auto-generated constructor stub
     }

@@ -17,14 +17,28 @@ public class Board {
         //        init();
     }
     
-    private int initPawn = 8,initTurnPawn=5,initHpPawn=1;
+    private int initPawn = 0,initTurnPawn=5,initHpPawn=1;
     private int initKnight = 0,initTurnKnight=3,initHpKnight = 3;
+    
     private int initBishop = 1,initTurnBishop=5,initHpBishop=4;
     private int initRook = 0,initTurnRook=4,initHpRook=5;
     private int initKing = 1,initTurnKing=4,initHpKing=8;
+    public int getInitTurnKing() {
+        return initTurnKing;
+    }
+    public void setInitTurnKing(int initTurnKing) {
+        this.initTurnKing = initTurnKing;
+    }
+
     private int initQueen = 0,initTurnQueen=4,initHpQueen=5;
     public int getInitBishop() {
         return initBishop;
+    }
+    public int getInitTurnKnight() {
+        return initTurnKnight;
+    }
+    public void setInitTurnKnight(int initTurnKnight) {
+        this.initTurnKnight = initTurnKnight;
     }
     public void setInitBishop(int initBishop) {
         this.initBishop = initBishop;
