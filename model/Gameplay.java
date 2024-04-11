@@ -2,6 +2,7 @@ package model;
 
 import model.card.Card;
 import model.card.ChienMa;
+import model.card.CuoiNguaHanhQuan;
 import model.card.BachPhatBachTrung;
 import model.card.BuocNhayVanNang;
 import model.card.Card;
@@ -195,6 +196,6 @@ public class Gameplay {
         return countKing==0;
     }
     public void debugAddCards(){
-        buffCards.add(new SuyGiamNhueKhi());
+        buffCards.add(new CuoiNguaHanhQuan());
     }
 }

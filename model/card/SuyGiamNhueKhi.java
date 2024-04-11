@@ -6,8 +6,9 @@ import model.WhitePiece;
 public class SuyGiamNhueKhi extends Card{
     @Override
     public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece) {
-        int random=((int) (Math.random()*100)) % gp.getBoard().getWhitePieces().size();
-        gp.getBoard().getWhitePieces().get(random).takeDamage();
+        int numberOfWhitePieces=gp.getBoard().getWhitePieces().size();
+        if(numberOfWhitePieces==0) return;
+        gp.getBoard().getWhitePieces().get(((int) (Math.random()*100)) % numberOfWhitePieces).takeDamage();
     }
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
