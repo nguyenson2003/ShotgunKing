@@ -76,10 +76,11 @@ public class King extends WhitePiece{
 
     @Override
     Tile bestMove() {
+        BlackKing bk=onBoard.getBlackKing();
         int bestScore=Integer.MIN_VALUE;
         Tile resTile=new Tile(this.standing.x, this.standing.y);
-        int tempx[]={-1,0,1,-1,1,-1,0,1};
-        int tempy[]={-1,-1,-1,0,0,1,1,1};
+        int tempx[]=bk.aroundX.clone();
+        int tempy[]=bk.aroundY.clone();  
         for(int i=0;i<8;i++){
             //nếu nó k trên bàn cờ thì continue
             if(!Tile.isOnBoard(this.standing.x+tempx[i], this.standing.y+tempy[i])) continue;

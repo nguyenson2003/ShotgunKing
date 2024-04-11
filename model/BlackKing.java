@@ -4,6 +4,9 @@ import view.GameplayRoom;
 public class BlackKing extends Piece {
     //shield: khiên
     int shield, maxShield;
+    //tọa độ x,y các ô xung quanh vua
+    int aroundX[]={-1,0,1,-1,1,-1,0,1};
+    int aroundY[]={-1,-1,-1,0,0,1,1,1};
     //shellAmmo: đạn trong súng, spareAmmo: đạn dự phòng
     int shellAmmo,maxShellAmmo,spareAmmo,maxSpareAmmo;
     public void setSpareAmmo(int spareAmmo) {
@@ -15,7 +18,12 @@ public class BlackKing extends Piece {
     public void setMaxSpareAmmo(int maxSpareAmmo) {
         this.maxSpareAmmo = maxSpareAmmo;
     }
-
+     /**
+     * @return true nến Tile c trong phạm vi của ủy quyền quân vương và ngược lại
+     */
+    public boolean checkUyQuyenQuanVuong(Tile c){
+        return Math.abs(standing.x-c.x)<=1&&Math.abs(standing.y-c.y)<=1;
+    }
     //firePower: hỏa lực|số sát thương trong 1 lần bắn (chia đều các con trong vùng)
     //fireRange: tầm bắn +-1
     //spread: góc lệch tính theo radian

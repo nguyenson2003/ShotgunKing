@@ -36,8 +36,8 @@ public class Bishop extends WhitePiece{
         //tọa độ xung quanh quân vua
         //thay vì kiểm tra xem quân tịnh soi đến vua không thì 
         //mình kiểm tra xem 8 ô quanh vua có bị soi không với mỗi ô bị soi +20
-        int tempx[]={-1,0,1,-1,1,-1,0,1};
-        int tempy[]={-1,-1,-1,0,0,1,1,1};
+        int tempx[]=bk.aroundX.clone();
+        int tempy[]=bk.aroundY.clone();  
         //duyệt trong 8 ô
         for(int i=0;i<8;i++){
             //tọa độ temp là tọa độ xung quanh quân vua

@@ -2,9 +2,10 @@ package model.card;
 
 import model.Board;
 import model.Gameplay;
+import model.Pawn;
 import model.WhitePiece;
 
-public class TuDo extends Card{
+public class AnBinhBatDong extends Card{
 
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
@@ -21,7 +22,12 @@ public class TuDo extends Card{
     @Override
     public void actionAfterWhiteAction(Gameplay gp) {
         // TODO Auto-generated method stub
-        
+        if(Board.dataBuff.isAnBinhBatDong&&gp.getNumberOfTurn()<=3){
+            for(WhitePiece wp:Board.getWhitePieces()){
+                if(wp instanceof Pawn) wp.setTurn(wp.getMaxTurn());
+            }
+        }
+
     }
 
     @Override
@@ -39,19 +45,21 @@ public class TuDo extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isTuDo=true;
+        Board.dataBuff.isAnBinhBatDong=true;
+        Board b=gp.getBoard();
+        b.setInitHpPawn(b.getInitHpPawn()+3);
     }
 
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Tốt trắng có thể di chuyển và tấn công như vua trắng trong khi đó vẫn có thể phong quân như bình thường";
+        return "Tốt trắng không thể di chuyển trong 3 nước đầu nhưng được tăng 3 máu";
     }
 
     @Override
     public String getName() {
         // TODO Auto-generated method stub
-        return "Tự Do";
+        return "Án Binh Bất Động";
     }
 
     @Override

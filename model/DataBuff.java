@@ -39,4 +39,5 @@ public class DataBuff {
     public boolean isVuaMau=false;
     public boolean isChiaSeQuyenLuc=false;
     public boolean isSucManhCanBang=false;
+    public boolean isTuDo=false;
 }

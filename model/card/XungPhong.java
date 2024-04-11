@@ -4,8 +4,8 @@ import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
-public class TuDo extends Card{
-
+public class XungPhong extends Card{
+    public static boolean isMovedTwoTile=false;
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
@@ -39,19 +39,21 @@ public class TuDo extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isTuDo=true;
+        Board.dataBuff.isXungPhong=true;
+        isMovedTwoTile=false;
+
     }
 
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Tốt trắng có thể di chuyển và tấn công như vua trắng trong khi đó vẫn có thể phong quân như bình thường";
+        return "Nước đầu tiên tốt trắng có thể tiến 1 hoặc 2 ô";
     }
 
     @Override
     public String getName() {
         // TODO Auto-generated method stub
-        return "Tự Do";
+        return "Xung Phong";
     }
 
     @Override

@@ -20,6 +20,7 @@ import model.card.SongSinhDangSo;
 import model.card.SucManhVoHan;
 import model.card.SungVinhQuang;
 import model.card.SuyGiamNhueKhi;
+import model.card.TuDo;
 import model.card.UyQuyenQuanVuong;
 import model.card.XaSung;
 
@@ -193,9 +194,7 @@ public class Gameplay {
         return !Board.isHasKingOnBoard;
     }
     public void debugAddCards(){
-        //k có gì nhá phong bình thg k có lỗi
         // buffCards.add(new NgaiVangBoTrong());
-        //có lỗi r trong khi
-        // buffCards.add(new QuaDen());
+        buffCards.add(new TuDo());
     }
 }

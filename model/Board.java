@@ -60,8 +60,8 @@ public class Board {
             }
         }
         // Board.isHasKingOnBoard=isHasPawnOnBoard=true;
-        if(isHasKingOnBoard)
-            System.out.println("k");
+        // if(isHasKingOnBoard)
+        //     System.out.println("k");
     }
     /**
      * Chuyển quân cờ a thành quân cờ b
