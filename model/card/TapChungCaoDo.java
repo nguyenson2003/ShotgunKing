@@ -1,6 +1,7 @@
 package model.card;
 
 import model.BlackKing;
+import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -16,7 +17,7 @@ public class TapChungCaoDo extends Card{
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getBoard().getDataBuff().isTapChungCaoDo){
+        if(Board.dataBuff.isTapChungCaoDo){
             bk.setSpread(Math.max(0,bk.getSpread()-30*Math.PI/180));
         }
     }
@@ -36,7 +37,7 @@ public class TapChungCaoDo extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isTapChungCaoDo=true;
+        Board.dataBuff.isTapChungCaoDo=true;
     }
 
     @Override

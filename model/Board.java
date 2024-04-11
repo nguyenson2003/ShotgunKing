@@ -6,24 +6,58 @@ public class Board {
 
     @Deprecated
     public static Board ins;
-    private ArrayList<WhitePiece> whitePieces = new ArrayList<>();
+    private static ArrayList<WhitePiece> whitePieces = new ArrayList<>();
     private BlackKing blackKing;
-    private DataBuff dataBuff = new DataBuff();
-    public DataBuff getDataBuff() {
-        return dataBuff;
-    }
+    public static DataBuff dataBuff = new DataBuff();
     public Board() {
         ins = this;
         //        init();
     }
-    
-    private int initPawn = 4,initTurnPawn=5,initHpPawn=1;
+    public static boolean isHasBishopOnBoard=false;
+    public static boolean isHasKnightOnBoard=false;
+    public static boolean isHasPawnOnBoard=false;
+
     private int initKnight = 1,initTurnKnight=3,initHpKnight = 3;
-    
     private int initBishop = 0,initTurnBishop=5,initHpBishop=4;
     private int initRook = 2,initTurnRook=4,initHpRook=5;
     private int initKing = 1,initTurnKing=4,initHpKing=8;
     private int initQueen = 0,initTurnQueen=4,initHpQueen=5;
+    private int initPawn = 4,initTurnPawn=5,initHpPawn=1;
+    /**
+     * Kiểm tra xem còn những quân nào trên bàn cờ
+     * Hoạt động khi thẻ Lá chắn thép hoặc Cưỡi Ngựa Hành Quân hoặc Ngai Vàng Bỏ Trống hoạt động
+     */
+    public static void checkIsOnBoardOfPiece(){
+        if(!(dataBuff.isLaChanThep||
+            dataBuff.isCuoiNguaHanhQuan||
+            dataBuff.isNgaiVangBoTrong)) return;
+            
+        Board.isHasBishopOnBoard=false;
+        Board.isHasKnightOnBoard=false;
+        Board.isHasPawnOnBoard=false;
+        for(WhitePiece wp:getWhitePieces()){
+            if(!wp.isDied()){
+                Board.isHasBishopOnBoard|=(wp instanceof Bishop);
+                Board.isHasKnightOnBoard|=(wp instanceof Knight);
+                Board.isHasPawnOnBoard|=(wp instanceof Pawn);
+            }
+        }
+    }
+
+    public int getInitKing() {
+        return initKing;
+    }
+    public void setInitKing(int initKing) {
+        this.initKing = initKing;
+    }
+
+    public int getInitTurnPawn() {
+        return initTurnPawn;
+    }
+    public void setInitTurnPawn(int initTurnPawn) {
+        this.initTurnPawn = initTurnPawn;
+    }
+
     public int getInitTurnKing() {
         return initTurnKing;
     }
@@ -152,6 +186,23 @@ public class Board {
         }
         
     }
+    public Tile getRandomTileEmpty(){
+        int indexTile=0,row=0,col=0;
+        do{
+            row=indexTile/8+1;
+            col=indexTile%8+1;
+            indexTile++;
+        }while(Tile.isOnBoard(col, row) && this.getPiece(new Tile(col, row))!=null);
+        indexTile--;
+        int random=(int)(Math.random()*100/8);
+        while(random>0){
+            col=indexTile%8+1;
+            indexTile++;
+            if(Tile.isOnBoard(col, row) && this.getPiece(new Tile(col, row))==null)
+                random--;
+        }
+        return new Tile(col, row);
+    }
     public void debugInit() {
         addPiece(new BlackKing(new Tile(4, 7), this, 2, 2, 8,
                 4, 5, 40));
@@ -219,7 +270,7 @@ public class Board {
     /**
      * @return Trả về list các quân trắng
      */
-    public List<WhitePiece> getWhitePieces() {
+    public static List<WhitePiece> getWhitePieces() {
         return whitePieces;
     }
 

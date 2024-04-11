@@ -40,8 +40,8 @@ public class HoangHauSatThu extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        b.getDataBuff().isHoangHauSatThu=true;
-        if(b.getDataBuff().isHoangHauSatThu){
+        Board.dataBuff.isHoangHauSatThu=true;
+        if(Board.dataBuff.isHoangHauSatThu){
             b.setInitQueen(b.getInitQueen()+1);
         }
     }

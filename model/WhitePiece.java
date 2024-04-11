@@ -1,7 +1,5 @@
 package model;
 
-import model.card.CuoiNguaHanhQuan;
-
 public abstract class WhitePiece extends Piece{
     
 
@@ -126,7 +124,7 @@ public abstract class WhitePiece extends Piece{
      * 
      */
     private boolean checkForStraightAndDiagonal(Piece p){
-        return p!=null && (!(CuoiNguaHanhQuan.isHasKnight && onBoard.getDataBuff().isCuoiNguaHanhQuan) || p instanceof Pawn);
+        return p!=null && (!(Board.isHasKnightOnBoard && Board.dataBuff.isCuoiNguaHanhQuan) || p instanceof Pawn);
     }
     /**
      * Kiểm tra xem có quân cờ nào nằm giữa Tile start và Tile end theo đường thẳng không. Không tính vua đen
@@ -167,7 +165,7 @@ public abstract class WhitePiece extends Piece{
             return true;
         else{
             //Cưỡi ngựa hành quân có hoạt động không
-            // boolean ck=CuoiNguaHanhQuan.isHasKnight && onBoard.getDataBuff().isCuoiNguaHanhQuan;
+            // boolean ck=Board.isHasKnightOnBoard && Board.dataBuff.isCuoiNguaHanhQuan;
             //nếu cùng đường chéo thì
             if(start.x-start.y==end.x-end.y){
                 for(int i=Math.min(start.x,end.x)+1;i<Math.max(start.x,end.x);i++){

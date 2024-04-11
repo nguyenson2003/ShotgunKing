@@ -1,6 +1,7 @@
 package model.card;
 
 import model.BlackKing;
+import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -35,7 +36,7 @@ public class SucManhVoHan extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isSucManhVoHan=true;
+        Board.dataBuff.isSucManhVoHan=true;
     }
 
     @Override

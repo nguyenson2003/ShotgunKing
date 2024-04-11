@@ -40,8 +40,8 @@ public class HienTe extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        b.getDataBuff().isHienTe=true;
-        if(b.getDataBuff().isHienTe){
+        Board.dataBuff.isHienTe=true;
+        if(Board.dataBuff.isHienTe){
             if(b.getInitBishop()>=1){
                 b.setInitPawn(b.getInitPawn()+6);
                 b.setInitBishop(b.getInitBishop()-1);

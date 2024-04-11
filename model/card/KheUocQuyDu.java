@@ -1,6 +1,7 @@
 package model.card;
 
 import model.BlackKing;
+import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -26,14 +27,14 @@ public class KheUocQuyDu extends Card{
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
-        gp.getBoard().getDataBuff().isKheUocQuyDu=true;
+        Board.dataBuff.isKheUocQuyDu=true;
     }
 
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getBoard().getDataBuff().isKheUocQuyDu){
+        if(Board.dataBuff.isKheUocQuyDu){
             bk.setFirePower(bk.getFirePower()+2);
             bk.setMaxSpareAmmo(Math.max(1,bk.getMaxSpareAmmo()-3));
         }

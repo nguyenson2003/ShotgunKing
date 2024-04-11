@@ -15,7 +15,7 @@ public class Pawn extends WhitePiece{
     //tốt là 1
     int valueOfPawn=1;
 
-    Pawn(Tile t,int maxTurn,int maxHP,Board onBoard) {
+    public Pawn(Tile t,int maxTurn,int maxHP,Board onBoard) {
         super(t,maxTurn,maxHP,onBoard);
     }
 
@@ -31,12 +31,15 @@ public class Pawn extends WhitePiece{
     Tile bestMove() {
         BlackKing bk=onBoard.getBlackKing();
         if(standing.y == 8){
+            if(Board.dataBuff.isNgaiVangBoTrong){
+                
+            }
             return standing;
         }
         Tile temp = new Tile(standing.x, standing.y+1);
         if(onBoard.getPiece(temp)==null && standing.y<8){
                 //ủy quyền quân vương
-            if(onBoard.getDataBuff().isUyQuyenQuanVuong){
+            if(Board.dataBuff.isUyQuyenQuanVuong){
                 if(Math.abs(bk.standing.x-temp.x)<=1&&Math.abs(bk.standing.y-temp.y)<=1){
                     return standing;
                 }

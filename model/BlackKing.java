@@ -1,5 +1,4 @@
 package model;
-import model.card.LaChanThep;
 import view.GameplayRoom;
 
 public class BlackKing extends Piece {
@@ -62,7 +61,7 @@ public class BlackKing extends Piece {
             public boolean canMoveTo(Tile nextMove){
                 if(onBoard.getPiece(nextMove)!=null)return false;
                 int kc=1;
-                if(onBoard.getDataBuff().isBuocNhayVanNang){
+                if(Board.dataBuff.isBuocNhayVanNang){
                     kc=2;
                 }
                 if(Math.abs(nextMove.x-standing.x)<=kc && Math.abs(nextMove.y-standing.y)<=kc)
@@ -85,7 +84,7 @@ public class BlackKing extends Piece {
                     throw new IllegalArgumentException("quan co ko the di den o nay");
                     int absx=Math.abs(nextMove.x-standing.x),absy=Math.abs(nextMove.y-standing.y);
                     if(absx+absy>=2&&absx*absy!=1){
-                        onBoard.getDataBuff().isBuocNhayVanNang=false;
+                        Board.dataBuff.isBuocNhayVanNang=false;
                     }
                     standing = nextMove;
                     
@@ -124,8 +123,8 @@ public class BlackKing extends Piece {
                     Tile t = new Tile((int) bulletX, (int) bulletY);
                     Piece p = onBoard.getPiece(t);
                     if(p instanceof WhitePiece wp && !wp.isDied()) {
-                        if(onBoard.getDataBuff().isLaChanThep && wp instanceof King && wp.getHp() == 1){
-                            if(!LaChanThep.isHasBishop)
+                        if(Board.dataBuff.isLaChanThep && wp instanceof King && wp.getHp() == 1){
+                            if(!Board.isHasBishopOnBoard)
                                 wp.takeDamage();
                             break;
                         }

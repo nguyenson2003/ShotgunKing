@@ -17,7 +17,7 @@ public class SongSinhDangSo extends Card{
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getBoard().getDataBuff().isSongSinhDangSo){
+        if(Board.dataBuff.isSongSinhDangSo){
             bk.setFirePower(bk.getFirePower()+1);
         }
     }
@@ -44,8 +44,8 @@ public class SongSinhDangSo extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        b.getDataBuff().isSongSinhDangSo=true;
-        if(b.getDataBuff().isSongSinhDangSo){
+        Board.dataBuff.isSongSinhDangSo=true;
+        if(Board.dataBuff.isSongSinhDangSo){
             b.setInitQueen(b.getInitQueen()+2);
             b.setInitHpQueen(b.getInitHpQueen()+1);
         }

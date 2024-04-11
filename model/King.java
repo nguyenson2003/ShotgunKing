@@ -1,7 +1,5 @@
 package model;
 
-import model.card.LaChanThep;
-
 public class King extends WhitePiece{
     int scoreStanding[][]={ {0,0,0,0,0,0,0,0,0},
 
@@ -33,7 +31,7 @@ public class King extends WhitePiece{
     @Override
     int cacl(Tile c) {
         //la chan thep co bao ve khong
-        boolean isProtectedLaChanThep = LaChanThep.isHasBishop && onBoard.getDataBuff().isLaChanThep;
+        boolean isProtectedLaChanThep = Board.isHasBishopOnBoard && Board.dataBuff.isLaChanThep;
         int res=0;
         BlackKing bk=onBoard.getBlackKing();
 //      500: chiếu tướng trực tiếp
@@ -68,7 +66,7 @@ public class King extends WhitePiece{
 
         res+=scoreStanding[c.x][c.y]+valueOfKing+2*this.hp;
         //ủy quyền quân vương
-        if(onBoard.getDataBuff().isUyQuyenQuanVuong){
+        if(Board.dataBuff.isUyQuyenQuanVuong){
             if(Math.abs(bk.standing.x-c.x)<=1&&Math.abs(bk.standing.y-c.y)<=1){
                 res-=Integer.MAX_VALUE;
             }

@@ -1,6 +1,7 @@
 package model.card;
 
 import model.BlackKing;
+import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -16,7 +17,7 @@ public class SungVinhQuang extends Card{
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getBoard().getDataBuff().isSungVinhQuang){
+        if(Board.dataBuff.isSungVinhQuang){
             bk.setSpread(bk.getSpread()+30*Math.PI/180);
             bk.setFirePower(bk.getFirePower()+1);
             bk.setFireRange(bk.getFireRange()+1);
@@ -39,7 +40,7 @@ public class SungVinhQuang extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isSungVinhQuang=true;
+        Board.dataBuff.isSungVinhQuang=true;
         
     }
 

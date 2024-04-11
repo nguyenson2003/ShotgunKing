@@ -1,11 +1,8 @@
 package model.card;
 
-import java.awt.List;
-import java.util.ArrayList;
 
+import model.Board;
 import model.Gameplay;
-import model.Pawn;
-import model.Rook;
 import model.WhitePiece;
 
 public class NghiBinh extends Card{
@@ -36,8 +33,8 @@ public class NghiBinh extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isNghiBinh=true;
-        if(gp.getBoard().getDataBuff().isNghiBinh){
+        Board.dataBuff.isNghiBinh=true;
+        if(Board.dataBuff.isNghiBinh){
             gp.getBoard().setInitPawn(gp.getBoard().getInitPawn()-2);
             gp.getBoard().setInitRook(gp.getBoard().getInitRook()-1);
         }

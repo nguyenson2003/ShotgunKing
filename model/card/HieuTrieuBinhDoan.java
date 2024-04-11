@@ -2,9 +2,10 @@ package model.card;
 
 import model.Board;
 import model.Gameplay;
+import model.Pawn;
 import model.WhitePiece;
 
-public class BoSungQuanLuc extends Card{
+public class HieuTrieuBinhDoan extends Card{
 
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
@@ -21,7 +22,10 @@ public class BoSungQuanLuc extends Card{
     @Override
     public void actionAfterWhiteAction(Gameplay gp) {
         // TODO Auto-generated method stub
-        
+        Board b=gp.getBoard();
+        if(gp.getNumberOfTurn()%5==0){
+            b.addPiece(new Pawn(b.getRandomTileEmpty(), b.getInitTurnPawn(), b.getInitHpPawn(), b));
+        }
     }
 
     @Override
@@ -39,23 +43,20 @@ public class BoSungQuanLuc extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board b=gp.getBoard();
-        Board.dataBuff.isBoSungQuanLuc=true;
-        if(Board.dataBuff.isBoSungQuanLuc){
-            b.setInitPawn(b.getInitPawn()+3);
-        }
+        Board.dataBuff.isHieuTrieuBinhDoan=true;
+        
     }
 
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Quân trắng được bổ sung thêm 3 tốt";
+        return "Thêm 1 tốt trắng mỗi 5 lượt";
     }
 
     @Override
     public String getName() {
         // TODO Auto-generated method stub
-        return "Bổ Sung Quân Lực";
+        return "Hiệu Triệu Binh Đoàn";
     }
 
     @Override

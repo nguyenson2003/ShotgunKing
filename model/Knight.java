@@ -66,7 +66,7 @@ public class Knight extends WhitePiece{
         result+=scoreStanding[c.x][c.y]+valueOfKnight+this.hp*2;
 
         //ủy quyền quân vương
-        if(onBoard.getDataBuff().isUyQuyenQuanVuong){
+        if(Board.dataBuff.isUyQuyenQuanVuong){
             if(Math.abs(bk.standing.x-c.x)<=1&&Math.abs(bk.standing.y-c.y)<=1){
                 result-=Integer.MAX_VALUE;
             }

@@ -1,5 +1,6 @@
 package model.card;
 
+import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -22,7 +23,7 @@ public class BuocNhayVanNang extends Card{
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
-        gp.getBoard().getDataBuff().isBuocNhayVanNang=true;
+        Board.dataBuff.isBuocNhayVanNang=true;
     }
 
     @Override

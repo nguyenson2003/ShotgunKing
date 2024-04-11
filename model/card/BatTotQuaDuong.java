@@ -1,6 +1,7 @@
 package model.card;
 
 import model.BlackKing;
+import model.Board;
 import model.Gameplay;
 import model.Pawn;
 import model.WhitePiece;
@@ -40,7 +41,7 @@ public class BatTotQuaDuong extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isBatTotQuaDuong=true;
+        Board.dataBuff.isBatTotQuaDuong=true;
     }
 
     @Override

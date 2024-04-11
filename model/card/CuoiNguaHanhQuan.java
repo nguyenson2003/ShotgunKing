@@ -1,21 +1,14 @@
 package model.card;
 
+import model.Board;
 import model.Gameplay;
-import model.Knight;
 import model.WhitePiece;
 
 public class CuoiNguaHanhQuan extends Card{
-    public static boolean isHasKnight=false;
+    
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
-        for(WhitePiece wp:gp.getBoard().getWhitePieces()){
-            if(wp instanceof Knight && !wp.isDied()){
-                isHasKnight=true;
-                return;
-            }
-        }
-        isHasKnight=false;
     }
 
     @Override
@@ -45,7 +38,7 @@ public class CuoiNguaHanhQuan extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isCuoiNguaHanhQuan=true;
+        Board.dataBuff.isCuoiNguaHanhQuan=true;
     }
 
     @Override

@@ -1,7 +1,5 @@
 package model;
 
-import model.card.CuoiNguaHanhQuan;
-
 public class Bishop extends WhitePiece{
     int scoreStanding[][]={ {0,0,0,0,0,0,0,0,0},
 
@@ -61,7 +59,7 @@ public class Bishop extends WhitePiece{
         //vị trí quân cờ trên bàn cờ, giá trị quân cờ, hp quân cờ *2
         result+=scoreStanding[c.x][c.y]+valueOfBishop+this.hp*2;
         //ủy quyền quân vương
-        if(onBoard.getDataBuff().isUyQuyenQuanVuong){
+        if(Board.dataBuff.isUyQuyenQuanVuong){
             if(Math.abs(bk.standing.x-c.x)<=1&&Math.abs(bk.standing.y-c.y)<=1){
                 result-=Integer.MAX_VALUE;
             }
@@ -78,7 +76,7 @@ public class Bishop extends WhitePiece{
         int di[]={1,1,-1,1,1,-1,-1,-1};
         int numberOfDi=4;
         int queenDi[]={1,1,-1,1,1,-1,-1,-1,1,0,-1,0,0,1,0,-1};
-        if(onBoard.getDataBuff().isQuanSu){
+        if(Board.dataBuff.isQuanSu){
             di=queenDi;
             numberOfDi=8;
         }
@@ -92,8 +90,8 @@ public class Bishop extends WhitePiece{
                     Tile tempTile=new Tile(x+i*di[j*2-2], y+i*di[j*2-1]);
                     if(onBoard.getPiece(tempTile)==null||
                         //cưỡi ngựa hành quân
-                        (onBoard.getDataBuff().isCuoiNguaHanhQuan &&
-                            CuoiNguaHanhQuan.isHasKnight && 
+                        (Board.dataBuff.isCuoiNguaHanhQuan &&
+                            Board.isHasKnightOnBoard && 
                             !(onBoard.getPiece(tempTile) instanceof Pawn))){
                         int tempScore=cacl(tempTile);
                         if(bestScore<tempScore){

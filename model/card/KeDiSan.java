@@ -1,6 +1,7 @@
 package model.card;
 
 import model.BlackKing;
+import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -13,7 +14,8 @@ public class KeDiSan extends Card{
     }
     private void checkAndBuffOrDebuff(Gameplay gp) {
         BlackKing bk=gp.getBoard().getBlackKing();
-        for(WhitePiece wp:gp.getBoard().getWhitePieces()){
+        gp.getBoard();
+        for(WhitePiece wp:Board.getWhitePieces()){
             int absx=Math.abs(wp.getStanding().x-bk.getStanding().x);
             int absy=Math.abs(wp.getStanding().y-bk.getStanding().y);
             if(absx<=1&&absy<=1&&!isBuffed){
@@ -52,7 +54,7 @@ public class KeDiSan extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isKeDiSan=true;
+        Board.dataBuff.isKeDiSan=true;
     }
 
     @Override

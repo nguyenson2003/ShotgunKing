@@ -1,6 +1,7 @@
 package model.card;
 
 import model.BlackKing;
+import model.Board;
 import model.Gameplay;
 import model.Tile;
 import model.WhitePiece;
@@ -38,7 +39,7 @@ public class XaSung extends Card {
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
-        gp.getBoard().getDataBuff().isXaSung=true;
+        Board.dataBuff.isXaSung=true;
     }
 
     @Override

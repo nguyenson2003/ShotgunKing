@@ -1,6 +1,7 @@
 package model.card;
 
 import model.BlackKing;
+import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -16,7 +17,7 @@ public class DanDuTru extends Card{
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getBoard().getDataBuff().isDanDuTru){
+        if(Board.dataBuff.isDanDuTru){
             
             bk.setMaxShellAmmo(bk.getMaxShellAmmo()+1);
             bk.setMaxSpareAmmo(Math.max(1, bk.getMaxSpareAmmo()-1));
@@ -38,7 +39,7 @@ public class DanDuTru extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isDanDuTru=true;
+        Board.dataBuff.isDanDuTru=true;
     }
 
     @Override

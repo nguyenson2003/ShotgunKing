@@ -1,5 +1,6 @@
 package model.card;
 
+import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -14,8 +15,8 @@ public class DichBenh extends Card{
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        if(gp.getBoard().getDataBuff().isDichBenh){
-            for(WhitePiece wp : gp.getBoard().getWhitePieces())
+        if(Board.dataBuff.isDichBenh){
+            for(WhitePiece wp : Board.getWhitePieces())
                 wp.takeDamage();
         }
     }
@@ -39,7 +40,7 @@ public class DichBenh extends Card{
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
-        gp.getBoard().getDataBuff().isDichBenh=true;
+        Board.dataBuff.isDichBenh=true;
         
     }
 

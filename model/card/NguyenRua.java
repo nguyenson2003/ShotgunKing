@@ -1,5 +1,6 @@
 package model.card;
 
+import model.Board;
 import model.Gameplay;
 import model.King;
 import model.WhitePiece;
@@ -15,13 +16,13 @@ public class NguyenRua extends Card {
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        int sizeWhitePieces=gp.getBoard().getWhitePieces().size();
-        if(gp.getBoard().getDataBuff().isNguyenRua){
+        int sizeWhitePieces=Board.getWhitePieces().size();
+        if(Board.dataBuff.isNguyenRua){
             if(sizeWhitePieces>1){
                 int random=((int)(Math.random()*100))%sizeWhitePieces;
-                while(gp.getBoard().getWhitePieces().get(random) instanceof King)
+                while(Board.getWhitePieces().get(random) instanceof King)
                     random=((int)(Math.random()*100))%sizeWhitePieces;
-                WhitePiece wp= gp.getBoard().getWhitePieces().get(random);
+                WhitePiece wp= Board.getWhitePieces().get(random);
                 while(!wp.isDied())
                     wp.takeDamage();
             }
@@ -43,7 +44,7 @@ public class NguyenRua extends Card {
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isNguyenRua=true;
+        Board.dataBuff.isNguyenRua=true;
     }
 
     @Override

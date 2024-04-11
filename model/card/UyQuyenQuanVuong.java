@@ -1,5 +1,6 @@
 package model.card;
 
+import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -38,7 +39,7 @@ public class UyQuyenQuanVuong extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isUyQuyenQuanVuong=true;
+        Board.dataBuff.isUyQuyenQuanVuong=true;
     }
 
     @Override

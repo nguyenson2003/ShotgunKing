@@ -3,7 +3,6 @@ package model.card;
 import model.BlackKing;
 import model.Board;
 import model.Gameplay;
-import model.King;
 import model.WhitePiece;
 
 public class CanXung extends Card{
@@ -17,7 +16,7 @@ public class CanXung extends Card{
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        if(gp.getBoard().getDataBuff().isCanXung){
+        if(Board.dataBuff.isCanXung){
             BlackKing bk=gp.getBoard().getBlackKing();
             bk.setFirePower(bk.getFirePower()+1);
             bk.setSpread(bk.getSpread()+15*Math.PI/180);
@@ -46,8 +45,8 @@ public class CanXung extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        b.getDataBuff().isCanXung=true;
-        if(b.getDataBuff().isCanXung){
+        Board.dataBuff.isCanXung=true;
+        if(Board.dataBuff.isCanXung){
             b.setInitHpKing(b.getInitHpKing()+2);
         }
     }

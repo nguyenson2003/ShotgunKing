@@ -1,6 +1,7 @@
 package model.card;
 
 import model.BlackKing;
+import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -16,7 +17,7 @@ public class NgamNhinConMoi extends Card{
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getBoard().getDataBuff().isNgamNhinConMoi){
+        if(Board.dataBuff.isNgamNhinConMoi){
             bk.setFireRange(bk.getFireRange()+2);
             bk.setSpread(bk.getSpread()+20*Math.PI/180);
         }
@@ -37,7 +38,7 @@ public class NgamNhinConMoi extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isNgamNhinConMoi=true;
+        Board.dataBuff.isNgamNhinConMoi=true;
     }
 
     @Override

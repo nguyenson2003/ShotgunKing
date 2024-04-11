@@ -111,7 +111,7 @@ public class Gameplay {
         }
         //check all piece checkmate (before black action)
         int countMate=0;
-        for (WhitePiece piece : b.getWhitePieces()) {
+        for (WhitePiece piece : Board.getWhitePieces()) {
             if(piece.isMate(nextMove)){
                 piece.mateFlag=true;
                 countMate++;
@@ -135,6 +135,7 @@ public class Gameplay {
         if(!willShoot)b.getBlackKing().move(nextMove);
         else b.getBlackKing().shoot(shootAngle);
         //end black action
+        Board.checkIsOnBoardOfPiece();
         for(Card c:buffCards){
             if(c.isFlip())continue;
             c.actionAfterBlackAction(this);
@@ -158,7 +159,7 @@ public class Gameplay {
     }
     public void whiteAction(){
         //nếu có chiếu hết, đen thua
-        for (WhitePiece piece : b.getWhitePieces()) {
+        for (WhitePiece piece : Board.getWhitePieces()) {
             if(piece.isMate(b.getBlackKing().getStanding())){
                 piece.mate(b.getBlackKing().getStanding());
                 System.out.println("Thua!");
@@ -170,7 +171,7 @@ public class Gameplay {
         }
 
         //quân trắng di chuyển
-        for (WhitePiece piece : b.getWhitePieces()) {
+        for (WhitePiece piece : Board.getWhitePieces()) {
             piece.move(piece.bestMove());
         }
         b.getBlackKing().shield =b.getBlackKing().maxShield;
@@ -183,14 +184,14 @@ public class Gameplay {
         //có buff: phải giết hết tốt mới thắng
         if(killAllPawnToWin){
             int countPawn = 0;
-            for(WhitePiece p : b.getWhitePieces()){
+            for(WhitePiece p : Board.getWhitePieces()){
                 if(p instanceof Pawn)countPawn++;
             }
             return countPawn==0;
         }
         //Cơ bản:
         int countKing = 0;
-        for(WhitePiece p : b.getWhitePieces()){
+        for(WhitePiece p : Board.getWhitePieces()){
             if(p instanceof King)countKing++;
         }
         return countKing==0;

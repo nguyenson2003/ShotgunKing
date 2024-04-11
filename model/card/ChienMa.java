@@ -3,7 +3,6 @@ package model.card;
 import model.Board;
 import model.Gameplay;
 import model.Knight;
-import model.Tile;
 import model.WhitePiece;
 
 public class ChienMa extends Card{
@@ -19,27 +18,13 @@ public class ChienMa extends Card{
         // TODO Auto-generated method stub
         
     }
-
+    
     @Override
     public void actionAfterWhiteAction(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
         if(gp.getNumberOfTurn()%7==0){
-            int indexTile=0,row=0,col=0;
-            do{
-                row=indexTile/8+1;
-                col=indexTile%8+1;
-                indexTile++;
-            }while(Tile.isOnBoard(col, row) && b.getPiece(new Tile(col, row))!=null);
-            indexTile--;
-            int random=(int)(Math.random()*100/8);
-            while(random>0){
-                col=indexTile%8+1;
-                indexTile++;
-                if(Tile.isOnBoard(col, row) && b.getPiece(new Tile(col, row))==null)
-                    random--;
-            }
-            b.addPiece(new Knight(new Tile(col, row), b.getInitTurnKnight(), b.getInitHpKnight(), b));
+            b.addPiece(new Knight(b.getRandomTileEmpty(), b.getInitTurnKnight(), b.getInitHpKnight(), b));
         }
     }
 
@@ -59,8 +44,8 @@ public class ChienMa extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        b.getDataBuff().isChienMa=true;
-        if(b.getDataBuff().isChienMa){
+        Board.dataBuff.isChienMa=true;
+        if(Board.dataBuff.isChienMa){
             b.setInitPawn(b.getInitPawn()-1);
         }
     }

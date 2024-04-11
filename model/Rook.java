@@ -59,7 +59,7 @@ public class Rook extends WhitePiece{
         //nếu nhiều hơn power fire của king thì +20
         
         //ủy quyền quân vương
-        if(onBoard.getDataBuff().isUyQuyenQuanVuong){
+        if(Board.dataBuff.isUyQuyenQuanVuong){
             if(Math.abs(bk.standing.x-c.x)<=1&&Math.abs(bk.standing.y-c.y)<=1){
                 result-=Integer.MAX_VALUE;
             }

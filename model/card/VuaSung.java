@@ -1,6 +1,7 @@
 package model.card;
 
 import model.BlackKing;
+import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -17,7 +18,7 @@ public class VuaSung extends Card{
         // TODO Auto-generated method stub
 
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getBoard().getDataBuff().isVuaSung){
+        if(Board.dataBuff.isVuaSung){
             bk.setFirePower(bk.getFirePower()+1);
             bk.setFireRange(bk.getFireRange()+1);
             bk.setSpread(bk.getSpread()/2);
@@ -39,7 +40,7 @@ public class VuaSung extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().getDataBuff().isVuaSung=true;
+        Board.dataBuff.isVuaSung=true;
     }
 
     @Override
