@@ -14,7 +14,8 @@ import java.util.Objects;
 public class PieceView extends JLabel {
     TImage img;
     Piece model;
-    public PieceView(Piece piece) {
+    BoardView boardView;
+    public PieceView(Piece piece, BoardView boardView) {
         String relativePath;
         if(piece instanceof Pawn){
             relativePath = "../img/pawn.png";
@@ -40,6 +41,7 @@ public class PieceView extends JLabel {
         this.setLayout(new BorderLayout());
         this.add(img);
         this.model=piece;
+        this.boardView=boardView;
 //        this.addMouseListener(this);
     }
 

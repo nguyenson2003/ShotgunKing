@@ -29,13 +29,13 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         this.gp = new Gameplay();
 
         for(Piece p : this.gp.getBoard().getWhitePieces()){
-            whitePieceViewList.add(new PieceView(p));
+            whitePieceViewList.add(new PieceView(p,this));
         }
         for(PieceView pv : whitePieceViewList){
             this.add(pv);
         }
 
-        blackPieceView = new PieceView(this.gp.getBoard().getBlackKing());
+        blackPieceView = new PieceView(this.gp.getBoard().getBlackKing(),this);
         GameplayRoom.getIns().showInfoBlackPiece((BlackKing) blackPieceView.getModel());
         this.add(blackPieceView);
 
@@ -109,12 +109,8 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
                 it.remove();
             }
         }
-        loopAddPieceView:
-        for(WhitePiece whitePiece:gp.getBoard().getWhitePieces()){
-            for(PieceView pieceView:whitePieceViewList){
-                if(whitePiece==pieceView.getModel())continue loopAddPieceView;
-            }
-            PieceView pv = new PieceView(whitePiece);
+        for(int i=whitePieceViewList.size();i<gp.getBoard().getWhitePieces().size();i++){
+            PieceView pv = new PieceView(gp.getBoard().getWhitePieces().get(i),this);
             whitePieceViewList.add(pv);
             this.add(pv);
             Tile t = pv.getModel().getStanding();
@@ -127,6 +123,24 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             );
             ComponentAnimation.twink(pv,200);
         }
+//        loopAddPieceView:
+//        for(WhitePiece whitePiece:gp.getBoard().getWhitePieces()){
+//            for(PieceView pieceView:whitePieceViewList){
+//                if(whitePiece==pieceView.getModel())continue loopAddPieceView;
+//            }
+//            PieceView pv = new PieceView(whitePiece,this);
+//            whitePieceViewList.add(pv);
+//            this.add(pv);
+//            Tile t = pv.getModel().getStanding();
+//            Point temp = tileToPixel(t.x,t.y);
+//            pv.setBounds(
+//                    temp.x+3,
+//                    temp.y+1,
+//                    getCloneIcon().getIconWidth()/8-6,
+//                    getCloneIcon().getIconHeight()/8-6
+//            );
+//            ComponentAnimation.twink(pv,200);
+//        }
         for(PieceView pv : whitePieceViewList){
             WhitePiece model = (WhitePiece)pv.getModel();
             Tile t = model.getStanding();
