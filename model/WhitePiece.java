@@ -87,7 +87,7 @@ public abstract class WhitePiece extends Piece{
     public void takeDamage(){
         hp--;
         takeDamageFlag=true;
-//        if(isDied())onBoard.removePiece(this);
+        if(isDied())onBoard.removePiece(this);
     }
     public boolean isDied(){
         return hp<=0;
