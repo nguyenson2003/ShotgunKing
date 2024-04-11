@@ -17,7 +17,7 @@ public class InfoAmmoBlackKing extends JPanel implements ComponentListener {
     JLabel spareAmmoLabel = new JLabel("Đạn dược:");
     JPanel numSpareAmmo = new JPanel();
     JLabel shieldLabel = new JLabel("Khiên");
-    JLabel numShield = new JLabel();
+    JPanel numShield = new JPanel();
     ImageIcon ammo1Img =new ImageIcon(URLDecoder.decode(
         Objects.requireNonNull(BoardView.class.getResource("../img/ammo.png")).getPath(),
         StandardCharsets.UTF_8
@@ -30,13 +30,20 @@ public class InfoAmmoBlackKing extends JPanel implements ComponentListener {
             Objects.requireNonNull(BoardView.class.getResource("../img/blank.png")).getPath(),
             StandardCharsets.UTF_8
     ));
+    ImageIcon shield1 =new ImageIcon(URLDecoder.decode(
+            Objects.requireNonNull(BoardView.class.getResource("../img/shield.png")).getPath(),
+            StandardCharsets.UTF_8
+    ));
+    ImageIcon shield2 =new ImageIcon(URLDecoder.decode(
+            Objects.requireNonNull(BoardView.class.getResource("../img/shield2.png")).getPath(),
+            StandardCharsets.UTF_8
+    ));
     public InfoAmmoBlackKing(){
         this.setOpaque(false);
         this.setLayout(new GridBagLayout());
         this.addComponentListener(this);
 
         shieldLabel.setHorizontalAlignment(JLabel.RIGHT);
-        numShield.setHorizontalAlignment(JLabel.RIGHT);
         numShellAmmo.setLayout(new GridLayout(1,0));
         for(int i=0;i<15;i++){
             TImage img=new TImage();
@@ -50,11 +57,19 @@ public class InfoAmmoBlackKing extends JPanel implements ComponentListener {
             numSpareAmmo.add(img);
         }
         numSpareAmmo.setOpaque(false);
+
+        numShield.setLayout(new GridLayout(1,0));
+        for(int i=0;i<3;i++){
+            TImage img=new TImage();
+            numShield.add(img);
+        }
+        numShield.setOpaque(false);
+        addTextInfo();
+
     }
     BlackKing model;
     public void showInfo(BlackKing p) {
         model = p;
-        removeAll();
         for(int i=0;i<p.getShellAmmo();i++)
             ((TImage)numShellAmmo.getComponent(i)).setSrcIcon(ammo1Img);
         for(int i=p.getShellAmmo();i<p.getMaxShellAmmo();i++)
@@ -69,8 +84,12 @@ public class InfoAmmoBlackKing extends JPanel implements ComponentListener {
         for(int i=p.getMaxSpareAmmo();i<15;i++)
             ((TImage)numSpareAmmo.getComponent(i)).setSrcIcon(blank);
 
-        numShield.setText(p.getShield()+"/"+p.getMaxShield());
-        addTextInfo();
+        for(int i=0;i<p.getShield();i++)
+            ((TImage)numShield.getComponent(3-i-1)).setSrcIcon(shield1);
+        for(int i=p.getShield();i<p.getMaxShield();i++)
+            ((TImage)numShield.getComponent(3-i-1)).setSrcIcon(shield2);
+        for(int i=p.getMaxShield();i<3;i++)
+            ((TImage)numShield.getComponent(3-i-1)).setSrcIcon(blank);
     }
     public void reload(){
         showInfo(model);
