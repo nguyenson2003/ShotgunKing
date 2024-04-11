@@ -44,7 +44,7 @@ public class Gameplay {
             @Override
             public void removePiece(Piece p) {
                 super.removePiece(p);
-                WhitePiece wp = (WhitePiece) p;
+                if(!(p instanceof WhitePiece wp))return;
                 for(Card c:buffCards){
                     if(c.isFlip())continue;
                     c.actionAfterWhiteDieAction(Gameplay.this,wp);
