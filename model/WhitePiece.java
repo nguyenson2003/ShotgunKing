@@ -1,5 +1,7 @@
 package model;
 
+import model.card.CuoiNguaHanhQuan;
+
 public abstract class WhitePiece extends Piece{
     
 
@@ -120,6 +122,13 @@ public abstract class WhitePiece extends Piece{
     }
 
     /**
+     * thay thế cho lệnh if
+     * 
+     */
+    private boolean checkForStraightAndDiagonal(Piece p){
+        return p!=null && (!(CuoiNguaHanhQuan.isHasKnight && onBoard.getDataBuff().isCuoiNguaHanhQuan) || p instanceof Pawn);
+    }
+    /**
      * Kiểm tra xem có quân cờ nào nằm giữa Tile start và Tile end theo đường thẳng không. Không tính vua đen
      * @param start Tile vị trí bắt đầu 
      * @param end Tile vị trí kết thúc
@@ -128,18 +137,19 @@ public abstract class WhitePiece extends Piece{
         if(start.x!=end.x&&start.y!=end.y)
             return true;
         else{
+            //Cưỡi ngựa hành quân có hoạt động không
             if(start.x==end.x){
                 for(int i=Math.min(start.y,end.y)+1;i<Math.max(start.y,end.y);i++){
-                    if(onBoard.getPiece(new Tile(start.x, i))!=null&&
-                        onBoard.getPiece(new Tile(start.x, i))!=onBoard.getBlackKing())
+                    if(checkForStraightAndDiagonal(onBoard.getPiece(new Tile(start.x, i)))){
                         return true;
+                    }
                 }
                 return false;
             }else{
                 for(int i=Math.min(start.x,end.x)+1;i<Math.max(start.x,end.x);i++){
-                    if(onBoard.getPiece(new Tile(i, start.y))!=null&&
-                    onBoard.getPiece(new Tile(i, start.y))!=onBoard.getBlackKing())
-                        return true;
+                    if(checkForStraightAndDiagonal(onBoard.getPiece(new Tile(i, start.y)))){
+                            return true;
+                    }
                 }
                 return false;
             }
@@ -156,25 +166,28 @@ public abstract class WhitePiece extends Piece{
         if(start.x-start.y!=end.x-end.y&&start.x+start.y!=end.x+end.y)
             return true;
         else{
+            //Cưỡi ngựa hành quân có hoạt động không
+            // boolean ck=CuoiNguaHanhQuan.isHasKnight && onBoard.getDataBuff().isCuoiNguaHanhQuan;
             //nếu cùng đường chéo thì
             if(start.x-start.y==end.x-end.y){
                 for(int i=Math.min(start.x,end.x)+1;i<Math.max(start.x,end.x);i++){
                     // System.out.println("cheo1 "+i+" "+start.x+" "+start.y+" "+end.x+" "+end.y);
-                    if(onBoard.getPiece(new Tile(i,i-start.x+start.y))!=null&&
-                    onBoard.getPiece(new Tile(i,i-start.x+start.y))!=onBoard.getBlackKing())
+                    if(checkForStraightAndDiagonal(onBoard.getPiece(new Tile(i,i-start.x+start.y)))){
                         return true;
+                    }
+                        
                 }
                 return false;
             }else {
                 for(int i=Math.min(start.x,end.x)+1;i<Math.max(start.x,end.x);i++){
                     // System.out.println("cheo2 "+i+" "+start.x+" "+start.y+" "+end.x+" "+end.y);
-                    if(onBoard.getPiece(new Tile(i,-i+start.x+start.y))!=null&&
-                    onBoard.getPiece(new Tile(i,-i+start.x+start.y))!=onBoard.getBlackKing())
+                    if(checkForStraightAndDiagonal(onBoard.getPiece(new Tile(i,-i+start.x+start.y)))){
                         return true;
+                    }
                 }
                 return false;
             }
         }
     }
-
+    
 }
