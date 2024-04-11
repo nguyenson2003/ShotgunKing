@@ -4,8 +4,7 @@ import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
-public class NgaiVangBoTrong extends Card{
-    public static boolean isBecomeKing=false;
+public class VuaMau extends Card{
 
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
@@ -40,27 +39,23 @@ public class NgaiVangBoTrong extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board b=gp.getBoard();
-        Board.dataBuff.isNgaiVangBoTrong=true;
-        if(Board.dataBuff.isNgaiVangBoTrong){
-            b.setInitKing(0);
-            b.setInitPawn(b.getInitPawn()+5);
-            b.setInitHpPawn(b.getInitHpPawn()+1);
-            isBecomeKing=false;
+        Board.dataBuff.isVuaMau=true;
+        if(Board.dataBuff.isVuaMau){
+            Board b=gp.getBoard();
+            b.setInitHpKing(b.getInitHpKing()+3);
         }
-
     }
 
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return " Sẽ không còn vua trắng thay vào đó là 5 tốt và tốt thêm 1 máu  quân tốt đầu tiên đi đến cuối bàn cờ sẽ được phong thành vua. Nếu chưa có con tốt nào phong vua thì thắng khi giết hết tốt ";
+        return "Vua trắng thêm 3 máu";
     }
 
     @Override
     public String getName() {
         // TODO Auto-generated method stub
-        return "Ngai Vàng Bỏ Trống";
+        return "Vua Máu";
     }
 
     @Override

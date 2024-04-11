@@ -12,6 +12,7 @@ import model.card.DongCamCongKho;
 import model.card.KeDiSan;
 import model.card.KheUocQuyDu;
 import model.card.LaChanThep;
+import model.card.NgaiVangBoTrong;
 import model.card.NgamNhinConMoi;
 import model.card.QuaDen;
 import model.card.QuanSu;
@@ -103,7 +104,7 @@ public class Gameplay {
         if(checkBlackWinGame())return;//check black is win game
         //calculator move or shoot (before black action)
         boolean willShoot = false;
-        if(b.getBlackKing().standing.equals(nextMove))return;
+        // if(b.getBlackKing().standing.equals(nextMove))return;
         if(!b.getBlackKing().canMoveTo(nextMove)){
             nextMove=b.getBlackKing().standing;
             willShoot=true;
@@ -135,7 +136,8 @@ public class Gameplay {
         if(!willShoot)b.getBlackKing().move(nextMove);
         else b.getBlackKing().shoot(shootAngle);
         //end black action
-        Board.checkIsOnBoardOfPiece();
+        
+
         for(Card c:buffCards){
             if(c.isFlip())continue;
             c.actionAfterBlackAction(this);
@@ -144,6 +146,8 @@ public class Gameplay {
             if(c.isFlip())continue;
             c.actionAfterBlackAction(this);
         }
+
+        Board.checkIsOnBoardOfPiece();
         if(checkBlackWinGame())return;// check black is win game?
         //start white action
         whiteAction();
@@ -174,29 +178,24 @@ public class Gameplay {
         for (WhitePiece piece : Board.getWhitePieces()) {
             piece.move(piece.bestMove());
         }
-        b.getBlackKing().shield =b.getBlackKing().maxShield;
+        b.getBlackKing().shield = b.getBlackKing().maxShield;
     }
 
     /**
      * @return true nếu black thắng, false nếu black chưa thắng
      */
     public boolean checkBlackWinGame(){
-        //có buff: phải giết hết tốt mới thắng
-        if(killAllPawnToWin){
-            int countPawn = 0;
-            for(WhitePiece p : Board.getWhitePieces()){
-                if(p instanceof Pawn)countPawn++;
-            }
-            return countPawn==0;
+        //Ngai vàng bỏ trống nếu k có vua phải giết hết tốt
+        if(Board.dataBuff.isNgaiVangBoTrong && !NgaiVangBoTrong.isBecomeKing){
+            return !Board.isHasPawnOnBoard;
         }
-        //Cơ bản:
-        int countKing = 0;
-        for(WhitePiece p : Board.getWhitePieces()){
-            if(p instanceof King)countKing++;
-        }
-        return countKing==0;
+        //Cơ bản: 
+        return !Board.isHasKingOnBoard;
     }
     public void debugAddCards(){
-        buffCards.add(new CuoiNguaHanhQuan());
+        //k có gì nhá phong bình thg k có lỗi
+        // buffCards.add(new NgaiVangBoTrong());
+        //có lỗi r trong khi
+        // buffCards.add(new QuaDen());
     }
 }

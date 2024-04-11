@@ -4,8 +4,7 @@ import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
-public class NgaiVangBoTrong extends Card{
-    public static boolean isBecomeKing=false;
+public class SucManhCanBang extends Card{
 
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
@@ -40,27 +39,27 @@ public class NgaiVangBoTrong extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board b=gp.getBoard();
-        Board.dataBuff.isNgaiVangBoTrong=true;
-        if(Board.dataBuff.isNgaiVangBoTrong){
-            b.setInitKing(0);
-            b.setInitPawn(b.getInitPawn()+5);
-            b.setInitHpPawn(b.getInitHpPawn()+1);
-            isBecomeKing=false;
+        Board.dataBuff.isSucManhCanBang=true;
+        if(Board.dataBuff.isSucManhCanBang){
+            Board b=gp.getBoard();
+            b.setInitHpQueen(Math.max(1,b.getInitHpQueen()-1));
+            b.setInitHpRook(Math.max(1,b.getInitHpRook()-1));
+            b.setInitHpBishop(b.getInitHpBishop()+2);
+            b.setInitHpKnight(b.getInitHpKnight()+2);
+            b.setInitHpPawn(b.getInitHpPawn()+2);
         }
-
     }
 
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return " Sẽ không còn vua trắng thay vào đó là 5 tốt và tốt thêm 1 máu  quân tốt đầu tiên đi đến cuối bàn cờ sẽ được phong thành vua. Nếu chưa có con tốt nào phong vua thì thắng khi giết hết tốt ";
+        return "Xe ,hậu mất 1 máu bù lại tốt, mã, tịnh thêm 2 máu";
     }
 
     @Override
     public String getName() {
         // TODO Auto-generated method stub
-        return "Ngai Vàng Bỏ Trống";
+        return "Sức Mạnh Cân Bằng";
     }
 
     @Override

@@ -1,5 +1,7 @@
 package model;
 
+import model.card.NgaiVangBoTrong;
+
 public class Pawn extends WhitePiece{
     int scoreStanding[][]={ {0,0,0,0,0,0,0,0,0},
 
@@ -31,9 +33,6 @@ public class Pawn extends WhitePiece{
     Tile bestMove() {
         BlackKing bk=onBoard.getBlackKing();
         if(standing.y == 8){
-            if(Board.dataBuff.isNgaiVangBoTrong){
-                
-            }
             return standing;
         }
         Tile temp = new Tile(standing.x, standing.y+1);
@@ -54,11 +53,23 @@ public class Pawn extends WhitePiece{
         if(standing.y==8){
             onBoard.removePiece(this);
             hp=0;
+            // Ngai vàng bỏ trống -> phong vua
+            if(Board.dataBuff.isNgaiVangBoTrong && NgaiVangBoTrong.isBecomeKing==false){
+                NgaiVangBoTrong.isBecomeKing=true;
+                onBoard.addPiece(new King(standing, onBoard.getInitTurnKing(), onBoard.getInitHpKing(), onBoard));
+                Board.checkIsOnBoardOfPiece();
+                return;
+            }
+            //khác nhau mỗi chỗ này m biết bug gì k
+            //phong ngẫu nhiên tịnh mã xe hậu
             int choice = (int) (Math.random()*4);
-            if(choice==0)onBoard.addPiece(new Queen(standing,3,3,onBoard));
-            else if(choice==1)onBoard.addPiece(new Rook(standing,3,3,onBoard));
-            else if(choice==2)onBoard.addPiece(new Knight(standing,3,3,onBoard));
-            else onBoard.addPiece(new Bishop(standing,3,3,onBoard));
+
+            // choice=0;
+            if(choice==0)onBoard.addPiece(new Queen(standing,onBoard.getInitTurnQueen(),onBoard.getInitHpQueen(),onBoard));
+            else if(choice==1)onBoard.addPiece(new Rook(standing,onBoard.getInitTurnRook(),onBoard.getInitHpRook(),onBoard));
+            else if(choice==2)onBoard.addPiece(new Knight(standing,onBoard.getInitTurnKnight(),onBoard.getInitHpKnight(),onBoard));
+            else onBoard.addPiece(new Bishop(standing,onBoard.getInitTurnBishop(),onBoard.getInitHpBishop(),onBoard));
+            
         }
     }
 

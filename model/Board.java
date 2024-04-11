@@ -16,34 +16,60 @@ public class Board {
     public static boolean isHasBishopOnBoard=false;
     public static boolean isHasKnightOnBoard=false;
     public static boolean isHasPawnOnBoard=false;
+    public static boolean isHasKingOnBoard=false;
 
-    private int initKnight = 1,initTurnKnight=3,initHpKnight = 3;
+    private int initKnight = 0,initTurnKnight=3,initHpKnight = 3;
     private int initBishop = 0,initTurnBishop=5,initHpBishop=4;
-    private int initRook = 2,initTurnRook=4,initHpRook=5;
     private int initKing = 1,initTurnKing=4,initHpKing=8;
     private int initQueen = 0,initTurnQueen=4,initHpQueen=5;
-    private int initPawn = 4,initTurnPawn=5,initHpPawn=1;
+    private int initPawn = 4,initTurnPawn=2,initHpPawn=1;
+    public int getInitTurnBishop() {
+        return initTurnBishop;
+    }
+    public void setInitTurnBishop(int initTurnBishop) {
+        this.initTurnBishop = initTurnBishop;
+    }
+    private int initRook = 0,initTurnRook=4,initHpRook=5;
+    public int getInitTurnRook() {
+        return initTurnRook;
+    }
+    public void setInitTurnRook(int initTurnRook) {
+        this.initTurnRook = initTurnRook;
+    }
+    public int getInitTurnQueen() {
+        return initTurnQueen;
+    }
+    public void setInitTurnQueen(int initTurnQueen) {
+        this.initTurnQueen = initTurnQueen;
+    }
     /**
      * Kiểm tra xem còn những quân nào trên bàn cờ
-     * Hoạt động khi thẻ Lá chắn thép hoặc Cưỡi Ngựa Hành Quân hoặc Ngai Vàng Bỏ Trống hoạt động
+     * 
      */
     public static void checkIsOnBoardOfPiece(){
-        if(!(dataBuff.isLaChanThep||
-            dataBuff.isCuoiNguaHanhQuan||
-            dataBuff.isNgaiVangBoTrong)) return;
-            
         Board.isHasBishopOnBoard=false;
         Board.isHasKnightOnBoard=false;
         Board.isHasPawnOnBoard=false;
+        Board.isHasKingOnBoard=false;
         for(WhitePiece wp:getWhitePieces()){
             if(!wp.isDied()){
                 Board.isHasBishopOnBoard|=(wp instanceof Bishop);
                 Board.isHasKnightOnBoard|=(wp instanceof Knight);
                 Board.isHasPawnOnBoard|=(wp instanceof Pawn);
+                Board.isHasKingOnBoard|=(wp instanceof King);
             }
         }
+        // Board.isHasKingOnBoard=isHasPawnOnBoard=true;
+        if(isHasKingOnBoard)
+            System.out.println("k");
     }
-
+    /**
+     * Chuyển quân cờ a thành quân cờ b
+     */
+    public void convertAToB(Piece a,Piece b){
+        this.removePiece(a);
+        b.standing=a.standing;
+    }
     public int getInitKing() {
         return initKing;
     }
@@ -140,8 +166,10 @@ public class Board {
     public void init() {
         addPiece(new BlackKing(new Tile(4, 8), this, 2, 2, 8,
             4, 5, 40));
-        
-        
+        isHasBishopOnBoard=(initBishop>0);
+        isHasKnightOnBoard=(initKnight>0);
+        isHasKingOnBoard=(initKing>0);
+        isHasPawnOnBoard=(initPawn>0);
         
         int numberOfPieceWithoutPawn=initBishop+initKing+initQueen+initKnight+initRook;
         int colList[]={4,5,3,6,2,7,1,8};
