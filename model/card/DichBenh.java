@@ -15,8 +15,8 @@ public class DichBenh extends Card{
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        if(Board.dataBuff.isDichBenh){
-            for(WhitePiece wp : Board.getWhitePieces())
+        if(gp.getBoard().dataBuff.isDichBenh){
+            for(WhitePiece wp : gp.getBoard().getWhitePieces())
                 wp.takeDamage();
         }
     }
@@ -40,7 +40,7 @@ public class DichBenh extends Card{
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
-        Board.dataBuff.isDichBenh=true;
+        gp.getBoard().dataBuff.isDichBenh=true;
         
     }
 

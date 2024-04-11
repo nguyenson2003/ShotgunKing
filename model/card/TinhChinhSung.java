@@ -17,7 +17,7 @@ public class TinhChinhSung extends Card{
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(Board.dataBuff.isTinhChinhSung){
+        if(gp.getBoard().dataBuff.isTinhChinhSung){
             bk.setSpread(Math.max(0, bk.getSpread()-40*Math.PI/180));
             bk.setFirePower(bk.getFirePower()+1);
         }
@@ -38,7 +38,7 @@ public class TinhChinhSung extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isTinhChinhSung=true;
+        gp.getBoard().dataBuff.isTinhChinhSung=true;
     }
 
     @Override

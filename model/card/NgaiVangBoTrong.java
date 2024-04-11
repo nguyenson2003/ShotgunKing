@@ -41,8 +41,8 @@ public class NgaiVangBoTrong extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        Board.dataBuff.isNgaiVangBoTrong=true;
-        if(Board.dataBuff.isNgaiVangBoTrong){
+        gp.getBoard().dataBuff.isNgaiVangBoTrong=true;
+        if(gp.getBoard().dataBuff.isNgaiVangBoTrong){
             b.setInitKing(0);
             b.setInitPawn(b.getInitPawn()+5);
             b.setInitHpPawn(b.getInitHpPawn()+1);

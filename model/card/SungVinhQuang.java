@@ -17,7 +17,7 @@ public class SungVinhQuang extends Card{
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(Board.dataBuff.isSungVinhQuang){
+        if(gp.getBoard().dataBuff.isSungVinhQuang){
             bk.setSpread(bk.getSpread()+30*Math.PI/180);
             bk.setFirePower(bk.getFirePower()+1);
             bk.setFireRange(bk.getFireRange()+1);
@@ -40,7 +40,7 @@ public class SungVinhQuang extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         
         // TODO Auto-generated method stub
-        Board.dataBuff.isSungVinhQuang=true;
+        gp.getBoard().dataBuff.isSungVinhQuang=true;
         
     }
 

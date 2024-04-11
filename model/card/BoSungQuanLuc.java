@@ -40,8 +40,8 @@ public class BoSungQuanLuc extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        Board.dataBuff.isBoSungQuanLuc=true;
-        if(Board.dataBuff.isBoSungQuanLuc){
+        gp.getBoard().dataBuff.isBoSungQuanLuc=true;
+        if(gp.getBoard().dataBuff.isBoSungQuanLuc){
             b.setInitPawn(b.getInitPawn()+3);
         }
     }

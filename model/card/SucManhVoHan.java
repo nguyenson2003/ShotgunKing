@@ -36,7 +36,7 @@ public class SucManhVoHan extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isSucManhVoHan=true;
+        gp.getBoard().dataBuff.isSucManhVoHan=true;
     }
 
     @Override

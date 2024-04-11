@@ -40,8 +40,8 @@ public class QuanSu extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        Board.dataBuff.isQuanSu=true;
-        if(Board.dataBuff.isQuanSu){
+        gp.getBoard().dataBuff.isQuanSu=true;
+        if(gp.getBoard().dataBuff.isQuanSu){
             b.setInitPawn(b.getInitPawn()-1);
             b.setInitBishop(b.getInitBishop()+1);
         }

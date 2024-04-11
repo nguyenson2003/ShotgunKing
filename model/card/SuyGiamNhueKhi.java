@@ -7,9 +7,9 @@ import model.WhitePiece;
 public class SuyGiamNhueKhi extends Card{
     @Override
     public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece) {
-        int numberOfWhitePieces=Board.getWhitePieces().size();
+        int numberOfWhitePieces=gp.getBoard().getWhitePieces().size();
         if(numberOfWhitePieces==0) return;
-        Board.getWhitePieces().get(((int) (Math.random()*100)) % numberOfWhitePieces).takeDamage();
+        gp.getBoard().getWhitePieces().get(((int) (Math.random()*100)) % numberOfWhitePieces).takeDamage();
     }
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
@@ -36,7 +36,7 @@ public class SuyGiamNhueKhi extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isSuyGiamNhueKhi=true;
+        gp.getBoard().dataBuff.isSuyGiamNhueKhi=true;
     }
 
     @Override

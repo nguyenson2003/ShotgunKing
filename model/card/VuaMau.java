@@ -39,8 +39,8 @@ public class VuaMau extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isVuaMau=true;
-        if(Board.dataBuff.isVuaMau){
+        gp.getBoard().dataBuff.isVuaMau=true;
+        if(gp.getBoard().dataBuff.isVuaMau){
             Board b=gp.getBoard();
             b.setInitHpKing(b.getInitHpKing()+3);
         }

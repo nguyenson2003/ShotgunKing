@@ -39,8 +39,8 @@ public class ChiaSeQuyenLuc extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isChiaSeQuyenLuc=true;
-        if(Board.dataBuff.isChiaSeQuyenLuc){
+        gp.getBoard().dataBuff.isChiaSeQuyenLuc=true;
+        if(gp.getBoard().dataBuff.isChiaSeQuyenLuc){
             Board b=gp.getBoard();
             b.setInitHpKing(Math.max(1,b.getInitHpKing()-1));
             b.setInitHpQueen(b.getInitHpQueen()+2);

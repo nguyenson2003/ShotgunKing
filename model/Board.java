@@ -6,17 +6,17 @@ public class Board {
 
     @Deprecated
     public static Board ins;
-    private static ArrayList<WhitePiece> whitePieces = new ArrayList<>();
+    private ArrayList<WhitePiece> whitePieces = new ArrayList<>();
     private BlackKing blackKing;
-    public static DataBuff dataBuff = new DataBuff();
+    public DataBuff dataBuff = new DataBuff();
     public Board() {
         ins = this;
         //        init();
     }
-    public static boolean isHasBishopOnBoard=false;
-    public static boolean isHasKnightOnBoard=false;
-    public static boolean isHasPawnOnBoard=false;
-    public static boolean isHasKingOnBoard=false;
+    public boolean isHasBishopOnBoard=false;
+    public boolean isHasKnightOnBoard=false;
+    public boolean isHasPawnOnBoard=false;
+    public boolean isHasKingOnBoard=false;
 
     private int initKnight = 0,initTurnKnight=3,initHpKnight = 3;
     private int initBishop = 0,initTurnBishop=5,initHpBishop=4;
@@ -46,17 +46,17 @@ public class Board {
      * Kiểm tra xem còn những quân nào trên bàn cờ
      * 
      */
-    public static void checkIsOnBoardOfPiece(){
-        Board.isHasBishopOnBoard=false;
-        Board.isHasKnightOnBoard=false;
-        Board.isHasPawnOnBoard=false;
-        Board.isHasKingOnBoard=false;
+    public void checkIsOnBoardOfPiece(){
+        this.isHasBishopOnBoard=false;
+        this.isHasKnightOnBoard=false;
+        this.isHasPawnOnBoard=false;
+        this.isHasKingOnBoard=false;
         for(WhitePiece wp:getWhitePieces()){
             if(!wp.isDied()){
-                Board.isHasBishopOnBoard|=(wp instanceof Bishop);
-                Board.isHasKnightOnBoard|=(wp instanceof Knight);
-                Board.isHasPawnOnBoard|=(wp instanceof Pawn);
-                Board.isHasKingOnBoard|=(wp instanceof King);
+                this.isHasBishopOnBoard|=(wp instanceof Bishop);
+                this.isHasKnightOnBoard|=(wp instanceof Knight);
+                this.isHasPawnOnBoard|=(wp instanceof Pawn);
+                this.isHasKingOnBoard|=(wp instanceof King);
             }
         }
         // Board.isHasKingOnBoard=isHasPawnOnBoard=true;
@@ -290,6 +290,7 @@ public class Board {
     public Piece getPiece(Tile c) {
         if (blackKing != null && blackKing.standing.equals(c)) return blackKing;
         for (WhitePiece p : whitePieces) {
+            if(p.isDied())continue;
             if (p.standing.equals(c)) return p;
         }
         return null;
@@ -298,7 +299,7 @@ public class Board {
     /**
      * @return Trả về list các quân trắng
      */
-    public static List<WhitePiece> getWhitePieces() {
+    public List<WhitePiece> getWhitePieces() {
         return whitePieces;
     }
 

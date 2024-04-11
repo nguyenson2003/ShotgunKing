@@ -39,7 +39,7 @@ public class XungPhong extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isXungPhong=true;
+        gp.getBoard().dataBuff.isXungPhong=true;
         isMovedTwoTile=false;
 
     }

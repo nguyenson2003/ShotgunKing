@@ -11,7 +11,13 @@ public abstract class WhitePiece extends Piece{
     }
 
 
-    int maxTurn,turn;
+    int maxTurn;
+
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+
+    int turn;
     int maxHP,hp;
     public void setHp(int hp) {
         this.hp = hp;
@@ -81,7 +87,7 @@ public abstract class WhitePiece extends Piece{
     public void takeDamage(){
         hp--;
         takeDamageFlag=true;
-        if(isDied())onBoard.removePiece(this);
+//        if(isDied())onBoard.removePiece(this);
     }
     public boolean isDied(){
         return hp<=0;
@@ -124,7 +130,7 @@ public abstract class WhitePiece extends Piece{
      * 
      */
     private boolean checkForStraightAndDiagonal(Piece p){
-        return p!=null && (!(Board.isHasKnightOnBoard && Board.dataBuff.isCuoiNguaHanhQuan) || p instanceof Pawn);
+        return p!=null && (!(onBoard.isHasKnightOnBoard && onBoard.dataBuff.isCuoiNguaHanhQuan) || p instanceof Pawn);
     }
     /**
      * Kiểm tra xem có quân cờ nào nằm giữa Tile start và Tile end theo đường thẳng không. Không tính vua đen

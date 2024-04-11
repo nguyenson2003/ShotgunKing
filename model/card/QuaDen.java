@@ -17,7 +17,7 @@ public class QuaDen extends Card{
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(Board.dataBuff.isQuaDen){
+        if(gp.getBoard().dataBuff.isQuaDen){
             bk.setFireRange(bk.getFireRange()+2);
         }
         
@@ -42,7 +42,7 @@ public class QuaDen extends Card{
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
-        Board.dataBuff.isQuaDen=true;
+        gp.getBoard().dataBuff.isQuaDen=true;
     }
 
     @Override

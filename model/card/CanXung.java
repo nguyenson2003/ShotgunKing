@@ -16,7 +16,7 @@ public class CanXung extends Card{
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        if(Board.dataBuff.isCanXung){
+        if(gp.getBoard().dataBuff.isCanXung){
             BlackKing bk=gp.getBoard().getBlackKing();
             bk.setFirePower(bk.getFirePower()+1);
             bk.setSpread(bk.getSpread()+15*Math.PI/180);
@@ -45,8 +45,8 @@ public class CanXung extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        Board.dataBuff.isCanXung=true;
-        if(Board.dataBuff.isCanXung){
+        gp.getBoard().dataBuff.isCanXung=true;
+        if(gp.getBoard().dataBuff.isCanXung){
             b.setInitHpKing(b.getInitHpKing()+2);
         }
     }

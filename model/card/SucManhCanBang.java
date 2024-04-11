@@ -39,8 +39,8 @@ public class SucManhCanBang extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isSucManhCanBang=true;
-        if(Board.dataBuff.isSucManhCanBang){
+        gp.getBoard().dataBuff.isSucManhCanBang=true;
+        if(gp.getBoard().dataBuff.isSucManhCanBang){
             Board b=gp.getBoard();
             b.setInitHpQueen(Math.max(1,b.getInitHpQueen()-1));
             b.setInitHpRook(Math.max(1,b.getInitHpRook()-1));

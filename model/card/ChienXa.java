@@ -40,8 +40,8 @@ public class ChienXa extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        Board.dataBuff.isChienXa=true;
-        if(Board.dataBuff.isChienXa){
+        gp.getBoard().dataBuff.isChienXa=true;
+        if(gp.getBoard().dataBuff.isChienXa){
             if(b.getInitPawn()>=2){
                 b.setInitPawn(b.getInitPawn()-2);
                 b.setInitRook(b.getInitRook()+1);

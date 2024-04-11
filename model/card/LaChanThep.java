@@ -39,8 +39,8 @@ public class LaChanThep extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        Board.dataBuff.isLaChanThep=true;
-        if(Board.dataBuff.isLaChanThep){
+        gp.getBoard().dataBuff.isLaChanThep=true;
+        if(gp.getBoard().dataBuff.isLaChanThep){
             b.setInitHpBishop(b.getInitHpBishop()+1);
         }
     }

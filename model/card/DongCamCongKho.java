@@ -38,9 +38,9 @@ public class DongCamCongKho extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isDongCamCongKho=true;
+        gp.getBoard().dataBuff.isDongCamCongKho=true;
         Board b=gp.getBoard();
-        if(Board.dataBuff.isDongCamCongKho){
+        if(gp.getBoard().dataBuff.isDongCamCongKho){
             b.setInitHpQueen(b.getInitHpQueen()+1);
             b.setInitHpPawn(b.getInitHpPawn()+1);
             b.setInitHpBishop(b.getInitHpBishop()+1);

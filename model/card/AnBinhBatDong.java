@@ -22,8 +22,8 @@ public class AnBinhBatDong extends Card{
     @Override
     public void actionAfterWhiteAction(Gameplay gp) {
         // TODO Auto-generated method stub
-        if(Board.dataBuff.isAnBinhBatDong&&gp.getNumberOfTurn()<=3){
-            for(WhitePiece wp:Board.getWhitePieces()){
+        if(gp.getBoard().dataBuff.isAnBinhBatDong&&gp.getNumberOfTurn()<=3){
+            for(WhitePiece wp:gp.getBoard().getWhitePieces()){
                 if(wp instanceof Pawn) wp.setTurn(wp.getMaxTurn());
             }
         }
@@ -45,7 +45,7 @@ public class AnBinhBatDong extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isAnBinhBatDong=true;
+        gp.getBoard().dataBuff.isAnBinhBatDong=true;
         Board b=gp.getBoard();
         b.setInitHpPawn(b.getInitHpPawn()+3);
     }

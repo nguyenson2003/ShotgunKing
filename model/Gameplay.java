@@ -26,6 +26,7 @@ import model.card.XaSung;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -113,7 +114,7 @@ public class Gameplay {
         }
         //check all piece checkmate (before black action)
         int countMate=0;
-        for (WhitePiece piece : Board.getWhitePieces()) {
+        for (WhitePiece piece : b.getWhitePieces()) {
             if(piece.isMate(nextMove)){
                 piece.mateFlag=true;
                 countMate++;
@@ -148,7 +149,7 @@ public class Gameplay {
             c.actionAfterBlackAction(this);
         }
 
-        Board.checkIsOnBoardOfPiece();
+        b.checkIsOnBoardOfPiece();
         if(checkBlackWinGame())return;// check black is win game?
         //start white action
         whiteAction();
@@ -164,7 +165,7 @@ public class Gameplay {
     }
     public void whiteAction(){
         //nếu có chiếu hết, đen thua
-        for (WhitePiece piece : Board.getWhitePieces()) {
+        for (WhitePiece piece : b.getWhitePieces()) {
             if(piece.isMate(b.getBlackKing().getStanding())){
                 piece.mate(b.getBlackKing().getStanding());
                 System.out.println("Thua!");
@@ -176,9 +177,12 @@ public class Gameplay {
         }
 
         //quân trắng di chuyển
-        for (WhitePiece piece : Board.getWhitePieces()) {
+        int whitePieceSizeTemp = b.getWhitePieces().size();
+        for (int i = 0; i< whitePieceSizeTemp; i++) {
+            WhitePiece piece = b.getWhitePieces().get(i);
             piece.move(piece.bestMove());
         }
+        b.getWhitePieces().removeIf(WhitePiece::isDied);
         b.getBlackKing().shield = b.getBlackKing().maxShield;
     }
 
@@ -187,11 +191,11 @@ public class Gameplay {
      */
     public boolean checkBlackWinGame(){
         //Ngai vàng bỏ trống nếu k có vua phải giết hết tốt
-        if(Board.dataBuff.isNgaiVangBoTrong && !NgaiVangBoTrong.isBecomeKing){
-            return !Board.isHasPawnOnBoard;
+        if(getBoard().dataBuff.isNgaiVangBoTrong && !NgaiVangBoTrong.isBecomeKing){
+            return !b.isHasPawnOnBoard;
         }
         //Cơ bản: 
-        return !Board.isHasKingOnBoard;
+        return !b.isHasKingOnBoard;
     }
     public void debugAddCards(){
         // buffCards.add(new NgaiVangBoTrong());

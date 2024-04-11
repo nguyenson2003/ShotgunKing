@@ -39,7 +39,7 @@ public class TuDo extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isTuDo=true;
+        gp.getBoard().dataBuff.isTuDo=true;
     }
 
     @Override

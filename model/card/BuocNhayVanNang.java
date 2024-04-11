@@ -23,7 +23,7 @@ public class BuocNhayVanNang extends Card{
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
-        Board.dataBuff.isBuocNhayVanNang=true;
+        gp.getBoard().dataBuff.isBuocNhayVanNang=true;
     }
 
     @Override

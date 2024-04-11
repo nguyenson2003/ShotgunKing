@@ -33,8 +33,8 @@ public class NghiBinh extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isNghiBinh=true;
-        if(Board.dataBuff.isNghiBinh){
+        gp.getBoard().dataBuff.isNghiBinh=true;
+        if(gp.getBoard().dataBuff.isNghiBinh){
             gp.getBoard().setInitPawn(gp.getBoard().getInitPawn()-2);
             gp.getBoard().setInitRook(gp.getBoard().getInitRook()-1);
         }

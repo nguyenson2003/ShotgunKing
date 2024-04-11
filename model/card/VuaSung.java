@@ -18,7 +18,7 @@ public class VuaSung extends Card{
         // TODO Auto-generated method stub
 
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(Board.dataBuff.isVuaSung){
+        if(gp.getBoard().dataBuff.isVuaSung){
             bk.setFirePower(bk.getFirePower()+1);
             bk.setFireRange(bk.getFireRange()+1);
             bk.setSpread(bk.getSpread()/2);
@@ -40,7 +40,7 @@ public class VuaSung extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isVuaSung=true;
+        gp.getBoard().dataBuff.isVuaSung=true;
     }
 
     @Override

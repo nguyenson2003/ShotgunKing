@@ -38,7 +38,7 @@ public class CuoiNguaHanhQuan extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isCuoiNguaHanhQuan=true;
+        gp.getBoard().dataBuff.isCuoiNguaHanhQuan=true;
     }
 
     @Override

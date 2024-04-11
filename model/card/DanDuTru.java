@@ -17,7 +17,7 @@ public class DanDuTru extends Card{
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(Board.dataBuff.isDanDuTru){
+        if(gp.getBoard().dataBuff.isDanDuTru){
             
             bk.setMaxShellAmmo(bk.getMaxShellAmmo()+1);
             bk.setMaxSpareAmmo(Math.max(1, bk.getMaxSpareAmmo()-1));
@@ -39,7 +39,7 @@ public class DanDuTru extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isDanDuTru=true;
+        gp.getBoard().dataBuff.isDanDuTru=true;
     }
 
     @Override

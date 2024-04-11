@@ -44,8 +44,8 @@ public class ChienMa extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        Board.dataBuff.isChienMa=true;
-        if(Board.dataBuff.isChienMa){
+        gp.getBoard().dataBuff.isChienMa=true;
+        if(gp.getBoard().dataBuff.isChienMa){
             b.setInitPawn(b.getInitPawn()-1);
         }
     }

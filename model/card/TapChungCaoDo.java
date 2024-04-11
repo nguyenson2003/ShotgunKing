@@ -17,7 +17,7 @@ public class TapChungCaoDo extends Card{
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(Board.dataBuff.isTapChungCaoDo){
+        if(gp.getBoard().dataBuff.isTapChungCaoDo){
             bk.setSpread(Math.max(0,bk.getSpread()-30*Math.PI/180));
         }
     }
@@ -37,7 +37,7 @@ public class TapChungCaoDo extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isTapChungCaoDo=true;
+        gp.getBoard().dataBuff.isTapChungCaoDo=true;
     }
 
     @Override

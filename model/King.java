@@ -31,7 +31,7 @@ public class King extends WhitePiece{
     @Override
     int cacl(Tile c) {
         //la chan thep co bao ve khong
-        boolean isProtectedLaChanThep = Board.isHasBishopOnBoard && Board.dataBuff.isLaChanThep;
+        boolean isProtectedLaChanThep = onBoard.isHasBishopOnBoard && onBoard.dataBuff.isLaChanThep;
         int res=0;
         BlackKing bk=onBoard.getBlackKing();
 //      500: chiếu tướng trực tiếp
@@ -66,7 +66,7 @@ public class King extends WhitePiece{
 
         res+=scoreStanding[c.x][c.y]+valueOfKing+2*this.hp;
         //ủy quyền quân vương
-        if(Board.dataBuff.isUyQuyenQuanVuong){
+        if(onBoard.dataBuff.isUyQuyenQuanVuong){
             if(Math.abs(bk.standing.x-c.x)<=1&&Math.abs(bk.standing.y-c.y)<=1){
                 res-=Integer.MAX_VALUE;
             }

@@ -39,7 +39,7 @@ public class XaSung extends Card {
 
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
-        Board.dataBuff.isXaSung=true;
+        gp.getBoard().dataBuff.isXaSung=true;
     }
 
     @Override

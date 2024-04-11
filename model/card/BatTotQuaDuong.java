@@ -41,7 +41,7 @@ public class BatTotQuaDuong extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board.dataBuff.isBatTotQuaDuong=true;
+        gp.getBoard().dataBuff.isBatTotQuaDuong=true;
     }
 
     @Override
