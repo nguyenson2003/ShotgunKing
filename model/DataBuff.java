@@ -42,4 +42,5 @@ public class DataBuff {
     public boolean isTuDo=false;
     public boolean isXungPhong=false;
     public boolean isAnBinhBatDong=false;
+    public boolean isNhapThanh=false;
 }

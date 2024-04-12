@@ -14,7 +14,7 @@ public class Rook extends WhitePiece{
                             };
     //nếu tốt là 1 thì xe là 4
     int valueOfRook=5;
-    Rook(Tile t, int maxTurn, int maxHP,Board onBoard) {
+    public Rook(Tile t, int maxTurn, int maxHP,Board onBoard) {
         super(t, maxTurn, maxHP,onBoard);
         //TODO Auto-generated constructor stub
     }

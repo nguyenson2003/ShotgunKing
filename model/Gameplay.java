@@ -14,6 +14,7 @@ import model.card.KheUocQuyDu;
 import model.card.LaChanThep;
 import model.card.NgaiVangBoTrong;
 import model.card.NgamNhinConMoi;
+import model.card.NhapThanh;
 import model.card.QuaDen;
 import model.card.QuanSu;
 import model.card.SongSinhDangSo;
@@ -199,6 +200,6 @@ public class Gameplay {
     }
     public void debugAddCards(){
         // buffCards.add(new NgaiVangBoTrong());
-        buffCards.add(new TuDo());
+        buffCards.add(new NhapThanh());
     }
 }

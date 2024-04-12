@@ -7,6 +7,10 @@ abstract public class Piece {
      */
     Tile standing;
 
+    public void setStanding(Tile standing) {
+        this.standing = standing;
+    }
+
     Board onBoard;
 
     Piece(Tile standing_,Board onBoard_){
