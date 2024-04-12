@@ -179,4 +179,11 @@ public class Gameplay {
         // buffCards.add(new NgaiVangBoTrong());
         buffCards.add(new NhapThanh());
     }
+
+    public Pair<Pair<Card,Card>,Pair<Card,Card>> makeTwoChoiceOfCard(){
+        Pair<Card,Card> choice1 = new Pair<>(Card.randomABuffCard(),Card.randomADebuffCard());
+        Pair<Card,Card> choice2 = new Pair<>(Card.randomABuffCard(),Card.randomADebuffCard());
+        return new Pair<>(choice1,choice2);
+
+    }
 }

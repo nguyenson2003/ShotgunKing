@@ -1,6 +1,7 @@
 package view.gameplay;
 
 import model.BlackKing;
+import model.Gameplay;
 import model.WhitePiece;
 import view.general.General;
 import view.general.TRoom;
@@ -16,7 +17,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     public static GameplayRoom getIns() {
         return ins;
     }
-
+    Gameplay gameplay;
     private BoardView boardView;
     private JLabel msgLabel =new JLabel();
     private JPanel buffPanel = new JPanel();
@@ -26,9 +27,12 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     private InfoAmmoBlackKing infoAmmoBlackKing = new InfoAmmoBlackKing();
     private InfoWhitePieceView infoWhitePieceView = new InfoWhitePieceView();
     private InfoBlackKingView infoBlackKingView=new InfoBlackKingView();
+    private ChoiceCardView choiceCardView;
     public GameplayRoom(){
         ins = this;
-        boardView = new BoardView();
+        gameplay = new Gameplay();
+        boardView = new BoardView(gameplay);
+        choiceCardView = new ChoiceCardView(gameplay,gameplay.makeTwoChoiceOfCard());
         setBackground(General.DEFAULT_COLOR);
         setLayout(new BorderLayout());
         //mess
@@ -39,7 +43,8 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         centerCenterPanel.setLayout(new BorderLayout());
         centerCenterPanel.setOpaque(false);
         centerCenterPanel.add(infoAmmoBlackKing,BorderLayout.NORTH);
-        centerCenterPanel.add(boardView);
+//        centerCenterPanel.add(boardView);
+        centerCenterPanel.add(choiceCardView);
         centerPanel.setLayout(new BorderLayout());
         centerPanel.setOpaque(false);
         centerPanel.add(infoBlackKingView,BorderLayout.WEST);

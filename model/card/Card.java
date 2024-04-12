@@ -29,20 +29,20 @@ public abstract class Card {
      * @return trả về true nếu đây là thẻ tăng sức mạnh cho vua đen,
      * false nếu đây là thẻ tăng sức mạnh cho quân trắng
      */
-    abstract boolean isBuffCard();
+    abstract public boolean isBuffCard();
 
     public static Card randomABuffCard(){
         Card res;
         do {
             res = cardList.get((int) (cardList.size() * Math.random()));
-        } while (res.isBuffCard());
+        } while (!res.isBuffCard());
         return res;
     }
     public static Card randomADebuffCard(){
         Card res;
         do {
             res = cardList.get((int) (cardList.size() * Math.random()));
-        } while (!res.isBuffCard());
+        } while (res.isBuffCard());
         return res;
     }
 
@@ -77,7 +77,7 @@ public abstract class Card {
                 }
             }
         }
-        // System.out.println(cardClassList.size());
+         System.out.println(cardList.size());
     }
 
     /**

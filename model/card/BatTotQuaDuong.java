@@ -57,7 +57,7 @@ public class BatTotQuaDuong extends Card{
     }
 
     @Override
-    boolean isBuffCard() {
+    public boolean isBuffCard() {
         // TODO Auto-generated method stub
         return true;
     }

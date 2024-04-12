@@ -55,7 +55,7 @@ public class SungVinhQuang extends Card{
     }
 
     @Override
-    boolean isBuffCard() {
+    public boolean isBuffCard() {
         return true;
     }
 

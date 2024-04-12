@@ -23,11 +23,11 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Image shootCursorImage = ImageResource.instance.shootCursor.getImage();
     Cursor c = toolkit.createCustomCursor(shootCursorImage, new Point(20,20), "img");
-    public BoardView() {
+    public BoardView(Gameplay gp) {
         super(ImageResource.instance.boardImg);
         setLayout(null);
 
-        this.gp = new Gameplay();
+        this.gp = gp;
 
         for(Piece p : this.gp.getBoard().getWhitePieces()){
             whitePieceViewList.add(new PieceView(p,this));

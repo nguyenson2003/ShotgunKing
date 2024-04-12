@@ -17,6 +17,8 @@ public class ImageResource {
 
     // ../img/icon/....png
     public final ImageIcon ammo1,ammo2,blank,border,shadow,shield1,shield2,shootCursor;
+    // ../img/card/....png
+    public final ImageIcon flipBlack,flipWhite;
     private ImageResource(){
         // 1
         pawnImg = createImg("../img/piece/pawn.png");
@@ -36,6 +38,9 @@ public class ImageResource {
         shield1 = createImg("../img/icon/shield1.png");
         shield2 = createImg("../img/icon/shield2.png");
         shootCursor = createImg("../img/icon/shootCursor.png");
+        // 3
+        flipBlack =  createImg("../img/card/flipBlack.png");
+        flipWhite =  createImg("../img/card/flipWhite.png");
 
     }
     private static ImageIcon createImg(String relativePath){

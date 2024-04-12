@@ -17,7 +17,7 @@ public class BuocNhayVanNang extends Card{
     }
 
     @Override
-    boolean isBuffCard() {
+    public boolean isBuffCard() {
         return true;
     }
 

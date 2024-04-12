@@ -53,7 +53,7 @@ public class XaSung extends Card {
     }
 
     @Override
-    boolean isBuffCard() {
+    public boolean isBuffCard() {
         return true;
     }
 

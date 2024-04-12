@@ -52,7 +52,7 @@ public class NgamNhinConMoi extends Card{
     }
 
     @Override
-    boolean isBuffCard() {
+    public boolean isBuffCard() {
         return true;
     }
 
