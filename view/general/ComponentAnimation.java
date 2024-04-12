@@ -19,10 +19,10 @@ public class ComponentAnimation {
         new SetBackgroundAnimation(a, c, ms);
     }
 
-    public static void shake(Component a,int xShake,int yShake,int ms){new ShakeAnimation(a,xShake,yShake,ms);}
-    public static void shakeInfinity(Component a,int xShake,int yShake){new ShakeAnimation(a,xShake,yShake,-1);}
-    public static void shakeStop(Component a){new ShakeAnimation(a,100,100,-1).stop();}
-    public static void twink(Component a,int ms){new TwinklingAnimation(a,ms);}
+    public static void shake(Component a,int xShake,int yShake,int ms,int delayMs){new ShakeAnimation(a,xShake,yShake,ms,delayMs);}
+    public static void shakeInfinity(Component a,int xShake,int yShake,int delayMs){new ShakeAnimation(a,xShake,yShake,-1,delayMs);}
+    public static void shakeStop(Component a){new ShakeAnimation(a,100,100,-1,10).stop();}
+    public static void twink(Component a,int ms,int delayMs){new TwinklingAnimation(a,ms,delayMs);}
     private abstract static class Setnable implements Runnable {
         public Setnable(Component a,int ms){
             this.a=a;
@@ -31,7 +31,7 @@ public class ComponentAnimation {
         Component a;
         int ms;
         boolean stop = false;
-        int delay_fpMs = 1000 / 60;
+        final int delay_fpMs = 1000 / 60;
 
         /**
          * @return trả về Setnable đang chạy của Component a
@@ -209,14 +209,15 @@ public class ComponentAnimation {
         public void setRunning(Setnable s) {
             running.put(this.a,s);
         }
-        private int x_start, y_start,x_shake,y_shake;
+        private int x_start, y_start,x_shake,y_shake,delayMs;
 
-        public ShakeAnimation(Component a, int x_shake,int y_shake, int ms) {
+        public ShakeAnimation(Component a, int x_shake,int y_shake, int ms,int delayMs) {
             super(a,ms);
             this.x_start=a.getX();
             this.y_start=a.getY();
             this.x_shake=x_shake;
             this.y_shake=y_shake;
+            this.delayMs=delayMs;
             this.start();
         }
         @Override
@@ -231,7 +232,7 @@ public class ComponentAnimation {
                 );
                 temp=1-temp;
                 try {
-                    Thread.sleep(delay_fpMs*10);
+                    Thread.sleep(delayMs);
                 } catch (Exception e) {
                     System.err.println(e);
                 }
@@ -252,9 +253,11 @@ public class ComponentAnimation {
         public void setRunning(Setnable s) {
             running.put(this.a,s);
         }
+        int delayMs;
 
-        public TwinklingAnimation(Component a, int ms) {
+        public TwinklingAnimation(Component a, int ms,int delayMs) {
             super(a,ms);
+            this.delayMs=delayMs;
             this.start();
         }
         @Override
@@ -266,7 +269,7 @@ public class ComponentAnimation {
                 temp^=true;
                 a.setVisible(temp);
                 try {
-                    Thread.sleep(delay_fpMs*5);
+                    Thread.sleep(delayMs);
                 } catch (Exception e) {
                     System.err.println(e);
                 }

@@ -43,6 +43,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         borderHover = new TImage(ImageResource.instance.border);
         this.add(borderHover);
 
+        GameplayRoom.getIns().showMsg("Lượt: "+gp.getNumberOfTurn());
         canClickMouse=true;
         this.addMouseMotionListener(this);
         this.addMouseListener(this);
@@ -115,8 +116,11 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         for(PieceView pv : whitePieceViewList){
             WhitePiece model = (WhitePiece)pv.getModel();
             ComponentAnimation.shakeStop(pv);
-            if((model.isMateFlag() || model.isTakeDamageFlag()) && gp.isPlaying()){
-                ComponentAnimation.twink(pv,100);
+            if(model.isMateFlag() && gp.isPlaying()){
+                ComponentAnimation.twink(pv,100,1000/60*5);
+            }
+            if(model.isTakeDamageFlag() && gp.isPlaying()){
+                ComponentAnimation.twink(pv,100,1000/60*3);
             }
         }
     }
@@ -141,7 +145,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
                     getCloneIcon().getIconWidth()/8-6,
                     getCloneIcon().getIconHeight()/8-6
             );
-            ComponentAnimation.twink(pv,200);
+            ComponentAnimation.twink(pv,200,1000/60*5);
         }
         for(PieceView pv : whitePieceViewList){
             WhitePiece model = (WhitePiece)pv.getModel();
@@ -158,7 +162,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         for(PieceView pv : whitePieceViewList){
             WhitePiece model = (WhitePiece)pv.getModel();
             if(model.canMove() && gp.isPlaying()){
-                ComponentAnimation.shakeInfinity(pv,5,0);
+                ComponentAnimation.shakeInfinity(pv,1,0,1000/60*5);
             }
         }
     }
@@ -230,6 +234,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             }
             updateAfterMoveWhitePiece();
             GameplayRoom.getIns().reloadInfoBlackPiece();
+            GameplayRoom.getIns().showMsg("Lượt: "+gp.getNumberOfTurn());
             canClickMouse=true;
         }).start();
 
@@ -267,7 +272,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
 
 
             if(((WhitePiece)pv.getModel()).canMove() && gp.isPlaying())
-                ComponentAnimation.shakeInfinity(pv,5,0);
+                ComponentAnimation.shakeInfinity(pv,2,0,1000/60*5);
             pv.setVisible(false);
             pv.setVisible(true);
         }

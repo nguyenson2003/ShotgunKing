@@ -17,7 +17,7 @@ public class Gameplay {
      * biến ktra buff: phải giết tất cả tốt để chiến thắng
      */
     private boolean killAllPawnToWin = false;
-    private int numberOfTurn = 1;
+    private int numberOfTurn = 0;
     ArrayList<Card> buffCards = new ArrayList<>();
     ArrayList<Card> debuffCards = new ArrayList<>();
     public Gameplay(){
