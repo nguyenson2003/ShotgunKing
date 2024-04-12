@@ -1,6 +1,7 @@
 package view.gameplay;
 
 import model.*;
+import resource.ImageResource;
 import view.general.ComponentAnimation;
 import view.general.TImage;
 
@@ -20,13 +21,10 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     TImage borderHover;
     boolean canClickMouse = false;
     Toolkit toolkit = Toolkit.getDefaultToolkit();
-    Image image = Toolkit.getDefaultToolkit().getImage("D:\\code\\laptrinhAI\\ShotgunKing\\img\\shootCursor.png");
-    Cursor c = toolkit.createCustomCursor(image, new Point(20,20), "img");
+    Image shootCursorImage = ImageResource.instance.shootCursor.getImage();
+    Cursor c = toolkit.createCustomCursor(shootCursorImage, new Point(20,20), "img");
     public BoardView() {
-        super(new ImageIcon(URLDecoder.decode(
-                Objects.requireNonNull(BoardView.class.getResource("../img/board.png")).getPath(),
-                StandardCharsets.UTF_8
-        )));
+        super(ImageResource.instance.boardImg);
         setLayout(null);
 
         this.gp = new Gameplay();
@@ -42,12 +40,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         GameplayRoom.getIns().showInfoBlackPiece((BlackKing) blackPieceView.getModel());
         this.add(blackPieceView);
 
-        borderHover = new TImage(
-                new ImageIcon(URLDecoder.decode(
-                        Objects.requireNonNull(BoardView.class.getResource("../img/border.png")).getPath(),
-                        StandardCharsets.UTF_8
-                ))
-        );
+        borderHover = new TImage(ImageResource.instance.border);
         this.add(borderHover);
 
         canClickMouse=true;

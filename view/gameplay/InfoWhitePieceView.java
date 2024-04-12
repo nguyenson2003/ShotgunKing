@@ -1,6 +1,7 @@
 package view.gameplay;
 
 import model.WhitePiece;
+import resource.ImageResource;
 import view.general.TImage;
 
 import javax.swing.*;
@@ -73,10 +74,7 @@ public class InfoWhitePieceView extends JPanel implements ComponentListener {
         removeAll();
         String typePiece = p.getClass().getSimpleName();
         nameLabel.setText(typePiece);
-        imgPiece.setSrcIcon(new ImageIcon(URLDecoder.decode(
-                Objects.requireNonNull(BoardView.class.getResource("../img/"+typePiece.toLowerCase()+".png")).getPath(),
-                StandardCharsets.UTF_8
-        )));
+        imgPiece.setSrcIcon(ImageResource.instance.getImgOfPiece(p));
         hpBar.setMaximum(p.getMaxHP());
         hpBar.setValue(p.getHp());
         hpLabel.setText(p.getHp()+" hp");

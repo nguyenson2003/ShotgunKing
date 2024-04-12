@@ -1,6 +1,7 @@
 package view.gameplay;
 
 import model.BlackKing;
+import resource.ImageResource;
 import view.general.TImage;
 
 import javax.swing.*;
@@ -18,26 +19,11 @@ public class InfoAmmoBlackKing extends JPanel implements ComponentListener {
     JPanel numSpareAmmo = new JPanel();
     JLabel shieldLabel = new JLabel("Khiên");
     JPanel numShield = new JPanel();
-    ImageIcon ammo1Img =new ImageIcon(URLDecoder.decode(
-        Objects.requireNonNull(BoardView.class.getResource("../img/ammo.png")).getPath(),
-        StandardCharsets.UTF_8
-    ));
-    ImageIcon ammo2Img =new ImageIcon(URLDecoder.decode(
-            Objects.requireNonNull(BoardView.class.getResource("../img/ammo2.png")).getPath(),
-            StandardCharsets.UTF_8
-    ));
-    ImageIcon blank =new ImageIcon(URLDecoder.decode(
-            Objects.requireNonNull(BoardView.class.getResource("../img/blank.png")).getPath(),
-            StandardCharsets.UTF_8
-    ));
-    ImageIcon shield1 =new ImageIcon(URLDecoder.decode(
-            Objects.requireNonNull(BoardView.class.getResource("../img/shield.png")).getPath(),
-            StandardCharsets.UTF_8
-    ));
-    ImageIcon shield2 =new ImageIcon(URLDecoder.decode(
-            Objects.requireNonNull(BoardView.class.getResource("../img/shield2.png")).getPath(),
-            StandardCharsets.UTF_8
-    ));
+    ImageIcon ammo1Img = ImageResource.instance.ammo1;
+    ImageIcon ammo2Img =ImageResource.instance.ammo2;
+    ImageIcon blank =ImageResource.instance.blank;
+    ImageIcon shield1 =ImageResource.instance.shield1;
+    ImageIcon shield2 =ImageResource.instance.shield2;
     public InfoAmmoBlackKing(){
         this.setOpaque(false);
         this.setLayout(new GridBagLayout());
