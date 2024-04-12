@@ -1,6 +1,5 @@
 package model.card;
 
-import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
 
@@ -12,7 +11,7 @@ import java.util.List;
 
 public abstract class Card {
 
-    private static List<Class<? extends Card>> cardClassList = new ArrayList<>();
+    private static List<Card> cardList = new ArrayList<>();
     private boolean flip;
     Card(){}
 
@@ -33,32 +32,18 @@ public abstract class Card {
     abstract boolean isBuffCard();
 
     public static Card randomABuffCard(){
-        List<Card> cardList = new ArrayList<>();
-        for (Class<? extends Card> aClass : cardClassList) {
-            try {
-                Card c = aClass.getDeclaredConstructor().newInstance();
-                cardList.add(c);
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
-                     NoSuchMethodException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        cardList.removeIf(c -> !c.isBuffCard());
-        return cardList.get((int)(cardList.size()*Math.random()));
+        Card res;
+        do {
+            res = cardList.get((int) (cardList.size() * Math.random()));
+        } while (res.isBuffCard());
+        return res;
     }
     public static Card randomADebuffCard(){
-        List<Card> cardList = new ArrayList<>();
-        for (Class<? extends Card> aClass : cardClassList) {
-            try {
-                Card c = aClass.getDeclaredConstructor().newInstance();
-                cardList.add(c);
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
-                     NoSuchMethodException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        cardList.removeIf(Card::isBuffCard);
-        return cardList.get((int)(cardList.size()*Math.random()));
+        Card res;
+        do {
+            res = cardList.get((int) (cardList.size() * Math.random()));
+        } while (!res.isBuffCard());
+        return res;
     }
 
     static {
@@ -82,7 +67,7 @@ public abstract class Card {
                             try {
                                 Class<?> clazz = classLoader.loadClass(className);
                                 if(clazz.getSuperclass().equals(Card.class))
-                                    cardClassList.add((Class<? extends Card>) clazz);
+                                    cardList.add((Card) clazz.getDeclaredConstructor().newInstance());
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
