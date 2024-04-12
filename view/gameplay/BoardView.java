@@ -1,4 +1,4 @@
-package view;
+package view.gameplay;
 
 import model.*;
 import view.general.ComponentAnimation;

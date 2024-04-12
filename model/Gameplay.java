@@ -1,35 +1,11 @@
 package model;
 
 import model.card.Card;
-import model.card.ChienMa;
-import model.card.CuoiNguaHanhQuan;
-import model.card.BachPhatBachTrung;
-import model.card.BuocNhayVanNang;
-import model.card.Card;
-import model.card.DichBenh;
-import model.card.DiemBanHoanHao;
-import model.card.DongCamCongKho;
-import model.card.KeDiSan;
-import model.card.KheUocQuyDu;
-import model.card.LaChanThep;
 import model.card.NgaiVangBoTrong;
-import model.card.NgamNhinConMoi;
 import model.card.NhapThanh;
-import model.card.QuaDen;
-import model.card.QuanSu;
-import model.card.SongSinhDangSo;
-import model.card.SucManhVoHan;
-import model.card.SungVinhQuang;
-import model.card.SuyGiamNhueKhi;
-import model.card.TuDo;
-import model.card.UyQuyenQuanVuong;
-import model.card.XaSung;
-import view.BoardView;
+import view.gameplay.BoardView;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
 
 /**
  * Gameplay

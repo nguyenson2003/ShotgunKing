@@ -1,7 +1,6 @@
-package view;
+package view.gameplay;
 
 import model.WhitePiece;
-import view.general.General;
 import view.general.TImage;
 
 import javax.swing.*;
@@ -30,7 +29,6 @@ public class InfoWhitePieceView extends JPanel implements ComponentListener {
         hpBar.add(hpLabel);
         hpLabel.setHorizontalAlignment(JLabel.CENTER);
         hpLabel.setForeground(Color.white);
-        imgPiece.setBorder(BorderFactory.createLineBorder(Color.black,10));
         imgPiece.setBackground(new Color(0x99e550));
         imgPiece.setOpaque(true);
         this.addComponentListener(this);
@@ -57,6 +55,14 @@ public class InfoWhitePieceView extends JPanel implements ComponentListener {
 //        this.repaint();
         this.setVisible(false);
         this.setVisible(true);
+        new Thread(() -> {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            this.repaint();
+        }).start();
     }
 
     static WhitePiece temp;
@@ -101,6 +107,7 @@ public class InfoWhitePieceView extends JPanel implements ComponentListener {
         waitLabel.setFont(font);
         waitMove.setFont(font);
         hpBar.setPreferredSize(new Dimension(this.getWidth()-20, (int) (this.getWidth()/4.5)));
+        imgPiece.setBorder(BorderFactory.createLineBorder(Color.black,this.getWidth()/10));
         imgPiece.setPreferredSize(new Dimension(this.getWidth()/3*2,this.getWidth()/3*2));
         this.setVisible(false);
         this.setVisible(true);

@@ -1,6 +1,6 @@
 package model;
 
-import view.GameplayRoom;
+import view.gameplay.GameplayRoom;
 
 public class BlackKing extends Piece {
     //shield: khiên

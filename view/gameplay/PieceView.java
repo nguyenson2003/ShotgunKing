@@ -1,12 +1,10 @@
-package view;
+package view.gameplay;
 
 import model.*;
 import view.general.TImage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;

@@ -1,6 +1,6 @@
 package view.general;
 
-import view.GameplayRoom;
+import view.gameplay.GameplayRoom;
 
 import java.awt.*;
 import java.io.File;
@@ -8,7 +8,6 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
-import java.util.HashMap;
 
 import javax.swing.*;
 

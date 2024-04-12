@@ -1,7 +1,6 @@
-package view;
+package view.gameplay;
 
 import model.BlackKing;
-import model.Board;
 import model.WhitePiece;
 import view.general.General;
 import view.general.TRoom;
