@@ -19,6 +19,9 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     PieceView blackPieceView;
     TImage borderHover;
     boolean canClickMouse = false;
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+    Image image = Toolkit.getDefaultToolkit().getImage("D:\\code\\laptrinhAI\\ShotgunKing\\img\\shootCursor.png");
+    Cursor c = toolkit.createCustomCursor(image, new Point(20,20), "img");
     public BoardView() {
         super(new ImageIcon(URLDecoder.decode(
                 Objects.requireNonNull(BoardView.class.getResource("../img/board.png")).getPath(),
@@ -100,7 +103,31 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             BoardView.this.repaint();
         }).start();
     }
-    public void updatePositionWhitePiece(){
+
+
+    public void updatePositionBlackPiece(){
+        Tile t = blackPieceView.getModel().getStanding();
+        Point temp = tileToPixel(t.x,t.y);
+        ComponentAnimation.setLocation(blackPieceView,temp.x+3,temp.y+1,200);
+    }
+    public void updateBeforeMoveWhitePiece(){
+        Iterator<PieceView> it= whitePieceViewList.iterator();
+        while(it.hasNext()){
+            PieceView pv = it.next();
+            if(((WhitePiece)pv.getModel()).isDied()){
+                this.remove(pv);
+                it.remove();
+            }
+        }
+        for(PieceView pv : whitePieceViewList){
+            WhitePiece model = (WhitePiece)pv.getModel();
+            ComponentAnimation.shakeStop(pv);
+            if((model.isMateFlag() || model.isTakeDamageFlag()) && gp.isPlaying()){
+                ComponentAnimation.twink(pv,100);
+            }
+        }
+    }
+    public void updateMoveWhitePiece(){
         Iterator<PieceView> it= whitePieceViewList.iterator();
         while(it.hasNext()){
             PieceView pv = it.next();
@@ -123,50 +150,24 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             );
             ComponentAnimation.twink(pv,200);
         }
-//        loopAddPieceView:
-//        for(WhitePiece whitePiece:gp.getBoard().getWhitePieces()){
-//            for(PieceView pieceView:whitePieceViewList){
-//                if(whitePiece==pieceView.getModel())continue loopAddPieceView;
-//            }
-//            PieceView pv = new PieceView(whitePiece,this);
-//            whitePieceViewList.add(pv);
-//            this.add(pv);
-//            Tile t = pv.getModel().getStanding();
-//            Point temp = tileToPixel(t.x,t.y);
-//            pv.setBounds(
-//                    temp.x+3,
-//                    temp.y+1,
-//                    getCloneIcon().getIconWidth()/8-6,
-//                    getCloneIcon().getIconHeight()/8-6
-//            );
-//            ComponentAnimation.twink(pv,200);
-//        }
         for(PieceView pv : whitePieceViewList){
             WhitePiece model = (WhitePiece)pv.getModel();
             Tile t = model.getStanding();
             Point temp = tileToPixel(t.x,t.y);
-            // ComponentAnimation.shakeStop(pv);
-
-            ComponentAnimation.setLocation(pv,temp.x+3,temp.y+1,200);
             ComponentAnimation.shakeStop(pv);
-            if(model.canMove() && gp.isPlaying()){
-                ComponentAnimation.shakeInfinity(pv,5,0);
-            }
-            if((model.isMateFlag() || model.isTakeDamageFlag()) && gp.isPlaying()){
-                ComponentAnimation.twink(pv,100);
-            }
-            pv.setVisible(false);
-            pv.setVisible(true);
+            ComponentAnimation.setLocation(pv,temp.x+3,temp.y+1,200);
         }
         GameplayRoom.getIns().reloadInfoWhitePiece();
         this.setVisible(false);
         this.setVisible(true);
     }
-
-    public void updatePositionBlackPiece(){
-        Tile t = blackPieceView.getModel().getStanding();
-        Point temp = tileToPixel(t.x,t.y);
-        ComponentAnimation.setLocation(blackPieceView,temp.x+3,temp.y+1,200);
+    public void updateAfterMoveWhitePiece(){
+        for(PieceView pv : whitePieceViewList){
+            WhitePiece model = (WhitePiece)pv.getModel();
+            if(model.canMove() && gp.isPlaying()){
+                ComponentAnimation.shakeInfinity(pv,5,0);
+            }
+        }
     }
     @Override
     public void mouseDragged(MouseEvent e) {
@@ -175,13 +176,18 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     @Override
     public void mouseMoved(MouseEvent e) {
         Tile t = pixelToTile(e.getX(),e.getY());
-        if(t!=null) {
-            GameplayRoom.getIns().showMsg(t.toString());
-            borderHover.setSize(
-                    tileToPixel(2,2).x-tileToPixel(1,1).x,
-                    tileToPixel(2,2).y-tileToPixel(1,1).y
-            );
-            borderHover.setLocation(tileToPixel(t));
+        if(t!=null ) {
+            if(((BlackKing)blackPieceView.getModel()).canMoveTo(t)) {
+                borderHover.setSize(
+                        tileToPixel(2, 2).x - tileToPixel(1, 1).x,
+                        tileToPixel(2, 2).y - tileToPixel(1, 1).y
+                );
+                borderHover.setLocation(tileToPixel(t));
+                this.setCursor(Cursor.getDefaultCursor());
+            }else {
+                borderHover.setSize(0,0);
+                this.setCursor(c);
+            }
             Piece p = gp.getBoard().getPiece(t);
             if(p instanceof WhitePiece wp){
                 GameplayRoom.getIns().showInfoWhitePiece(wp);
@@ -204,6 +210,8 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         new Thread(() -> {
 
             Tile t = pixelToTile(e.getX(),e.getY());
+            assert t != null;
+            if(t.equals(blackPieceView.getModel().getStanding()))return;
             Point blackKingPoint = blackPieceView.getLocation();
             blackKingPoint.x+=blackPieceView.getWidth()/2;
             blackKingPoint.y+=blackPieceView.getHeight()/2;
@@ -213,18 +221,21 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             double angleSin = Math.asin((mousePoint.y-blackKingPoint.y)/distance);
             double angle = angleCos;
             if(angleSin<0)angle=-angle;
-            if(t!=null) {
-    //            ((BlackKing) (blackPieceView.model)).move(t);
-                gp.blackMoveAction(t,angle);
-
-            }
+            gp.blackMoveAction(t, angle, this);
             updatePositionBlackPiece();
+            updateBeforeMoveWhitePiece();
             try {
                 Thread.sleep(200);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
-            updatePositionWhitePiece();
+            updateMoveWhitePiece();
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+            updateAfterMoveWhitePiece();
             GameplayRoom.getIns().reloadInfoBlackPiece();
             canClickMouse=true;
         }).start();
@@ -243,12 +254,13 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        borderHover.setSize(0,0);
     }
 
     @Override
     public void componentResized(ComponentEvent e) {
         super.componentResized(e);
+        borderHover.setSize(0,0);
         for(PieceView pv : whitePieceViewList){
             ComponentAnimation.shakeStop(pv);
             Tile t = pv.getModel().getStanding();

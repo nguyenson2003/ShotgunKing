@@ -24,6 +24,7 @@ import model.card.SuyGiamNhueKhi;
 import model.card.TuDo;
 import model.card.UyQuyenQuanVuong;
 import model.card.XaSung;
+import view.BoardView;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -103,7 +104,7 @@ public class Gameplay {
         return numberOfTurn;
     }
 
-    public void blackMoveAction(Tile nextMove, double shootAngle){
+    public void blackMoveAction(Tile nextMove, double shootAngle, BoardView view){
         if(checkBlackWinGame())return;//check black is win game
         //calculator move or shoot (before black action)
         boolean willShoot = false;

@@ -49,29 +49,5 @@ public class PieceView extends JLabel {
         return model;
     }
 
-//    @Override
-//    public void mouseClicked(MouseEvent e) {
-//
-//    }
-//
-//    @Override
-//    public void mousePressed(MouseEvent e) {
-//
-//    }
-//
-//    @Override
-//    public void mouseReleased(MouseEvent e) {
-//
-//    }
-//
-//    @Override
-//    public void mouseEntered(MouseEvent e) {
-//        if(model instanceof WhitePiece p)
-//            GameplayRoom.getIns().showInfoWhitePiece(p);
-//    }
-//
-//    @Override
-//    public void mouseExited(MouseEvent e) {
-//        GameplayRoom.getIns().hideInfoWhitePiece();
-//    }
+
 }
