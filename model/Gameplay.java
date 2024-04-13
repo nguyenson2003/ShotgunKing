@@ -87,7 +87,7 @@ public class Gameplay {
      * Khi muốn tạo lại 1 màn chơi, nên xài hàm này
      * @return trả về 1 gameplay mới, các thẻ bài vẫn sẽ được giữ nguyên
      */
-    protected Gameplay clone() {
+    public Gameplay clone() {
         Gameplay willClone = new Gameplay();
         willClone.buffCards=this.buffCards;
         willClone.debuffCards=this.debuffCards;
@@ -154,7 +154,10 @@ public class Gameplay {
         }
 
         b.checkIsOnBoardOfPiece();
-        if(checkBlackWinGame())return;// check black is win game?
+        if(checkBlackWinGame()){
+            isPlaying = false;
+            return;// check black is win game?
+        }
         //start white action
         whiteAction();
         numberOfTurn++;
@@ -228,5 +231,9 @@ public class Gameplay {
         Pair<Card,Card> choice2 = new Pair<>(Card.randomABuffCard(),Card.randomADebuffCard());
         return new Pair<>(choice1,choice2);
 
+    }
+    public void addAChoice(Pair<Card,Card> p){
+        buffCards.add(p.first);
+        debuffCards.add(p.second);
     }
 }

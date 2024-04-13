@@ -112,6 +112,16 @@ public class TFrame extends JFrame {
                 throw new RuntimeException(e);
             }
         }).start();
+        new Thread(() -> {
+            while (true){
+                try {
+                    Thread.sleep(100);
+                    if(rm!=null)rm.repaint();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }).start();
     }
 
     

@@ -223,7 +223,7 @@ public class ComponentAnimation {
         @Override
         public void run() {
             int temp = 0;
-            for (int i = 1; i <= ms || ms<0; i += delay_fpMs) {
+            for (int i = 1; i <= ms || ms<0; i += delayMs) {
                 if (stop)
                     return;
                 a.setLocation(
@@ -263,7 +263,7 @@ public class ComponentAnimation {
         @Override
         public void run() {
             boolean temp=true;
-            for (int i = 1; i <= ms || ms<0; i += delay_fpMs) {
+            for (int i = 1; i <= ms || ms<0; i += delayMs) {
                 if (stop)
                     return;
                 temp^=true;

@@ -1,6 +1,7 @@
 package view.gameplay;
 
 import model.card.Card;
+import view.general.ComponentAnimation;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -25,7 +26,9 @@ public class ListCardView extends JPanel {
     }
     public void reload(){
         for(int i = 0; i<cardViews.length && i<cardList.size(); i++){
+            if(cardViews[i].card==cardList.get(i))continue;
             cardViews[i].setCard(cardList.get(i));
+            ComponentAnimation.twink(cardViews[i],500,100);
         }
     }
 }

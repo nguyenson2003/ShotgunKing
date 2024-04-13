@@ -19,6 +19,11 @@ public class General {
         GeneralFrame.setRoom(new GameplayRoom());
     }
     private static TFrame GeneralFrame;
+
+    public static TFrame getGeneralFrame() {
+        return GeneralFrame;
+    }
+
     public static final Color DEFAULT_COLOR = new Color(0x639bff);
     public static void setUIFont (){
         try {

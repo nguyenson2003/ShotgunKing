@@ -15,16 +15,18 @@ import java.awt.event.*;
 public class ChoiceCardView extends JPanel implements ComponentListener {
     JLayeredPane pane1 = new JLayeredPane();
     SingleChoice choice1,choice2;
-    public ChoiceCardView(Gameplay gp, Pair<Pair<Card,Card>, Pair<Card,Card>> p){
+    public ChoiceCardView(Pair<Pair<Card,Card>, Pair<Card,Card>> p){
         this.setOpaque(false);
 
 //        this.setLayout(new GridLayout(2,1,0,50));
 //        this.setBorder(new EmptyBorder(20,20,20,20));
         this.addComponentListener(this);
-        choice1=new SingleChoice(gp,p.first);
-        choice2=new SingleChoice(gp,p.second);
+        choice1=new SingleChoice(p.first);
+        choice2=new SingleChoice(p.second);
         this.add(choice1);
         this.add(choice2);
+        this.setVisible(false);
+        this.setVisible(true);
     }
 
 
@@ -52,11 +54,12 @@ public class ChoiceCardView extends JPanel implements ComponentListener {
 class SingleChoice extends JPanel implements MouseListener , ComponentListener {
     CardView card1img;
     CardView card2img;
-    SingleChoice(Gameplay gp, Pair<Card,Card> p){
+    Pair<Card,Card> p;
+    SingleChoice(Pair<Card,Card> p){
 //        this.setOpaque(false);
         this.setLayout(new GridLayout(1,2,0,10));
         this.setBackground(Color.gray);
-
+        this.p = p;
         card1img = new CardView(p.first);
         card2img = new CardView(p.second);
         this.add(card1img);
@@ -67,7 +70,7 @@ class SingleChoice extends JPanel implements MouseListener , ComponentListener {
     }
         @Override
         public void mouseClicked(MouseEvent e) {
-            System.out.println("test");
+            GameplayRoom.getIns().selectAChoice(p);
         }
 
         @Override

@@ -2,8 +2,10 @@ package view.gameplay;
 
 import model.BlackKing;
 import model.Gameplay;
+import model.Pair;
 import model.WhitePiece;
 import model.card.Card;
+import view.gameover.GameOverRoom;
 import view.general.General;
 import view.general.TRoom;
 
@@ -37,7 +39,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         boardView = new BoardView(gameplay);
         buffPanel = new ListCardView(gameplay.getBuffCards(),true);
         debuffPanel = new ListCardView(gameplay.getDebuffCards(),false);
-        choiceCardView = new ChoiceCardView(gameplay,gameplay.makeTwoChoiceOfCard());
+//        choiceCardView = new ChoiceCardView(gameplay.makeTwoChoiceOfCard());
         setBackground(General.DEFAULT_COLOR);
         setLayout(new BorderLayout());
         //mess
@@ -48,8 +50,8 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         centerCenterPanel.setLayout(new BorderLayout());
         centerCenterPanel.setOpaque(false);
         centerCenterPanel.add(infoAmmoBlackKing,BorderLayout.NORTH);
-//        centerCenterPanel.add(boardView);
-        centerCenterPanel.add(choiceCardView);
+        centerCenterPanel.add(boardView);
+//        centerCenterPanel.add(choiceCardView);
         centerPanel.setLayout(new BorderLayout());
         centerPanel.setOpaque(false);
         centerPanel.add(infoBlackKingView,BorderLayout.WEST);
@@ -114,7 +116,34 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         infoBlackKingView.reload();
         infoAmmoBlackKing.reload();
     }
-
+    public void endOneFloor(){
+        hideInfoWhitePiece();
+        if(gameplay.checkBlackWinGame()){
+            makeTwoChoice();
+        }else {
+            General.getGeneralFrame().setRoom(new GameOverRoom(false));
+        }
+    }
+    public void makeTwoChoice(){
+        var p = gameplay.makeTwoChoiceOfCard();
+        choiceCardView = new ChoiceCardView(p);
+        centerCenterPanel.remove(boardView);
+        centerCenterPanel.add(choiceCardView);
+        this.setVisible(false);
+        this.setVisible(true);
+    }
+    public void selectAChoice(Pair<Card,Card> p){
+        gameplay.addAChoice(p);
+        buffPanel.reload();
+        debuffPanel.reload();
+        gameplay = gameplay.clone();
+        boardView = new BoardView(gameplay);
+        centerCenterPanel.remove(choiceCardView);
+        centerCenterPanel.add(boardView);
+        hideInfoCard();
+        this.setVisible(false);
+        this.setVisible(true);
+    }
     @Override
     public void componentResized(ComponentEvent e) {
         buffPanel.setPreferredSize(new Dimension(getWidth()/9,0));

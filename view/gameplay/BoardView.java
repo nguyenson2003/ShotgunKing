@@ -158,7 +158,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         this.setVisible(false);
         this.setVisible(true);
     }
-    public void updateAfterMoveWhitePiece(){
+    public void  updateAfterMoveWhitePiece(){
         for(PieceView pv : whitePieceViewList){
             WhitePiece model = (WhitePiece)pv.getModel();
             if(model.canMove() && gp.isPlaying()){
@@ -222,16 +222,21 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             updatePositionBlackPiece();
             updateBeforeMoveWhitePiece();
             try {
-                Thread.sleep(200);
+                Thread.sleep(250);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
+            }
+            if(!gp.isPlaying()){
+                GameplayRoom.getIns().endOneFloor();
+                return;
             }
             updateMoveWhitePiece();
             try {
-                Thread.sleep(200);
+                Thread.sleep(250);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
+
             updateAfterMoveWhitePiece();
             GameplayRoom.getIns().reloadInfoBlackPiece();
             GameplayRoom.getIns().showMsg("Lượt: "+gp.getNumberOfTurn());
