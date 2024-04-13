@@ -25,7 +25,7 @@ public class ImageResource {
         pngDanDuTru,pngDichBenh,pngDiemBanHoanHao,pngDongCamCongKho,pngHienTe,pngHieuTrieuBinhDoan,pngHoanHauSatThu,
         pngKeDiSan,pngKheUocQuyDu,pngLaChanThep,pngNgaiVangBoTrong,pngNgamNhinConMoi,pngNghiBinh,pngNguyenRua,pngNhapThanh,
         pngQuaDen,pngQuanSu,pngSongSinhDangSo,pngSucManhVoHan,pngSungVinhQuang,pngSuyGiamNhueKhi,pngTapChungCaoDo,pngTinhChinhSung,
-        pngTuDo,pngUyQuyenQuanVuong,pngVuaSung,pngXaSung,pngXungPhong;
+        pngTuDo,pngUyQuyenQuanVuong,pngVuaSung,pngXaSung,pngXungPhong,pngVuaMau;
 
     private ImageResource(){
         // 1
@@ -88,7 +88,7 @@ public class ImageResource {
         pngVuaSung =  createImg("../img/card/VuaSung.png");
         pngXaSung =  createImg("../img/card/XaSung.png");
         pngXungPhong =  createImg("../img/card/XungPhong.png");
-
+        pngVuaMau = createImg("../img/card/VuaMau.png");
     }
     private static ImageIcon createImg(String relativePath){
         return new ImageIcon(URLDecoder.decode(

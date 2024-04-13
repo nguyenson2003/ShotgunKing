@@ -106,7 +106,7 @@ public class TFrame extends JFrame {
         // hiển thị phòng
         new Thread(() -> {
             try {
-                Thread.sleep(200);
+                Thread.sleep(1000);
                 this.setVisible(true);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);

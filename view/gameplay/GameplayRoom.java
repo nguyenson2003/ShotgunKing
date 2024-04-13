@@ -3,6 +3,7 @@ package view.gameplay;
 import model.BlackKing;
 import model.Gameplay;
 import model.WhitePiece;
+import model.card.Card;
 import view.general.General;
 import view.general.TRoom;
 
@@ -28,6 +29,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     private InfoWhitePieceView infoWhitePieceView = new InfoWhitePieceView();
     private InfoBlackKingView infoBlackKingView=new InfoBlackKingView();
     private ChoiceCardView choiceCardView;
+    private InfoCardView info = new InfoCardView();
     public GameplayRoom(){
         ins = this;
         gameplay = new Gameplay();
@@ -43,14 +45,15 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         centerCenterPanel.setLayout(new BorderLayout());
         centerCenterPanel.setOpaque(false);
         centerCenterPanel.add(infoAmmoBlackKing,BorderLayout.NORTH);
-       centerCenterPanel.add(boardView);
-        // centerCenterPanel.add(choiceCardView);
+//        centerCenterPanel.add(boardView);
+        centerCenterPanel.add(choiceCardView);
         centerPanel.setLayout(new BorderLayout());
         centerPanel.setOpaque(false);
         centerPanel.add(infoBlackKingView,BorderLayout.WEST);
         centerPanel.add(infoWhitePieceView,BorderLayout.EAST);
         centerPanel.add(centerCenterPanel,BorderLayout.CENTER);
         centerPanel.add(msgLabel,BorderLayout.SOUTH);
+        this.add(info);
         this.add(centerPanel,BorderLayout.CENTER);
         this.add(buffPanel,BorderLayout.WEST);
         this.add(debuffPanel,BorderLayout.EAST);
@@ -85,6 +88,16 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     public void showInfoBlackPiece(BlackKing p){
         infoBlackKingView.showInfo(p);
         infoAmmoBlackKing.showInfo(p);
+    }
+    public void showInfoCard(Card c){
+        info.showInfoCard(c);
+        info.setSize(400,200);
+    }
+    public void hideInfoCard(){
+        info.hideInfoCard();
+    }
+    public void reloadPositionInfoCard(){
+        info.setLocation(getMousePosition());
     }
     public void reloadInfoBlackPiece(){
         infoBlackKingView.reload();

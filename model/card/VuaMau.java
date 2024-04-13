@@ -16,7 +16,7 @@ public class VuaMau extends Card{
     public ImageIcon getImageIcon() {
         // TODO Auto-generated method stub
         // return ImageResource.instance.png;
-        return null;
+        return ImageResource.instance.pngVuaMau;
     }
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
