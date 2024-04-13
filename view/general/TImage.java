@@ -26,6 +26,7 @@ public class TImage extends JLabel  implements  ComponentListener{
         return cloneIcon;
     }
     public void setSrcIcon(ImageIcon icon){
+        if(icon==srcIcon)return;
         srcIcon = icon;
         cloneIcon = new ImageIcon(srcIcon.getImage());
         this.setIcon(cloneIcon);
