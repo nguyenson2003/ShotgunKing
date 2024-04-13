@@ -55,14 +55,6 @@ public class NhapThanh extends Card{
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        Board b=gp.getBoard();
-        if(whiteKing==null&&b.isHasKingOnBoard)
-            for(WhitePiece wp:b.getWhitePieces()){
-                if(wp instanceof King){
-                    whiteKing=(King)wp;
-                    break;
-                }
-            }
     }
 
     @Override
@@ -97,9 +89,10 @@ public class NhapThanh extends Card{
                     whiteKing=(King)wp;
                     break;
                 }
-            hpWhiteKingBef=whiteKing.getHp();
+            
         }
-        
+        if(whiteKing!=null)
+            hpWhiteKingBef=whiteKing.getHp();
     }
 
     @Override

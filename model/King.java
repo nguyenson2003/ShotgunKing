@@ -47,18 +47,20 @@ public class King extends WhitePiece{
         }
 // 250: chiếu tướng gián tiếp //k có
 // -250: chắn chiếu tướng (chưa cần làm vội)
-        //duy trì khoảng cách với vua đen khi yếu máu và không được bảo vệ bở lá chắn thép
-        if(!isProtectedLaChanThep&&bk.isCanShoot()&&this.hp<=bk.firePower){
-            if(absx+absy<=4){
-                // System.out.println("\t\t-500 "+c.x+" "+c.y);
-                res-=500;
-            }
-            res+=(absx+absy)*1000;
-            // System.out.println("\t\t+1000 "+c.x+" "+c.y);
-        }else{
-            res-=(absx+absy)*1000;
-            // System.out.println("\t\t-1000 "+c.x+" "+c.y);
-        }
+        // duy trì khoảng cách với vua đen khi yếu máu và không được bảo vệ bở lá chắn thép
+        // if(!isProtectedLaChanThep&&bk.isCanShoot()&&this.hp<=bk.firePower){
+        //     if(absx+absy<=4){
+        //         // System.out.println("\t\t-500 "+c.x+" "+c.y);
+        //         res-=500;
+        //     }
+
+        //     //vua chạy khi yếu máu
+        //     res+=(absx+absy)*1000;
+        //     // System.out.println("\t\t+1000 "+c.x+" "+c.y);
+        // }else{
+        //     res-=(absx+absy)*1000;
+        //     // System.out.println("\t\t-1000 "+c.x+" "+c.y);
+        // }
             
 // a (1 -> 10): vị trí quân cờ trên bàn cờ (tùy thuộc vào loại quân cờ và vị trí tương đối với quân vua sẽ có 1 cách tính khác nhau)
 // b (1 -> 10): giá trị của quân cờ (ví dụ tốt 1đ, hậu 9đ)

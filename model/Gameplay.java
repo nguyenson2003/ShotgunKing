@@ -1,6 +1,9 @@
 package model;
 
 import model.card.Card;
+import model.card.ChienMa;
+import model.card.ChienXa;
+import model.card.CuoiNguaHanhQuan;
 import model.card.LaChanThep;
 import model.card.NgaiVangBoTrong;
 import model.card.NgamNhinConMoi;
@@ -195,9 +198,9 @@ public class Gameplay {
         // buffCards.add(new SucManhVoHan());
         // buffCards.add(new SuyGiamNhueKhi());
         // buffCards.add(new NhapThanh());
-        buffCards.add(new XungPhong());
-        buffCards.add(new UyQuyenQuanVuong());
-        buffCards.add(new TuDo());
+        // buffCards.add(new XungPhong());
+        // buffCards.add(new UyQuyenQuanVuong());
+        // buffCards.add(new TuDo());
         // buffCards.add(new QuanSu());
         // buffCards.add(new SongSinhDangSo());
         // buffCards.add(new SungVinhQuang());
@@ -206,6 +209,9 @@ public class Gameplay {
         // buffCards.add(new NguyenRua());
         // buffCards.add(new TapChungCaoDo());
         // buffCards.add(new LaChanThep());
+        // buffCards.add(new ChienMa());
+        // buffCards.add(new ChienXa());
+        // buffCards.add(new CuoiNguaHanhQuan());
     }
 
     public Pair<Pair<Card,Card>,Pair<Card,Card>> makeTwoChoiceOfCard(){
