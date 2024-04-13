@@ -3,10 +3,15 @@ package model.card;
 import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
-
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 public class NgaiVangBoTrong extends Card{
-    public static boolean isBecomeKing=false;
-
+    
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngNgaiVangBoTrong;
+    }
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
@@ -41,12 +46,12 @@ public class NgaiVangBoTrong extends Card{
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        gp.getBoard().dataBuff.isNgaiVangBoTrong=true;
-        if(gp.getBoard().dataBuff.isNgaiVangBoTrong){
+        b.dataBuff.isNgaiVangBoTrong=true;
+        if(b.dataBuff.isNgaiVangBoTrong){
             b.setInitKing(0);
             b.setInitPawn(b.getInitPawn()+5);
             b.setInitHpPawn(b.getInitHpPawn()+1);
-            isBecomeKing=false;
+            b.dataBuff.isBecomeKing=false;
         }
 
     }
@@ -54,7 +59,7 @@ public class NgaiVangBoTrong extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return " Sẽ không còn vua trắng thay vào đó là 5 tốt và tốt thêm 1 máu  quân tốt đầu tiên đi đến cuối bàn cờ sẽ được phong thành vua. Nếu chưa có con tốt nào phong vua thì thắng khi giết hết tốt ";
+        return " Sẽ không còn vua trắng thay vào đó là 5 tốt và tốt thêm 1 máu quân tốt đầu tiên đi đến cuối bàn cờ sẽ được phong thành vua. Nếu chưa có con tốt nào phong vua thì thắng khi giết hết tốt ";
     }
 
     @Override

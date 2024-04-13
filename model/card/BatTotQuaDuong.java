@@ -5,9 +5,15 @@ import model.Board;
 import model.Gameplay;
 import model.Pawn;
 import model.WhitePiece;
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 
 public class BatTotQuaDuong extends Card{
-    
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngBatTotQuaDuong;
+    }
     @Override
     public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece) {
         // TODO Auto-generated method stub

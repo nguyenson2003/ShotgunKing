@@ -54,8 +54,8 @@ public class Pawn extends WhitePiece{
 //            onBoard.removePiece(this);
             hp=0;
             // Ngai vàng bỏ trống -> phong vua
-            if(onBoard.dataBuff.isNgaiVangBoTrong && NgaiVangBoTrong.isBecomeKing==false){
-                NgaiVangBoTrong.isBecomeKing=true;
+            if(onBoard.dataBuff.isNgaiVangBoTrong && onBoard.dataBuff.isBecomeKing==false){
+                onBoard.dataBuff.isBecomeKing=true;
                 onBoard.addPiece(new King(standing, onBoard.getInitTurnKing(), onBoard.getInitHpKing(), onBoard));
                 onBoard.checkIsOnBoardOfPiece();
                 return;

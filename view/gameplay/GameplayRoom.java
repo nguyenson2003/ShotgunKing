@@ -43,8 +43,8 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         centerCenterPanel.setLayout(new BorderLayout());
         centerCenterPanel.setOpaque(false);
         centerCenterPanel.add(infoAmmoBlackKing,BorderLayout.NORTH);
-//        centerCenterPanel.add(boardView);
-        centerCenterPanel.add(choiceCardView);
+       centerCenterPanel.add(boardView);
+        // centerCenterPanel.add(choiceCardView);
         centerPanel.setLayout(new BorderLayout());
         centerPanel.setOpaque(false);
         centerPanel.add(infoBlackKingView,BorderLayout.WEST);

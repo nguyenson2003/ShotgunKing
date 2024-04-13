@@ -8,6 +8,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
+import resource.ImageResource;
+
+import javax.swing.ImageIcon;
 
 public abstract class Card {
 
@@ -30,6 +34,8 @@ public abstract class Card {
      * false nếu đây là thẻ tăng sức mạnh cho quân trắng
      */
     abstract public boolean isBuffCard();
+
+    abstract public ImageIcon getImageIcon();
 
     public static Card randomABuffCard(){
         Card res;

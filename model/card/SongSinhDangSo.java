@@ -4,9 +4,15 @@ import model.BlackKing;
 import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 
 public class SongSinhDangSo extends Card{
-
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngSongSinhDangSo;
+    }
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub

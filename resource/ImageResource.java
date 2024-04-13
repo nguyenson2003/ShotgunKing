@@ -1,6 +1,7 @@
 package resource;
 
 import model.*;
+import model.card.AnBinhBatDong;
 import view.gameplay.BoardView;
 import view.general.TImage;
 
@@ -19,6 +20,13 @@ public class ImageResource {
     public final ImageIcon ammo1,ammo2,blank,border,shadow,shield1,shield2,shootCursor;
     // ../img/card/....png
     public final ImageIcon flipBlack,flipWhite;
+    public final ImageIcon pngAnBinhBatDong,pngBachPhatBachTrung,pngBatTotQuaDuong,pngBoSungQuanLuc,
+        pngBuocNhayVanNang,pngCanBangSucManh,pngCanXung,pngChiaSeQuyenLuc,pngChienMa,pngChienXa,pngCuoiNguaHanhQuan,
+        pngDanDuTru,pngDichBenh,pngDiemBanHoanHao,pngDongCamCongKho,pngHienTe,pngHieuTrieuBinhDoan,pngHoanHauSatThu,
+        pngKeDiSan,pngKheUocQuyDu,pngLaChanThep,pngNgaiVangBoTrong,pngNgamNhinConMoi,pngNghiBinh,pngNguyenRua,pngNhapThanh,
+        pngQuaDen,pngQuanSu,pngSongSinhDangSo,pngSucManhVoHan,pngSungVinhQuang,pngSuyGiamNhueKhi,pngTapChungCaoDo,pngTinhChinhSung,
+        pngTuDo,pngUyQuyenQuanVuong,pngVuaSung,pngXaSung,pngXungPhong;
+
     private ImageResource(){
         // 1
         pawnImg = createImg("../img/piece/pawn.png");
@@ -41,6 +49,45 @@ public class ImageResource {
         // 3
         flipBlack =  createImg("../img/card/flipBlack.png");
         flipWhite =  createImg("../img/card/flipWhite.png");
+        pngAnBinhBatDong =  createImg("../img/card/AnBinhBatDong.png");
+        pngBachPhatBachTrung =  createImg("../img/card/BachPhatBachTrung.png");
+        pngBatTotQuaDuong =  createImg("../img/card/BatTotQuaDuong.png");
+        pngBoSungQuanLuc =  createImg("../img/card/BoSungQuanLuc.png");
+        pngBuocNhayVanNang =  createImg("../img/card/BuocNhayVanNang.png");
+        pngCanBangSucManh =  createImg("../img/card/CanBangSucManh.png");
+        pngCanXung =  createImg("../img/card/CanXung.png");
+        pngChiaSeQuyenLuc =  createImg("../img/card/ChiaSeQuyenLuc.png");
+        pngChienMa =  createImg("../img/card/ChienMa.png");
+        pngChienXa =  createImg("../img/card/ChienXa.png");
+        pngCuoiNguaHanhQuan =  createImg("../img/card/CuoiNguaHanhQuan.png");
+        pngDanDuTru =  createImg("../img/card/DanDuTru.png");
+        pngDichBenh =  createImg("../img/card/DichBenh.png");
+        pngDiemBanHoanHao =  createImg("../img/card/DiemBanHoanHao.png");
+        pngDongCamCongKho =  createImg("../img/card/DongCamCongKho.png");
+        pngHienTe =  createImg("../img/card/HienTe.png");
+        pngHieuTrieuBinhDoan =  createImg("../img/card/HieuTrieuBinhDoan.png");
+        pngHoanHauSatThu =  createImg("../img/card/HoangHauSatThu.png");
+        pngKeDiSan =  createImg("../img/card/KeDiSan.png");
+        pngKheUocQuyDu =  createImg("../img/card/KheUocQuyDu.png");
+        pngLaChanThep =  createImg("../img/card/LaChanThep.png");
+        pngNgaiVangBoTrong =  createImg("../img/card/NgaiVangBoTrong.png");
+        pngNgamNhinConMoi =  createImg("../img/card/NgamNhinConMoi.png");
+        pngNghiBinh =  createImg("../img/card/NghiBinh.png");
+        pngNguyenRua =  createImg("../img/card/NguyenRua.png");
+        pngNhapThanh =  createImg("../img/card/NhapThanh.png");
+        pngQuaDen =  createImg("../img/card/QuaDen.png");
+        pngQuanSu =  createImg("../img/card/QuanSu.png");
+        pngSongSinhDangSo =  createImg("../img/card/SongSinhDangSo.png");
+        pngSucManhVoHan =  createImg("../img/card/SucManhVoHan.png");
+        pngSungVinhQuang =  createImg("../img/card/SungVinhQuang.png");
+        pngSuyGiamNhueKhi =  createImg("../img/card/SuyGiamNhueKhi.png");
+        pngTapChungCaoDo =  createImg("../img/card/TapChungCaoDo.png");
+        pngTinhChinhSung =  createImg("../img/card/TinhChinhSung.png");
+        pngTuDo =  createImg("../img/card/TuDo.png");
+        pngUyQuyenQuanVuong =  createImg("../img/card/UyQuyenQuanVuong.png");
+        pngVuaSung =  createImg("../img/card/VuaSung.png");
+        pngXaSung =  createImg("../img/card/XaSung.png");
+        pngXungPhong =  createImg("../img/card/XungPhong.png");
 
     }
     private static ImageIcon createImg(String relativePath){
@@ -51,7 +98,7 @@ public class ImageResource {
     }
     public ImageIcon getImgOfPiece(Piece piece){
         if(piece instanceof Pawn) return pawnImg;
-        if (piece instanceof Knight) return kingImg;
+        if (piece instanceof Knight) return knightImg;
         if (piece instanceof Bishop) return bishopImg;
         if (piece instanceof Rook) return rookImg;
         if (piece instanceof Queen) return queenImg;

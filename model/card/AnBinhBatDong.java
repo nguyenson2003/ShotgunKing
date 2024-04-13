@@ -1,9 +1,12 @@
 package model.card;
 
+import javax.swing.ImageIcon;
+
 import model.Board;
 import model.Gameplay;
 import model.Pawn;
 import model.WhitePiece;
+import resource.ImageResource;
 
 public class AnBinhBatDong extends Card{
 
@@ -66,6 +69,12 @@ public class AnBinhBatDong extends Card{
     public boolean isBuffCard() {
         // TODO Auto-generated method stub
         return false;
+    }
+
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngAnBinhBatDong;
     }
     
 }

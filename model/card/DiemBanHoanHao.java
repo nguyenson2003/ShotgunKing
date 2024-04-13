@@ -3,8 +3,15 @@ package model.card;
 import model.BlackKing;
 import model.Gameplay;
 import model.WhitePiece;
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 
 public class DiemBanHoanHao extends Card{
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngDiemBanHoanHao;
+    }
     boolean isBuffed=false;
     int oldFireRange=0;
     private void checkAndBuffOrDebuff(Gameplay gp){

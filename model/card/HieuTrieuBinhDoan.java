@@ -4,9 +4,14 @@ import model.Board;
 import model.Gameplay;
 import model.Pawn;
 import model.WhitePiece;
-
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 public class HieuTrieuBinhDoan extends Card{
-
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngHieuTrieuBinhDoan;
+    }
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
