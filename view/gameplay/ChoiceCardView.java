@@ -53,7 +53,9 @@ class SingleChoice extends JPanel  {
         card1img.addMouseListener(hover1);
         card2img.addMouseListener(hover2);
         this.addMouseListener(new ChoiceMouseListener());
-
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//        card1img.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//        card2img.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
     }
     static class ChoiceMouseListener implements MouseListener {

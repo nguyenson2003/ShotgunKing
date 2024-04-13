@@ -97,7 +97,12 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         info.hideInfoCard();
     }
     public void reloadPositionInfoCard(){
-        info.setLocation(getMousePosition());
+        Point p = getMousePosition();
+        p.x +=10;
+        p.y+=10;
+        p.x = Math.min(p.x,this.getWidth()-info.getWidth());
+        p.y = Math.min(p.y,this.getHeight()-info.getHeight());
+        info.setLocation(p);
     }
     public void reloadInfoBlackPiece(){
         infoBlackKingView.reload();
