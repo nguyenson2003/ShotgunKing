@@ -3,6 +3,7 @@ package view.gameplay;
 import model.card.Card;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -15,13 +16,18 @@ public class InfoCardView extends JPanel implements ComponentListener {
         this.add(nameJLabel,BorderLayout.NORTH);
         this.add(desJLabel);
         this.addComponentListener(this);
+        this.setBorder(new LineBorder(Color.black,10));
     }
+    Card temp = null;
     public void showInfoCard(Card c){
+        if(temp==c)return;
+        temp = c;
         nameJLabel.setText(c.getName());
         desJLabel.setText("<html>"+c.getDescription()+"</html>");
         setVisible(true);
     }
     public void hideInfoCard(){
+        temp = null;
         setVisible(false);
     }
 

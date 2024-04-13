@@ -37,6 +37,15 @@ public class Gameplay {
     private int numberOfTurn = 1;
     ArrayList<Card> buffCards = new ArrayList<>();
     ArrayList<Card> debuffCards = new ArrayList<>();
+
+    public ArrayList<Card> getBuffCards() {
+        return buffCards;
+    }
+
+    public ArrayList<Card> getDebuffCards() {
+        return debuffCards;
+    }
+
     public Gameplay(){
         this.b=new Board(){
             @Override

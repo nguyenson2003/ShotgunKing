@@ -8,6 +8,7 @@ import view.general.General;
 import view.general.TRoom;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -21,8 +22,8 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     Gameplay gameplay;
     private BoardView boardView;
     private JLabel msgLabel =new JLabel();
-    private JPanel buffPanel = new JPanel();
-    private JPanel debuffPanel = new JPanel();
+    private ListCardView buffPanel;
+    private ListCardView debuffPanel;
     private JPanel centerPanel = new JPanel();
     private JPanel centerCenterPanel = new JPanel();
     private InfoAmmoBlackKing infoAmmoBlackKing = new InfoAmmoBlackKing();
@@ -34,6 +35,8 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         ins = this;
         gameplay = new Gameplay();
         boardView = new BoardView(gameplay);
+        buffPanel = new ListCardView(gameplay.getBuffCards(),true);
+        debuffPanel = new ListCardView(gameplay.getDebuffCards(),false);
         choiceCardView = new ChoiceCardView(gameplay,gameplay.makeTwoChoiceOfCard());
         setBackground(General.DEFAULT_COLOR);
         setLayout(new BorderLayout());
@@ -98,11 +101,14 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     }
     public void reloadPositionInfoCard(){
         Point p = getMousePosition();
-        p.x +=10;
-        p.y+=10;
-        p.x = Math.min(p.x,this.getWidth()-info.getWidth());
-        p.y = Math.min(p.y,this.getHeight()-info.getHeight());
-        info.setLocation(p);
+        if(p==null)return;
+        int x=p.x + 10,y=p.y+10;
+        x = Math.min(x,this.getWidth()-info.getWidth());
+        y = Math.min(y,this.getHeight()-info.getHeight());
+        if(y<=p.y){
+            y = p.y - info.getHeight();
+        }
+        info.setLocation(x,y);
     }
     public void reloadInfoBlackPiece(){
         infoBlackKingView.reload();
@@ -111,11 +117,12 @@ public class GameplayRoom extends TRoom implements ComponentListener {
 
     @Override
     public void componentResized(ComponentEvent e) {
-        buffPanel.setPreferredSize(new Dimension(getWidth()/5,0));
-        debuffPanel.setPreferredSize(new Dimension(getWidth()/5,0));
+        buffPanel.setPreferredSize(new Dimension(getWidth()/9,0));
+        debuffPanel.setPreferredSize(new Dimension(getWidth()/9,0));
         infoBlackKingView.setPreferredSize(new Dimension(getWidth()/10,0));
         infoWhitePieceView.setPreferredSize(new Dimension(getWidth()/10,0));
         infoAmmoBlackKing.setPreferredSize(new Dimension(0,getWidth()/10));
+        centerPanel.setBorder(new EmptyBorder(0,getWidth()/11,0,getWidth()/11));
     }
 
     @Override

@@ -102,6 +102,7 @@ public class InfoAmmoBlackKing extends JPanel implements ComponentListener {
         gbc.gridy = 0;
         this.add(shieldLabel, gbc);
         gbc.gridy = 1;
+        numShield.setPreferredSize(new Dimension(0,0));
         this.add(numShield, gbc);
 //        this.repaint();
         this.setVisible(false);
@@ -116,9 +117,8 @@ public class InfoAmmoBlackKing extends JPanel implements ComponentListener {
         spareAmmoLabel.setFont(font);
         numSpareAmmo.setFont(font);
         shieldLabel.setFont(font);
-        numShield.setFont(font);
-        this.setVisible(false);
-        this.setVisible(true);
+//        this.setVisible(false);
+//        this.setVisible(true);
     }
 
     @Override
