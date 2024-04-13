@@ -3,7 +3,8 @@ package model.card;
 import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
-
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 public class UyQuyenQuanVuong extends Card{
 
     @Override
@@ -11,7 +12,11 @@ public class UyQuyenQuanVuong extends Card{
         // TODO Auto-generated method stub
         
     }
-
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngUyQuyenQuanVuong;
+    }
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub

@@ -3,9 +3,15 @@ package model.card;
 import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 
 public class BuocNhayVanNang extends Card{
-
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngBuocNhayVanNang;
+    }
     @Override
     public String getName() {
         return "Bước Nhẩy Vạn Năng";

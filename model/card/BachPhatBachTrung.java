@@ -1,14 +1,23 @@
 package model.card;
 
+
+
 import model.BlackKing;
 import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 
 /**
  * BachPhatBachTrung
  */
 public class BachPhatBachTrung extends Card{
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngBachPhatBachTrung;
+    }
 
     @Override
     public void actionAfterBlackAction(Gameplay gp) {

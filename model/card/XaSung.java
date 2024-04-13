@@ -5,7 +5,8 @@ import model.Board;
 import model.Gameplay;
 import model.Tile;
 import model.WhitePiece;
-
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 public class XaSung extends Card {
     Tile bkStandingBef=new Tile(1, 1);
     Tile bkStandingAft=new Tile(1, 1);
@@ -18,7 +19,11 @@ public class XaSung extends Card {
                 bk.shoot(bk.getOldAngle());
         
     }
-
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngXaSung;
+    }
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub

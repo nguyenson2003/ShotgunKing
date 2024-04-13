@@ -3,9 +3,9 @@ package model.card;
 import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
-
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 public class XungPhong extends Card{
-    public static boolean isMovedTwoTile=false;
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
@@ -17,7 +17,11 @@ public class XungPhong extends Card{
         // TODO Auto-generated method stub
         
     }
-
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngXungPhong;
+    }
     @Override
     public void actionAfterWhiteAction(Gameplay gp) {
         // TODO Auto-generated method stub
@@ -39,8 +43,9 @@ public class XungPhong extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().dataBuff.isXungPhong=true;
-        isMovedTwoTile=false;
+        Board b=gp.getBoard();
+        b.dataBuff.isXungPhong=true;
+        b.dataBuff.isMovedTwoTile=false;
 
     }
 

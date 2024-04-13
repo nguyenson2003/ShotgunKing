@@ -3,7 +3,8 @@ package model.card;
 import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
-
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 public class SuyGiamNhueKhi extends Card{
     @Override
     public void actionAfterWhiteDieAction(Gameplay gp, WhitePiece whitePiece) {
@@ -15,7 +16,11 @@ public class SuyGiamNhueKhi extends Card{
     public void actionAfterBlackAction(Gameplay gp) {
         
     }
-    
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngSuyGiamNhueKhi;
+    }
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub

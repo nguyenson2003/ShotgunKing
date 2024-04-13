@@ -3,15 +3,20 @@ package model.card;
 import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
-
-public class SucManhCanBang extends Card{
+import javax.swing.ImageIcon;
+import resource.ImageResource;
+public class CanBangSucManh extends Card{
 
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
         
     }
-
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngCanBangSucManh;
+    }
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub

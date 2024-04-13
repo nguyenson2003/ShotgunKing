@@ -4,8 +4,14 @@ import model.BlackKing;
 import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
-
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 public class KeDiSan extends Card{
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngKeDiSan;
+    }
     boolean isBuffed=false;
     @Override
     public void actionAfterBlackAction(Gameplay gp) {

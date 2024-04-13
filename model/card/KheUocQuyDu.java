@@ -4,9 +4,14 @@ import model.BlackKing;
 import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
-
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 public class KheUocQuyDu extends Card{
-
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngKheUocQuyDu;
+    }
     @Override
     public String getName() {
         // TODO Auto-generated method stub

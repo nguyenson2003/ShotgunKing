@@ -1,8 +1,22 @@
 package model;
 
 import model.card.Card;
+import model.card.LaChanThep;
 import model.card.NgaiVangBoTrong;
+import model.card.NgamNhinConMoi;
+import model.card.NghiBinh;
+import model.card.NguyenRua;
 import model.card.NhapThanh;
+import model.card.QuanSu;
+import model.card.SongSinhDangSo;
+import model.card.SucManhVoHan;
+import model.card.SungVinhQuang;
+import model.card.SuyGiamNhueKhi;
+import model.card.TapChungCaoDo;
+import model.card.TuDo;
+import model.card.UyQuyenQuanVuong;
+import model.card.XaSung;
+import model.card.XungPhong;
 import view.gameplay.BoardView;
 
 import java.util.ArrayList;
@@ -17,7 +31,7 @@ public class Gameplay {
      * biến ktra buff: phải giết tất cả tốt để chiến thắng
      */
     private boolean killAllPawnToWin = false;
-    private int numberOfTurn = 0;
+    private int numberOfTurn = 1;
     ArrayList<Card> buffCards = new ArrayList<>();
     ArrayList<Card> debuffCards = new ArrayList<>();
     public Gameplay(){
@@ -169,15 +183,29 @@ public class Gameplay {
      */
     public boolean checkBlackWinGame(){
         //Ngai vàng bỏ trống nếu k có vua phải giết hết tốt
-        if(getBoard().dataBuff.isNgaiVangBoTrong && !NgaiVangBoTrong.isBecomeKing){
+        if(getBoard().dataBuff.isNgaiVangBoTrong && !getBoard().dataBuff.isBecomeKing){
             return !b.isHasPawnOnBoard;
         }
         //Cơ bản: 
         return !b.isHasKingOnBoard;
     }
     public void debugAddCards(){
+
         // buffCards.add(new NgaiVangBoTrong());
-        buffCards.add(new NhapThanh());
+        // buffCards.add(new SucManhVoHan());
+        // buffCards.add(new SuyGiamNhueKhi());
+        // buffCards.add(new NhapThanh());
+        buffCards.add(new XungPhong());
+        buffCards.add(new UyQuyenQuanVuong());
+        buffCards.add(new TuDo());
+        // buffCards.add(new QuanSu());
+        // buffCards.add(new SongSinhDangSo());
+        // buffCards.add(new SungVinhQuang());
+        // buffCards.add(new XaSung());
+        // buffCards.add(new NghiBinh());
+        // buffCards.add(new NguyenRua());
+        // buffCards.add(new TapChungCaoDo());
+        // buffCards.add(new LaChanThep());
     }
 
     public Pair<Pair<Card,Card>,Pair<Card,Card>> makeTwoChoiceOfCard(){

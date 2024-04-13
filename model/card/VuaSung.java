@@ -4,7 +4,8 @@ import model.BlackKing;
 import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
-
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 public class VuaSung extends Card{
 
     @Override
@@ -12,7 +13,11 @@ public class VuaSung extends Card{
         // TODO Auto-generated method stub
         
     }
-
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngVuaSung;
+    }
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub

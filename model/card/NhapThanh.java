@@ -8,11 +8,17 @@ import model.King;
 import model.Rook;
 import model.Tile;
 import model.WhitePiece;
-
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 /**
  * NhapThanh
  */
 public class NhapThanh extends Card{
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngNhapThanh;
+    }
     int hpWhiteKingBef=0;
     King whiteKing=null;
     Rook rook=null;
@@ -21,7 +27,7 @@ public class NhapThanh extends Card{
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        if(whiteKing.getHp()!=hpWhiteKingBef){
+        if(b.isHasKingOnBoard&&whiteKing.getHp()!=hpWhiteKingBef){
             int detalHp=hpWhiteKingBef-whiteKing.getHp();
             int random=(int)(Math.random()*100);
             ArrayList<Rook>listRook=new ArrayList<>();
@@ -49,12 +55,14 @@ public class NhapThanh extends Card{
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        for(WhitePiece wp:gp.getBoard().getWhitePieces()){
-            if(wp instanceof King){
-                whiteKing=(King)wp;
-                break;
+        Board b=gp.getBoard();
+        if(whiteKing==null&&b.isHasKingOnBoard)
+            for(WhitePiece wp:b.getWhitePieces()){
+                if(wp instanceof King){
+                    whiteKing=(King)wp;
+                    break;
+                }
             }
-        }
     }
 
     @Override
@@ -83,14 +91,15 @@ public class NhapThanh extends Card{
     public void actionBeforeBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        if(whiteKing==null){
+        if(whiteKing==null&&b.isHasKingOnBoard){
             for(WhitePiece wp:b.getWhitePieces())
                 if(wp instanceof King){
                     whiteKing=(King)wp;
                     break;
                 }
+            hpWhiteKingBef=whiteKing.getHp();
         }
-        hpWhiteKingBef=whiteKing.getHp();
+        
     }
 
     @Override

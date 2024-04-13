@@ -4,14 +4,22 @@ import model.BlackKing;
 import model.Board;
 import model.Gameplay;
 import model.WhitePiece;
-
+import javax.swing.ImageIcon;
+import resource.ImageResource;
 public class SucManhVoHan extends Card{
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
-        
+        BlackKing bk=gp.getBoard().getBlackKing();
+        if(gp.getNumberOfTurn()%10==0){
+            bk.setFirePower(bk.getFirePower()+1);
+        }
     }
-
+    @Override
+    public ImageIcon getImageIcon() {
+        // TODO Auto-generated method stub
+        return ImageResource.instance.pngSucManhVoHan;
+    }
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
@@ -27,10 +35,7 @@ public class SucManhVoHan extends Card{
     @Override
     public void actionBeforeBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
-        BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getNumberOfTurn()%10==0){
-            bk.setFirePower(bk.getFirePower()+1);
-        }
+        
     }
 
     @Override
