@@ -6,7 +6,6 @@ import model.WhitePiece;
 import javax.swing.ImageIcon;
 import resource.ImageResource;
 public class XungPhong extends Card{
-    public static boolean isMovedTwoTile=false;
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
@@ -44,8 +43,9 @@ public class XungPhong extends Card{
     @Override
     public void actionBeforeInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        gp.getBoard().dataBuff.isXungPhong=true;
-        isMovedTwoTile=false;
+        Board b=gp.getBoard();
+        b.dataBuff.isXungPhong=true;
+        b.dataBuff.isMovedTwoTile=false;
 
     }
 

@@ -14,6 +14,7 @@ import model.card.SungVinhQuang;
 import model.card.SuyGiamNhueKhi;
 import model.card.TapChungCaoDo;
 import model.card.TuDo;
+import model.card.UyQuyenQuanVuong;
 import model.card.XaSung;
 import model.card.XungPhong;
 import view.gameplay.BoardView;
@@ -195,6 +196,7 @@ public class Gameplay {
         // buffCards.add(new SuyGiamNhueKhi());
         // buffCards.add(new NhapThanh());
         buffCards.add(new XungPhong());
+        buffCards.add(new UyQuyenQuanVuong());
         buffCards.add(new TuDo());
         // buffCards.add(new QuanSu());
         // buffCards.add(new SongSinhDangSo());

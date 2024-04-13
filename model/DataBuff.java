@@ -44,4 +44,5 @@ public class DataBuff {
     public boolean isAnBinhBatDong=false;
     public boolean isNhapThanh=false;
     public boolean isBecomeKing=false;//ngai vang bo trong
+    public boolean isMovedTwoTile=false;//Xung Phong
 }
