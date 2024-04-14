@@ -11,6 +11,10 @@ public class BlackKing extends Piece {
     //shellAmmo: đạn trong súng, spareAmmo: đạn dự phòng
     int shellAmmo, maxShellAmmo, spareAmmo, maxSpareAmmo;
 
+    public void setShellAmmo(int shellAmmo) {
+        this.shellAmmo = shellAmmo;
+    }
+
     public void setSpareAmmo(int spareAmmo) {
         this.spareAmmo = spareAmmo;
     }
