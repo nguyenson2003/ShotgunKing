@@ -21,7 +21,7 @@ public class KheUocQuyDu extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Vua Đen thêm 2 dame,đạn dự phòng giảm 3";
+        return "Vua Đen thêm 2 sát thương,đạn dự phòng giảm 3";
     }
 
     @Override
