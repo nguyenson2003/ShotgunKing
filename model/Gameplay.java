@@ -177,6 +177,8 @@ public class Gameplay {
             WhitePiece piece = b.getWhitePieces().get(i);
             piece.move(piece.bestMove());
         }
+
+        
         b.getWhitePieces().removeIf(WhitePiece::isDied);
         b.getBlackKing().shield = b.getBlackKing().maxShield;
     }
@@ -201,7 +203,7 @@ public class Gameplay {
         // buffCards.add(new XungPhong());
         // buffCards.add(new UyQuyenQuanVuong());
         // buffCards.add(new TuDo());
-        // buffCards.add(new QuanSu());
+        debuffCards.add(new XungPhong());
         // buffCards.add(new SongSinhDangSo());
         // buffCards.add(new SungVinhQuang());
         // buffCards.add(new XaSung());

@@ -16,9 +16,10 @@ public class Pawn extends WhitePiece{
                             };
     //tốt là 1
     int valueOfPawn=1;
-
+    boolean isMovedTwoTile=false;
     public Pawn(Tile t,int maxTurn,int maxHP,Board onBoard) {
         super(t,maxTurn,maxHP,onBoard);
+        isMovedTwoTile=false;
     }
 
     @Override
@@ -62,8 +63,8 @@ public class Pawn extends WhitePiece{
                 int x=this.standing.x+tempx[i], y=this.standing.y+tempy[i];
                 if(!Tile.isOnBoard(x,y )) continue;
                 Tile tempTile=new Tile(x, y);
-                //nếu vị trí này có quân cờ rồi thì continue
-                if(onBoard.getPiece(tempTile)!=null) continue;
+                //nếu vị trí này có quân cờ trắng rồi thì continue
+                if(onBoard.getPiece(tempTile)!=null && onBoard.getPiece(tempTile)!=bk) continue;
                 int tempScore=caclAsWhiteKing(tempTile);
                 //ủy quyền quân vương
                 if(onBoard.dataBuff.isUyQuyenQuanVuong &&
@@ -74,33 +75,44 @@ public class Pawn extends WhitePiece{
                     resTile=tempTile;
                 }
             }
-            //áp dụng xung phong
-            if(onBoard.dataBuff.isXungPhong&&onBoard.dataBuff.isMovedTwoTile){
-                onBoard.dataBuff.isMovedTwoTile=false;
-                Tile tempTile=new Tile(standing.x,standing.y+2);
-                int tempScore=caclAsWhiteKing(tempTile);
+            //áp dụng xung phong trong thẻ tự do
+            if(onBoard.dataBuff.isXungPhong&&!isMovedTwoTile){
+                // //chưa đến lượt thì không áp dụng
+                if(turn>1) return standing;
+                isMovedTwoTile=true;
+                Tile tempTile1=new Tile(standing.x,standing.y+1);
+                Tile tempTile2=new Tile(standing.x,standing.y+2);
+                int tempScore=caclAsWhiteKing(tempTile2);
+                //nếu vị trí +1 hoặc +2 có quân cờ trắng rồi thì k dùng đc xung phong
+                if((onBoard.getPiece(tempTile1)!=null && onBoard.getPiece(tempTile1)!=bk) ||
+                    (onBoard.getPiece(tempTile2)!=null && onBoard.getPiece(tempTile2)!=bk)) 
+                        tempScore=Integer.MIN_VALUE ;
                 //ủy quyền quân vương
                 if(onBoard.dataBuff.isUyQuyenQuanVuong &&
-                    bk.checkUyQuyenQuanVuong(tempTile))
+                    bk.checkUyQuyenQuanVuong(tempTile2))
                     tempScore=Integer.MIN_VALUE;
                 if(bestScore<tempScore){
                     bestScore=tempScore;
-                    resTile=tempTile;
+                    resTile=tempTile2;
                 }
             }
             return resTile;
         }
         Tile temp = new Tile(standing.x, standing.y+1);
         //áp dụng xung phong -> đương nhiêu ưu tiên đi 2 nước
-        if(onBoard.dataBuff.isXungPhong&&!onBoard.dataBuff.isMovedTwoTile){
-            onBoard.dataBuff.isMovedTwoTile=true;
+        if(onBoard.dataBuff.isXungPhong&&!isMovedTwoTile){
+            // //chưa đến lượt thì không áp dụng
+            if(turn>1) return standing;
+            isMovedTwoTile=true;
             temp.y++;
+            
         }
         if(onBoard.getPiece(temp)==null && standing.y<8){
             //ủy quyền quân vương
             if(onBoard.dataBuff.isUyQuyenQuanVuong &&
                 bk.checkUyQuyenQuanVuong(temp))
                 return standing;
+            System.out.println("a"+turn);
             return temp;
         }else return standing;
         
