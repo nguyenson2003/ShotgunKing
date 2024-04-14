@@ -13,6 +13,7 @@ public class KeDiSan extends Card{
         return ImageResource.instance.pngKeDiSan;
     }
     boolean isBuffed=false;
+    double spreadBef=0;
     @Override
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
@@ -26,13 +27,14 @@ public class KeDiSan extends Card{
             int absy=Math.abs(wp.getStanding().y-bk.getStanding().y);
             if(absx<=1&&absy<=1&&!isBuffed){
                 isBuffed=true;
+                spreadBef=bk.getSpread();
                 bk.setSpread(Math.max(0,bk.getSpread()-15*Math.PI/180));
                 bk.setFirePower(bk.getFirePower()+1);
                 break;
             }
             if(isBuffed){
                 isBuffed=false;
-                bk.setSpread(bk.getSpread()+15*Math.PI/180);
+                bk.setSpread(spreadBef);
                 bk.setFirePower(Math.max(1,bk.getFirePower()-1));
             }
         }
