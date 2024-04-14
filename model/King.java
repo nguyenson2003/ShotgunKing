@@ -45,6 +45,8 @@ public class King extends WhitePiece{
             res+=Math.max((5-absx-absy),0)*20;
             // System.out.println("\t\t+20 "+res+" "+c.x+" "+c.y);
         }
+        //ưu tiên lại gần tấn công
+        res-=(absx+absy)*20;
 // 250: chiếu tướng gián tiếp //k có
 // -250: chắn chiếu tướng (chưa cần làm vội)
         // duy trì khoảng cách với vua đen khi yếu máu và không được bảo vệ bở lá chắn thép

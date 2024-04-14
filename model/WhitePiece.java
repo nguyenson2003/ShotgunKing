@@ -126,6 +126,45 @@ public abstract class WhitePiece extends Piece{
     }
 
     /**
+     * tính bestmove chung cho tịnh, hậu, xe
+     * 
+     */
+    Tile caclBestMove(int di[],int numberOfDi){
+        int bestScore=0;
+        Tile resTile=new Tile(this.standing.x, this.standing.y);
+        //4 hướng, 2 phần tử là 1 hướng
+        int x=this.standing.x;
+        int y=this.standing.y;
+        //4 hướng
+        for(int j=1;j<=numberOfDi;j++)
+            //khoảng cách từ 1 -> 7
+            for(int i=1;i<=7;i++){
+                int tempx=x+i*di[j*2-2],tempy=y+i*di[j*2-1];
+                if(Tile.isOnBoard(tempx,tempy)){
+                    Tile tempTile=new Tile(tempx, tempy);
+                    if(onBoard.getPiece(tempTile)==null||
+                        //cưỡi ngựa hành quân
+                        (onBoard.dataBuff.isCuoiNguaHanhQuan &&
+                            onBoard.isHasKnightOnBoard )){
+                        if(onBoard.getPiece(tempTile) instanceof Pawn) break;
+                        if(onBoard.getPiece(tempTile)!=null) continue;
+                        int tempScore=cacl(tempTile);
+                        if(bestScore<tempScore){
+                            bestScore=tempScore;
+                            resTile=tempTile;
+                        }
+                        // System.out.println("."+tempScore+' '+tempTile.x+' '+tempTile.y);   
+                    }else
+                        break;
+                }else
+                    break;
+                
+            }
+
+        return resTile;
+    }
+
+    /**
      * kiểm tra piece khác null và khác black King (là quân trắng) và điều kiện cưỡi ngựa hành quân
      * 
      */

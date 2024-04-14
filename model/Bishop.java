@@ -70,43 +70,12 @@ public class Bishop extends WhitePiece{
 
     @Override
     Tile bestMove() {
-        int bestScore=0;
-        Tile resTile=new Tile(this.standing.x, this.standing.y);
-        //4 hướng, 2 phần tử là 1 hướng
-        int di[]={1,1,-1,1,1,-1,-1,-1};
-        int numberOfDi=4;
-        int queenDi[]={1,1,-1,1,1,-1,-1,-1,1,0,-1,0,0,1,0,-1};
+        int direction[]={1,1,-1,1,1,-1,-1,-1};
         if(onBoard.dataBuff.isQuanSu){
-            di=queenDi;
-            numberOfDi=8;
+            int directionQueen[]={1,1,-1,1,1,-1,-1,-1,1,0,-1,0,0,1,0,-1};
+            return caclBestMove(directionQueen, 8);
         }
-        int x=this.standing.x;
-        int y=this.standing.y;
-        //4 hướng
-        for(int j=1;j<=numberOfDi;j++)
-            //khoảng cách từ 1 -> 7
-            for(int i=1;i<=7;i++){
-                if(Tile.isOnBoard(x+i*di[j*2-2], y+i*di[j*2-1])){
-                    Tile tempTile=new Tile(x+i*di[j*2-2], y+i*di[j*2-1]);
-                    if(onBoard.getPiece(tempTile)==null||
-                        //cưỡi ngựa hành quân
-                        (onBoard.dataBuff.isCuoiNguaHanhQuan &&
-                            onBoard.isHasKnightOnBoard &&
-                            !(onBoard.getPiece(tempTile) instanceof Pawn))){
-                        int tempScore=cacl(tempTile);
-                        if(bestScore<tempScore){
-                            bestScore=tempScore;
-                            resTile=tempTile;
-                        }
-                        // System.out.println("."+tempScore+' '+tempTile.x+' '+tempTile.y);   
-                    }else
-                        break;
-                }else
-                    break;
-                
-            }
-
-        return resTile;
+        return caclBestMove(direction, 4);
     }
     @Override
     char getSymbol() {

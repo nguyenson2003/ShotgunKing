@@ -24,6 +24,9 @@ public class Pawn extends WhitePiece{
 
     @Override
     boolean isMate(Tile nextCell) {
+        if(onBoard.dataBuff.isTuDo){
+            return Math.abs(nextCell.x-standing.x)<=1&&Math.abs(nextCell.y-standing.y)<=1;
+        }
         if(nextCell.y==standing.y+1 && (nextCell.x==standing.x-1 || nextCell.x==standing.x+1))
             return true;
         return false;

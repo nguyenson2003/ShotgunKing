@@ -164,9 +164,9 @@ public class Gameplay {
             if(piece.isMate(b.getBlackKing().getStanding())){
                 piece.mate(b.getBlackKing().getStanding());
                 System.out.println("Thua!");
+                isPlaying=false;
                 b.removePiece(b.getBlackKing());
                 System.out.println(b);
-                isPlaying=false;
                 return;
             }
         }

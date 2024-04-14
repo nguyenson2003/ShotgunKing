@@ -69,32 +69,8 @@ public class Queen extends WhitePiece{
 
     @Override
     Tile bestMove() {
-        int bestScore=0;
-        Tile resTile=new Tile(this.standing.x, this.standing.y);
-        //4 hướng, 2 phần tử là 1 hướng
-        int di[]={1,1,-1,1,1,-1,-1,-1,1,0,-1,0,0,1,0,-1};
-        int x=this.standing.x;
-        int y=this.standing.y;
-        //8 hướng
-        for(int j=1;j<=8;j++)
-            //khoảng cách từ 1 -> 7
-            for(int i=1;i<=7;i++){
-                if(Tile.isOnBoard(x+i*di[j*2-2], y+i*di[j*2-1])){
-                    Tile tempTile=new Tile(x+i*di[j*2-2], y+i*di[j*2-1]);
-                    if(onBoard.getPiece(tempTile)==null){
-                        int tempScore=cacl(tempTile);
-                        if(bestScore<tempScore){
-                            bestScore=tempScore;
-                            resTile=tempTile;
-                        }
-                    }else
-                        break;
-                    
-                }else
-                    break;
-            }
-
-        return resTile;
+        int directionQueen[]={1,1,-1,1,1,-1,-1,-1,1,0,-1,0,0,1,0,-1};
+        return caclBestMove(directionQueen, 8);
     }
     @Override
     char getSymbol() {
