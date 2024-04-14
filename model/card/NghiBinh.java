@@ -41,7 +41,7 @@ public class NghiBinh extends Card{
         gp.getBoard().dataBuff.isNghiBinh=true;
         if(gp.getBoard().dataBuff.isNghiBinh){
             gp.getBoard().setInitPawn(gp.getBoard().getInitPawn()-2);
-            gp.getBoard().setInitRook(gp.getBoard().getInitRook()-1);
+            gp.getBoard().setInitBishop(gp.getBoard().getInitBishop()-1);
         }
         
     }
@@ -49,7 +49,7 @@ public class NghiBinh extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Triệt tiêu ngẫu nhiên 2 tốt trắng và 1 xe trắng";
+        return "Triệt tiêu ngẫu nhiên 2 tốt trắng và 1 tịnh trắng";
     }
 
     @Override

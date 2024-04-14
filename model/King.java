@@ -19,7 +19,7 @@ public class King extends WhitePiece{
         //TODO Auto-generated constructor stub
     }
     @Override
-    boolean isMate(Tile nextCell) {
+    public boolean isMate(Tile nextCell) {
         if((nextCell.y==standing.y+1 && (nextCell.x==standing.x-1 || nextCell.x==standing.x+1 ||nextCell.x==standing.x ))||
         (nextCell.y==standing.y-1 && (nextCell.x==standing.x-1 || nextCell.x==standing.x+1||nextCell.x==standing.x ))||
         (nextCell.x==standing.x+1 && nextCell.y==standing.y )||
