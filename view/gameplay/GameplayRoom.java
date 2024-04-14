@@ -30,6 +30,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     private InfoBlackKingView infoBlackKingView=new InfoBlackKingView();
     private ChoiceCardView choiceCardView ;
     private InfoCardView info = new InfoCardView();
+    int floor = 1;
     public GameplayRoom(){
         ins = this;
         gameplay = new Gameplay();
@@ -129,11 +130,14 @@ public class GameplayRoom extends TRoom implements ComponentListener {
                     pv.beDestroyed();
                 }
                 try {
-                    Thread.sleep(1500);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                makeTwoChoice();
+                if(floor==5)
+                    General.getGeneralFrame().setRoom(new GameOverRoom(false));
+                else
+                    makeTwoChoice();
 
             }).start();
         }else {
