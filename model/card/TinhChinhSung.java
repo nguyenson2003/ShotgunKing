@@ -49,7 +49,7 @@ public class TinhChinhSung extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Độ lệch giảm 15 độ và tăng thêm 1 dame cho vua đen";
+        return "Độ lệch giảm 15 độ và tăng thêm 1 sát thương cho vua đen";
     }
 
     @Override

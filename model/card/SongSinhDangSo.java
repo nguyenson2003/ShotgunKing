@@ -60,7 +60,7 @@ public class SongSinhDangSo extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Trắng thêm 2 hậu và hậu tăng 1 máu nhưng vua đen được tăng 1 dame";
+        return "Trắng thêm 2 hậu và hậu tăng 1 máu nhưng vua đen được tăng 1 sát thương";
     }
 
     @Override

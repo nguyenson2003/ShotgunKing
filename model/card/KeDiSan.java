@@ -68,7 +68,7 @@ public class KeDiSan extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Độ lệch giảm 15 và tăng 1 dame nhưng chỉ có tác dụng khi áp sát kẻ địch";
+        return "Độ lệch giảm 15 và tăng 1 sát thương nhưng chỉ có tác dụng khi áp sát kẻ địch";
     }
 
     @Override

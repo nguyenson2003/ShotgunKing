@@ -51,7 +51,7 @@ public class VuaSung extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Tăng 1 dame cùng với 1 tầm bắn và giảm độ lệch đi 1 nửa";
+        return "Tăng 1 sát thương cùng với 1 tầm bắn và giảm độ lệch đi 1 nửa";
     }
 
     @Override

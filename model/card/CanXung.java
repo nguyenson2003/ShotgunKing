@@ -60,7 +60,7 @@ public class CanXung extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Vua Trắng thêm 2 máu trong khi Vua Đen sẽ thêm 1 dame và tăng 15 độ lệch";
+        return "Vua Trắng thêm 2 máu trong khi Vua Đen sẽ thêm 1 sát thương và tăng 15 độ lệch";
     }
 
     @Override

@@ -45,7 +45,6 @@ public class XungPhong extends Card{
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
         b.dataBuff.isXungPhong=true;
-        b.dataBuff.isMovedTwoTile=false;
 
     }
 

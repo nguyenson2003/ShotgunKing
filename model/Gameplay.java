@@ -178,6 +178,8 @@ public class Gameplay {
             piece.move(piece.bestMove());
             if(piece instanceof Pawn pawn)pawn.promote();
         }
+
+        
         b.getWhitePieces().removeIf(WhitePiece::isDied);
         b.getBlackKing().shield = b.getBlackKing().maxShield;
     }
@@ -201,8 +203,8 @@ public class Gameplay {
         // buffCards.add(new NhapThanh());
         // buffCards.add(new XungPhong());
         // buffCards.add(new UyQuyenQuanVuong());
-        // buffCards.add(new TuDo());
-        // buffCards.add(new QuanSu());
+        // debuffCards.add(new TuDo());
+        // debuffCards.add(new XungPhong());
         // buffCards.add(new SongSinhDangSo());
         // buffCards.add(new SungVinhQuang());
         // buffCards.add(new XaSung());

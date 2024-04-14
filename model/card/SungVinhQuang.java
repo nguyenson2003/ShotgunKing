@@ -51,7 +51,7 @@ public class SungVinhQuang extends Card{
 
     @Override
     public String getDescription() {
-        return "Độ lệch tăng thêm 30 bù lại sẽ tăng thêm 1 dame và 1 tầm bắn";
+        return "Độ lệch tăng thêm 30 bù lại sẽ tăng thêm 1 sát thương và 1 tầm bắn";
     }
 
     @Override
