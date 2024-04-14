@@ -127,36 +127,6 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         }
     }
     public void updateMoveWhitePiece(){
-//        Iterator<PieceView> it= whitePieceViewList.iterator();
-//        while(it.hasNext()){
-//            PieceView pv = it.next();
-//            if(((WhitePiece)pv.getModel()).isDied()){
-//                this.remove(pv);
-//                it.remove();
-//            }
-//        }
-//        for(int i=whitePieceViewList.size();i<gp.getBoard().getWhitePieces().size();i++){
-//            PieceView pv = new PieceView(gp.getBoard().getWhitePieces().get(i),this);
-//            whitePieceViewList.add(pv);
-//            this.add(pv);
-//            Tile t = pv.getModel().getStanding();
-//            Point temp = tileToPixel(t.x,t.y);
-//            pv.setBounds(
-//                    temp.x+3,
-//                    temp.y+1,
-//                    getCloneIcon().getIconWidth()/8-6,
-//                    getCloneIcon().getIconHeight()/8-6
-//            );
-//            ComponentAnimation.twink(pv,200,1000/60*5);
-//        }
-//        for(PieceView pv : whitePieceViewList){
-//            WhitePiece model = (WhitePiece)pv.getModel();
-//            Tile t = model.getStanding();
-//            Point temp = tileToPixel(t.x,t.y);
-//            ComponentAnimation.shakeStop(pv);
-//            ComponentAnimation.setLocation(pv,temp.x+3,temp.y+1,200);
-//        }
-//        GameplayRoom.getIns().reloadInfoWhitePiece();
         for (WhitePiece whitePiece: gp.getBoard().getWhitePieces()) {
             int count = 0;
             for (PieceView pieceView : whitePieceViewList) {
@@ -267,7 +237,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             }
             updateMoveWhitePiece();
             try {
-                Thread.sleep(200);
+                Thread.sleep(250);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }

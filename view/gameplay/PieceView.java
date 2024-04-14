@@ -25,7 +25,7 @@ public class PieceView extends JLabel {
     public void beDestroyed(){
         for(int i = 0;i<5;i++) {
             PieceParticle pp = new PieceParticle(this.getX(),this.getY());
-            pp.setSize(this.getWidth()/2,this.getHeight()/2);
+            pp.setSize(this.getWidth()/2,200);
             this.getParent().add(pp);
         }
         this.getParent().remove(this);

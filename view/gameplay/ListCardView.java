@@ -10,10 +10,10 @@ import java.awt.*;
 import java.util.List;
 
 public class ListCardView extends JPanel {
-    CardView[] cardViews = new CardView[5];
+    CardView[] cardViews = new CardView[10];
     List<Card> cardList;
     public ListCardView(List<Card> cardList,boolean isBuff){
-        this.setLayout(new GridLayout(5,1,0,10));
+        this.setLayout(new GridLayout(5,2,0,10));
         this.setOpaque(false);
 //        this.setBorder(BorderFactory.createDashedBorder(Color.WHITE,5,3,3, false));
 //        this.setBackground(Color.gray);
