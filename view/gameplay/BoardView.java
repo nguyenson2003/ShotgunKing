@@ -71,6 +71,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         return new Point(x,y);
     }
     public void drawABullet(double startBulletX, double startBulletY,double endBulletX, double endBulletY){
+        ComponentAnimation.shake(GameplayRoom.getIns(),5,5,200,200/4);
         Point p1 = tileDoubleToPixel(startBulletX,startBulletY);
         Point p12= tileDoubleToPixel((startBulletX+endBulletX)/2,(startBulletY+endBulletY)/2);
         Point p2 = tileDoubleToPixel(endBulletX,endBulletY);
@@ -117,10 +118,11 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             WhitePiece model = (WhitePiece)pv.getModel();
             ComponentAnimation.shakeStop(pv);
             if(model.isMateFlag() && gp.isPlaying()){
-                ComponentAnimation.twink(pv,100,1000/60*5);
+                ComponentAnimation.twink(pv,500,1000/60*3);
             }
             if(model.isTakeDamageFlag() && gp.isPlaying()){
-                ComponentAnimation.twink(pv,100,1000/60*3);
+                ComponentAnimation.shake(pv,5,5,200,200/4);
+                ComponentAnimation.twink(pv,200,200/4);
             }
         }
     }
@@ -222,13 +224,9 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             updatePositionBlackPiece();
             updateBeforeMoveWhitePiece();
             try {
-                Thread.sleep(250);
+                Thread.sleep(300);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
-            }
-            if(!gp.isPlaying()){
-                GameplayRoom.getIns().endOneFloor();
-                return;
             }
             updateMoveWhitePiece();
             try {
@@ -237,6 +235,10 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
                 throw new RuntimeException(ex);
             }
 
+            if(!gp.isPlaying()){
+                GameplayRoom.getIns().endOneFloor();
+                return;
+            }
             updateAfterMoveWhitePiece();
             GameplayRoom.getIns().reloadInfoBlackPiece();
             GameplayRoom.getIns().showMsg("Lượt: "+gp.getNumberOfTurn());

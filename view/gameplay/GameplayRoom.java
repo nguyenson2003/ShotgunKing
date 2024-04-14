@@ -72,6 +72,8 @@ public class GameplayRoom extends TRoom implements ComponentListener {
                 throw new RuntimeException(ex);
             }
         }).start();
+        buffPanel.reload();
+        debuffPanel.reload();
     }
 
     public BoardView getBoardView() {
@@ -121,7 +123,15 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         if(gameplay.checkBlackWinGame()){
             makeTwoChoice();
         }else {
-            General.getGeneralFrame().setRoom(new GameOverRoom(false));
+            new Thread(()->{
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                General.getGeneralFrame().setRoom(new GameOverRoom(false));
+
+            }).start();
         }
     }
     public void makeTwoChoice(){

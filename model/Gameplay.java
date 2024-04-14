@@ -1,25 +1,6 @@
 package model;
 
-import model.card.Card;
-import model.card.ChienMa;
-import model.card.ChienXa;
-import model.card.CuoiNguaHanhQuan;
-import model.card.LaChanThep;
-import model.card.NgaiVangBoTrong;
-import model.card.NgamNhinConMoi;
-import model.card.NghiBinh;
-import model.card.NguyenRua;
-import model.card.NhapThanh;
-import model.card.QuanSu;
-import model.card.SongSinhDangSo;
-import model.card.SucManhVoHan;
-import model.card.SungVinhQuang;
-import model.card.SuyGiamNhueKhi;
-import model.card.TapChungCaoDo;
-import model.card.TuDo;
-import model.card.UyQuyenQuanVuong;
-import model.card.XaSung;
-import model.card.XungPhong;
+import model.card.*;
 import view.gameplay.BoardView;
 
 import java.util.ArrayList;
@@ -35,8 +16,8 @@ public class Gameplay {
      */
     private boolean killAllPawnToWin = false;
     private int numberOfTurn = 1;
-    ArrayList<Card> buffCards = new ArrayList<>();
-    ArrayList<Card> debuffCards = new ArrayList<>();
+    ArrayList<Card> buffCards;
+    ArrayList<Card> debuffCards;
 
     public ArrayList<Card> getBuffCards() {
         return buffCards;
@@ -47,6 +28,17 @@ public class Gameplay {
     }
 
     public Gameplay(){
+        buffCards = new ArrayList<>();
+        debuffCards = new ArrayList<>();
+        debugAddCards();
+        gameplayInit();
+    }
+    public Gameplay(ArrayList<Card> buffCards, ArrayList<Card> debuffCards){
+        this.buffCards = buffCards;
+        this.debuffCards = debuffCards;
+        gameplayInit();
+    }
+    private void gameplayInit(){
         this.b=new Board(){
             @Override
             public void removePiece(Piece p) {
@@ -62,7 +54,6 @@ public class Gameplay {
                 }
             }
         };
-        debugAddCards();
         for(Card c:buffCards){
             if(c.isFlip())continue;
             c.actionBeforeInitBoard(this);
@@ -88,10 +79,7 @@ public class Gameplay {
      * @return trả về 1 gameplay mới, các thẻ bài vẫn sẽ được giữ nguyên
      */
     public Gameplay clone() {
-        Gameplay willClone = new Gameplay();
-        willClone.buffCards=this.buffCards;
-        willClone.debuffCards=this.debuffCards;
-        return willClone;
+        return new Gameplay(this.buffCards, this.debuffCards);
     }
 
     public boolean isPlaying() {
@@ -205,7 +193,7 @@ public class Gameplay {
         return !b.isHasKingOnBoard;
     }
     public void debugAddCards(){
-
+        buffCards.add(new BuocNhayVanNang());
         // buffCards.add(new NgaiVangBoTrong());
         // buffCards.add(new SucManhVoHan());
         // buffCards.add(new SuyGiamNhueKhi());
