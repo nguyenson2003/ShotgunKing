@@ -202,8 +202,8 @@ public class Gameplay {
         // buffCards.add(new SuyGiamNhueKhi());
         // buffCards.add(new NhapThanh());
         // buffCards.add(new XungPhong());
-        // buffCards.add(new UyQuyenQuanVuong());
-        // buffCards.add(new TuDo());
+        buffCards.add(new UyQuyenQuanVuong());
+        debuffCards.add(new TuDo());
         debuffCards.add(new XungPhong());
         // buffCards.add(new SongSinhDangSo());
         // buffCards.add(new SungVinhQuang());

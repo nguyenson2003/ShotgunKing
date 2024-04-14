@@ -80,13 +80,11 @@ public class Pawn extends WhitePiece{
                 // //chưa đến lượt thì không áp dụng
                 if(turn>1) return standing;
                 isMovedTwoTile=true;
-                Tile tempTile1=new Tile(standing.x,standing.y+1);
                 Tile tempTile2=new Tile(standing.x,standing.y+2);
                 int tempScore=caclAsWhiteKing(tempTile2);
-                //nếu vị trí +1 hoặc +2 có quân cờ trắng rồi thì k dùng đc xung phong
-                if((onBoard.getPiece(tempTile1)!=null && onBoard.getPiece(tempTile1)!=bk) ||
-                    (onBoard.getPiece(tempTile2)!=null && onBoard.getPiece(tempTile2)!=bk)) 
-                        tempScore=Integer.MIN_VALUE ;
+                //nếu vị trí +1 hoặc +2 không có quân nào thì có thể áp dụng xung phong
+                if(checkCanApplyXungPhong()==false) 
+                        tempScore=Integer.MIN_VALUE;
                 //ủy quyền quân vương
                 if(onBoard.dataBuff.isUyQuyenQuanVuong &&
                     bk.checkUyQuyenQuanVuong(tempTile2))
@@ -98,13 +96,17 @@ public class Pawn extends WhitePiece{
             }
             return resTile;
         }
+        
         Tile temp = new Tile(standing.x, standing.y+1);
         //áp dụng xung phong -> đương nhiêu ưu tiên đi 2 nước
         if(onBoard.dataBuff.isXungPhong&&!isMovedTwoTile){
             // //chưa đến lượt thì không áp dụng
             if(turn>1) return standing;
+            //nếu vị trí +1 hoặc +2 không có quân nào thì có thể áp dụng xung phong
+            if(checkCanApplyXungPhong()) 
+                temp.y++;
             isMovedTwoTile=true;
-            temp.y++;
+            
             
         }
         if(onBoard.getPiece(temp)==null && standing.y<8){
@@ -117,7 +119,13 @@ public class Pawn extends WhitePiece{
         }else return standing;
         
     }
-
+    /**
+     * true nếu cả 2 ô trước mặt đều không có quân nào
+     */
+    boolean checkCanApplyXungPhong(){
+        return (onBoard.getPiece(new Tile(standing.x,standing.y+1))==null && 
+            onBoard.getPiece(new Tile(standing.x,standing.y+2))==null );
+    }
     @Override
     public void move(Tile nextMove) {
         super.move(nextMove);
