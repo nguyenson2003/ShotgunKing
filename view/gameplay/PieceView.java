@@ -50,7 +50,11 @@ public class PieceView extends JLayeredPane implements ComponentListener {
     }
     public void beDestroyed(){
         for(int i = 0;i<5;i++) {
-            PieceParticle pp = new PieceParticle(this.getX(),this.getY());
+            PieceParticle pp;
+            if(this.getModel() instanceof WhitePiece)
+                pp = new PieceParticle(this.getX(),this.getY(),true);
+            else
+                pp = new PieceParticle(this.getX(),this.getY(),false);
             pp.setSize(this.getWidth()/2,200);
             this.getParent().add(pp);
         }

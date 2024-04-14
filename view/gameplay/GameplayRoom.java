@@ -143,8 +143,9 @@ public class GameplayRoom extends TRoom implements ComponentListener {
             }).start();
         }else {
             new Thread(()->{
+                boardView.blackPieceView.beDestroyed();
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }

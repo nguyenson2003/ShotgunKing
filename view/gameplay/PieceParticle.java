@@ -16,8 +16,9 @@ public class PieceParticle extends JLayeredPane {
     double vz = z/10;
     double dvxy = 0.05;
     double dvz = 1;
-    public PieceParticle(int _x,int _y){
-        particleImg = new TImage(ImageResource.instance.particle[(int) (Math.random()*5)]);
+    public PieceParticle(int _x,int _y, boolean isWhite){
+        if(isWhite)particleImg = new TImage(ImageResource.instance.particle[(int) (Math.random()*5)]);
+        else particleImg = new TImage(ImageResource.instance.blackParticle[(int) (Math.random()*5)]);
         shadowImg= new TImage(ImageResource.instance.shadowParticle);
         this.setOpaque(false);
         this.setLayout(null);
