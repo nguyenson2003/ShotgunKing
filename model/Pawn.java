@@ -109,29 +109,39 @@ public class Pawn extends WhitePiece{
     @Override
     public void move(Tile nextMove) {
         super.move(nextMove);
+    }
+
+    public boolean promote(){
+
         if(standing.y==8){
-//            onBoard.removePiece(this);
-            hp=0;
+            onBoard.removePiece(this);
+            WhitePiece newPiece;
             // Ngai vàng bỏ trống -> phong vua
             if(onBoard.dataBuff.isNgaiVangBoTrong && onBoard.dataBuff.isBecomeKing==false){
                 onBoard.dataBuff.isBecomeKing=true;
-                onBoard.addPiece(new King(standing, onBoard.getInitTurnKing(), onBoard.getInitHpKing(), onBoard));
+                newPiece = new King(standing, onBoard.getInitTurnKing(), onBoard.getInitHpKing(), onBoard);
+                onBoard.addPiece(newPiece);
                 onBoard.checkIsOnBoardOfPiece();
-                return;
+            }else {
+                //phong ngẫu nhiên tịnh mã xe hậu
+                int choice = (int) (Math.random() * 4);
+
+                // choice=0;
+                if (choice == 0)
+                    newPiece = new Queen(standing, onBoard.getInitTurnQueen(), onBoard.getInitHpQueen(), onBoard);
+                else if (choice == 1)
+                    newPiece=new Rook(standing, onBoard.getInitTurnRook(), onBoard.getInitHpRook(), onBoard);
+                else if (choice == 2)
+                    newPiece = new Knight(standing, onBoard.getInitTurnKnight(), onBoard.getInitHpKnight(), onBoard);
+                else
+                    newPiece = new Bishop(standing, onBoard.getInitTurnBishop(), onBoard.getInitHpBishop(), onBoard);
+                onBoard.addPiece(newPiece);
             }
-           
-            //phong ngẫu nhiên tịnh mã xe hậu
-            int choice = (int) (Math.random()*4);
-
-            // choice=0;
-            if(choice==0)onBoard.addPiece(new Queen(standing,onBoard.getInitTurnQueen(),onBoard.getInitHpQueen(),onBoard));
-            else if(choice==1)onBoard.addPiece(new Rook(standing,onBoard.getInitTurnRook(),onBoard.getInitHpRook(),onBoard));
-            else if(choice==2)onBoard.addPiece(new Knight(standing,onBoard.getInitTurnKnight(),onBoard.getInitHpKnight(),onBoard));
-            else onBoard.addPiece(new Bishop(standing,onBoard.getInitTurnBishop(),onBoard.getInitHpBishop(),onBoard));
-            
+            newPiece.turn++;
+            return true;
         }
+        return false;
     }
-
     @Override
     char getSymbol() {
         return 'P';

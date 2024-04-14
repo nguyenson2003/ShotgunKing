@@ -11,7 +11,7 @@ public class PieceParticle extends TImage {
     double vxy = Math.random()* 5;
     double vz = z/10;
     double dvxy = 0.05;
-    double dvz = 2;
+    double dvz = 1;
     public PieceParticle(int _x,int _y){
         super(ImageResource.instance.particle[(int) (Math.random()*5)]);
         this.x = _x;

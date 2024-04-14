@@ -176,6 +176,7 @@ public class Gameplay {
         for (int i = 0; i< whitePieceSizeTemp; i++) {
             WhitePiece piece = b.getWhitePieces().get(i);
             piece.move(piece.bestMove());
+            if(piece instanceof Pawn pawn)pawn.promote();
         }
         b.getWhitePieces().removeIf(WhitePiece::isDied);
         b.getBlackKing().shield = b.getBlackKing().maxShield;
@@ -227,10 +228,9 @@ public class Gameplay {
         } while (count>0);
         do{
             buff2 = Card.randomABuffCard();
-            count=1;
-            if(buff1.getClass()==buff2.getClass())
-                continue;
             count=0;
+            if(buff1.getClass()==buff2.getClass())
+                count++;
             for(Card c : buffCards)
                 if(c.getClass() == buff2.getClass())
                     count++;
@@ -238,17 +238,16 @@ public class Gameplay {
         do{
             debuff1 = Card.randomADebuffCard();
             count=0;
-            for(Card c : buffCards)
+            for(Card c : debuffCards)
                 if(c.getClass() == debuff1.getClass())
                     count++;
         } while (count>0);
         do{
             debuff2 = Card.randomADebuffCard();
-            count=1;
-            if(debuff1.getClass()==debuff2.getClass())
-                continue;
             count=0;
-            for(Card c : buffCards)
+            if(debuff1.getClass()==debuff2.getClass())
+                count++;
+            for(Card c : debuffCards)
                 if(c.getClass() == debuff2.getClass())
                     count++;
         } while (count>0);
