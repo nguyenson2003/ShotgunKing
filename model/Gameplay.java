@@ -196,7 +196,7 @@ public class Gameplay {
         return !b.isHasKingOnBoard;
     }
     public void debugAddCards(){
-//        buffCards.add(new BuocNhayVanNang());
+//        buffCards.add(new TuDo());
         // buffCards.add(new NgaiVangBoTrong());
         // buffCards.add(new SucManhVoHan());
         // buffCards.add(new SuyGiamNhueKhi());

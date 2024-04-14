@@ -31,6 +31,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     private ChoiceCardView choiceCardView ;
     private InfoCardView info = new InfoCardView();
     int floor = 1;
+    int maxFloor = 10;
     public GameplayRoom(){
         ins = this;
         gameplay = new Gameplay();
@@ -134,7 +135,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                if(floor==5)
+                if(floor==maxFloor)
                     General.getGeneralFrame().setRoom(new GameOverRoom(false));
                 else
                     makeTwoChoice();
@@ -173,12 +174,12 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     }
     @Override
     public void componentResized(ComponentEvent e) {
-        buffPanel.setPreferredSize(new Dimension(getWidth()/9,0));
-        debuffPanel.setPreferredSize(new Dimension(getWidth()/9,0));
+        buffPanel.setPreferredSize(new Dimension(getWidth()/5,0));
+        debuffPanel.setPreferredSize(new Dimension(getWidth()/5,0));
         infoBlackKingView.setPreferredSize(new Dimension(getWidth()/10,0));
         infoWhitePieceView.setPreferredSize(new Dimension(getWidth()/10,0));
         infoAmmoBlackKing.setPreferredSize(new Dimension(0,getWidth()/10));
-        centerPanel.setBorder(new EmptyBorder(0,getWidth()/11,0,getWidth()/11));
+//        centerPanel.setBorder(new EmptyBorder(0,getWidth()/11,0,getWidth()/11));
     }
 
     @Override

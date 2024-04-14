@@ -24,7 +24,8 @@ public class TFrame extends JFrame {
         this.add(this.rm);
         this.addKeyListener(this.rm);
         this.requestFocus();
-        this.repaint();
+        this.setVisible(false);
+        this.setVisible(true);
     }
     static boolean isResize = false;
     public TFrame() {

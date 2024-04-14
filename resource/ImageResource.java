@@ -28,6 +28,7 @@ public class ImageResource {
         pngTuDo,pngUyQuyenQuanVuong,pngVuaSung,pngXaSung,pngXungPhong,pngVuaMau;
     // ../img/particle/....png
     public final ImageIcon[] particle = new ImageIcon[5];
+    public final ImageIcon shadowParticle;
     private ImageResource(){
         // 1
         {
@@ -100,6 +101,7 @@ public class ImageResource {
         for(int i= 0;i<5;i++){
             particle[i] = createImg("../img/particle/particle"+i+".png");
         }
+        shadowParticle = createImg("../img/particle/shadowParticle.png");
     }
     private static ImageIcon createImg(String relativePath){
         return new ImageIcon(URLDecoder.decode(
