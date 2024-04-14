@@ -28,6 +28,7 @@ public class ImageResource {
         pngTuDo,pngUyQuyenQuanVuong,pngVuaSung,pngXaSung,pngXungPhong,pngVuaMau;
     // ../img/particle/....png
     public final ImageIcon[] particle = new ImageIcon[5];
+    public final ImageIcon[] blackParticle = new ImageIcon[5];
     public final ImageIcon shadowParticle;
     private ImageResource(){
         // 1
@@ -100,6 +101,9 @@ public class ImageResource {
         // 4
         for(int i= 0;i<5;i++){
             particle[i] = createImg("../img/particle/particle"+i+".png");
+        }
+        for(int i= 0;i<5;i++){
+            blackParticle[i] = createImg("../img/particle/bparticle"+i+".png");
         }
         shadowParticle = createImg("../img/particle/shadowParticle.png");
     }
