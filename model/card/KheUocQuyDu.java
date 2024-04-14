@@ -42,6 +42,7 @@ public class KheUocQuyDu extends Card{
         if(gp.getBoard().dataBuff.isKheUocQuyDu){
             bk.setFirePower(bk.getFirePower()+2);
             bk.setMaxSpareAmmo(Math.max(1,bk.getMaxSpareAmmo()-3));
+            bk.setSpareAmmo(bk.getMaxSpareAmmo());
         }
     }
 

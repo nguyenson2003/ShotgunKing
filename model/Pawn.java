@@ -114,7 +114,7 @@ public class Pawn extends WhitePiece{
             if(onBoard.dataBuff.isUyQuyenQuanVuong &&
                 bk.checkUyQuyenQuanVuong(temp))
                 return standing;
-            System.out.println("a"+turn);
+            // System.out.println("a"+turn);
             return temp;
         }else return standing;
         
