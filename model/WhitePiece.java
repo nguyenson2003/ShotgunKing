@@ -126,11 +126,11 @@ public abstract class WhitePiece extends Piece{
     }
 
     /**
-     * thay thế cho lệnh if
+     * kiểm tra piece khác null và khác black King (là quân trắng) và điều kiện cưỡi ngựa hành quân
      * 
      */
     private boolean checkForStraightAndDiagonal(Piece p){
-        return p!=null && (!(onBoard.isHasKnightOnBoard && onBoard.dataBuff.isCuoiNguaHanhQuan) || p instanceof Pawn);
+        return p!=null && p!=onBoard.getBlackKing() && (!(onBoard.isHasKnightOnBoard && onBoard.dataBuff.isCuoiNguaHanhQuan) || p instanceof Pawn);
     }
     /**
      * Kiểm tra xem có quân cờ nào nằm giữa Tile start và Tile end theo đường thẳng không. Không tính vua đen

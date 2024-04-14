@@ -61,7 +61,7 @@ public class BachPhatBachTrung extends Card{
 
     @Override
     public String getDescription() {
-        return "Độ lệch về 0 nhưng giảm 2 Dame";
+        return "Độ lệch về 0 nhưng giảm 2 sát thương";
     }
     
     @Override

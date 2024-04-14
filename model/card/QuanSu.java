@@ -46,7 +46,7 @@ public class QuanSu extends Card{
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
         gp.getBoard().dataBuff.isQuanSu=true;
-        if(gp.getBoard().dataBuff.isQuanSu){
+        if(gp.getBoard().dataBuff.isQuanSu&&b.getInitPawn()>=1){
             b.setInitPawn(b.getInitPawn()-1);
             b.setInitBishop(b.getInitBishop()+1);
         }
@@ -55,7 +55,7 @@ public class QuanSu extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Giảm 1 tốt bù lại sẽ được thêm thêm 1 tịnh và tịnh có thể di chuyển như hậu, nhưng vẫn tấn công như tịnh";
+        return "Giảm 1 tốt bù lại sẽ được thêm thêm 1 tịnh và tịnh có thể di chuyển như hậu, nhưng vẫn tấn công như tịnh (điều kiện phải có ít nhất 1 tốt)";
     }
 
     @Override
