@@ -103,7 +103,9 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     public void updatePositionBlackPiece(){
         Tile t = blackPieceView.getModel().getStanding();
         Point temp = tileToPixel(t.x,t.y);
-        ComponentAnimation.setLocation(blackPieceView,temp.x+3,temp.y+1,200);
+//        ComponentAnimation.setLocation(blackPieceView,temp.x+3,temp.y+1,200);
+        if(!t.equals(pixelToTile(blackPieceView.getX(),blackPieceView.getY())))
+            blackPieceView.goToLocation(temp.x+3,temp.y+1);
     }
     public void updateBeforeMoveWhitePiece(){
         Iterator<PieceView> it= whitePieceViewList.iterator();
@@ -144,7 +146,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
                         temp.x+3,
                         temp.y+1,
                         getCloneIcon().getIconWidth()/8-6,
-                        getCloneIcon().getIconHeight()/8-6
+                        getCloneIcon().getIconHeight()/8-6+100
                 );
                 ComponentAnimation.twink(pv,200,1000/60*5);
             }
@@ -155,7 +157,9 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             Tile t = model.getStanding();
             Point temp = tileToPixel(t.x,t.y);
             ComponentAnimation.shakeStop(pv);
-            ComponentAnimation.setLocation(pv,temp.x+3,temp.y+1,200);
+//            ComponentAnimation.setLocation(pv,temp.x+3,temp.y+1,200);
+            if(!t.equals(pixelToTile(pv.getX(),pv.getY())))
+                pv.goToLocation(temp.x+3,temp.y+1);
         }
         Iterator<PieceView> it= whitePieceViewList.iterator();
         while(it.hasNext()){
@@ -237,7 +241,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             }
             updateMoveWhitePiece();
             try {
-                Thread.sleep(250);
+                Thread.sleep(310);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
@@ -280,7 +284,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
                     temp.x+3,
                     temp.y+1,
                     getCloneIcon().getIconWidth()/8-6,
-                    getCloneIcon().getIconHeight()/8-6
+                    getCloneIcon().getIconHeight()/8-6+100
             );
 
 
@@ -296,7 +300,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
                 temp.x+3,
                 temp.y+1,
                 getCloneIcon().getIconWidth()/8-6,
-                getCloneIcon().getIconHeight()/8-6
+                getCloneIcon().getIconHeight()/8-6+100
         );
     }
 
