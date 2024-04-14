@@ -19,7 +19,7 @@ public class Rook extends WhitePiece{
         //TODO Auto-generated constructor stub
     }
     @Override
-    boolean isMate(Tile nextCell) {
+    public boolean isMate(Tile nextCell) {
         //nếu k cùng đường thẳng sẽ return false
         return !isHasPieceBetweenStraight(nextCell, this.standing);
     }

@@ -67,9 +67,12 @@ public class NhapThanh extends Card{
             }
         if(isCanSwap){
             isCanSwap=false;
-            Tile tempStd=whiteKing.getStanding();
-            whiteKing.setStanding(rook.getStanding());
-            rook.setStanding(tempStd);
+            if(whiteKing.isMate(b.getBlackKing().getStanding())==false &&
+                rook.isMate(b.getBlackKing().getStanding())==false){
+                Tile tempStd=whiteKing.getStanding();
+                whiteKing.setStanding(rook.getStanding());
+                rook.setStanding(tempStd);
+            }
         }
     }
 
@@ -105,7 +108,7 @@ public class NhapThanh extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Nếu vua đen bắn vua trắng mất máu, tổng lượng máu mất đó sẽ truyền cho một quân xe ngẫu nhiên, hoán đổi vị trí với quân xe đó và thêm 1 xe mỗi 10 lượt";
+        return "Nếu vua đen bắn trúng vua trắng, tổng lượng máu mất sẽ chuyển cho một xe ngẫu nhiên, hoán đổi vị trí với xe đó và thêm 1 xe mỗi 10 lượt (áp dụng khi cả 2 không chiếu vua đen)";
     }
 
     @Override

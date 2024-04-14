@@ -77,7 +77,7 @@ public class InfoWhitePieceView extends JPanel implements ComponentListener {
         imgPiece.setSrcIcon(ImageResource.instance.getImgOfPiece(p));
         hpBar.setMaximum(p.getMaxHP());
         hpBar.setValue(p.getHp());
-        hpLabel.setText(p.getHp()+" hp");
+        hpLabel.setText(p.getHp()+"/"+p.getMaxHP()+" hp");
         waitMove.setText(p.getTurn() + "/" + p.getMaxTurn());
 //        this.setVisible(true);
         addTextInfo();

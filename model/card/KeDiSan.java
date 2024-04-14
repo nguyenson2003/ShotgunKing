@@ -29,13 +29,13 @@ public class KeDiSan extends Card{
                 isBuffed=true;
                 spreadBef=bk.getSpread();
                 bk.setSpread(Math.max(0,bk.getSpread()-15*Math.PI/180));
-                bk.setFirePower(bk.getFirePower()+1);
+                bk.setFirePower(bk.getFirePower()+2);
                 break;
             }
             if(isBuffed){
                 isBuffed=false;
                 bk.setSpread(spreadBef);
-                bk.setFirePower(Math.max(1,bk.getFirePower()-1));
+                bk.setFirePower(Math.max(1,bk.getFirePower()-2));
             }
         }
             
@@ -68,7 +68,7 @@ public class KeDiSan extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Độ lệch giảm 15 và tăng 1 sát thương nhưng chỉ có tác dụng khi áp sát kẻ địch";
+        return "Độ lệch giảm 15 và tăng 2 sát thương nhưng chỉ có tác dụng khi áp sát kẻ địch";
     }
 
     @Override
