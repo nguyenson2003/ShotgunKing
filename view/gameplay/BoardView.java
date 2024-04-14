@@ -207,31 +207,32 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     @Override
     public void mousePressed(MouseEvent e) {
         if(!canClickMouse)return;
+        Tile t = pixelToTile(e.getX(),e.getY());
+        assert t != null;
+        if(t.equals(blackPieceView.getModel().getStanding()))return;
+        Point blackKingPoint = blackPieceView.getLocation();
+        blackKingPoint.x+=blackPieceView.getWidth()/2;
+        blackKingPoint.y+=blackPieceView.getHeight()/2;
+        Point mousePoint = e.getPoint();
+        double distance = Math.sqrt(Math.pow(blackKingPoint.x-mousePoint.x,2)+Math.pow(blackKingPoint.y-mousePoint.y,2));
+        double angleCos = Math.acos((mousePoint.x-blackKingPoint.x)/distance);
+        double angleSin = Math.asin((mousePoint.y-blackKingPoint.y)/distance);
+        double angle = angleCos;
+        if(angleSin<0)angle=-angle;
+        gp.blackMoveAction(t, angle, this);
         new Thread(() -> {
-
-            Tile t = pixelToTile(e.getX(),e.getY());
-            assert t != null;
-            if(t.equals(blackPieceView.getModel().getStanding()))return;
-            Point blackKingPoint = blackPieceView.getLocation();
-            blackKingPoint.x+=blackPieceView.getWidth()/2;
-            blackKingPoint.y+=blackPieceView.getHeight()/2;
-            Point mousePoint = e.getPoint();
-            double distance = Math.sqrt(Math.pow(blackKingPoint.x-mousePoint.x,2)+Math.pow(blackKingPoint.y-mousePoint.y,2));
-            double angleCos = Math.acos((mousePoint.x-blackKingPoint.x)/distance);
-            double angleSin = Math.asin((mousePoint.y-blackKingPoint.y)/distance);
-            double angle = angleCos;
-            if(angleSin<0)angle=-angle;
-            gp.blackMoveAction(t, angle, this);
+            canClickMouse=false;
             updatePositionBlackPiece();
+            GameplayRoom.getIns().reloadInfoBlackPiece();
             updateBeforeMoveWhitePiece();
             try {
-                Thread.sleep(300);
+                Thread.sleep(200);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
             updateMoveWhitePiece();
             try {
-                Thread.sleep(250);
+                Thread.sleep(200);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
@@ -241,7 +242,6 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
                 return;
             }
             updateAfterMoveWhitePiece();
-            GameplayRoom.getIns().reloadInfoBlackPiece();
             GameplayRoom.getIns().showMsg("Lượt: "+gp.getNumberOfTurn());
             canClickMouse=true;
         }).start();

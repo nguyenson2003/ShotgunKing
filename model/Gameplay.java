@@ -193,7 +193,7 @@ public class Gameplay {
         return !b.isHasKingOnBoard;
     }
     public void debugAddCards(){
-        buffCards.add(new BuocNhayVanNang());
+//        buffCards.add(new BuocNhayVanNang());
         // buffCards.add(new NgaiVangBoTrong());
         // buffCards.add(new SucManhVoHan());
         // buffCards.add(new SuyGiamNhueKhi());
@@ -215,10 +215,46 @@ public class Gameplay {
     }
 
     public Pair<Pair<Card,Card>,Pair<Card,Card>> makeTwoChoiceOfCard(){
-        Pair<Card,Card> choice1 = new Pair<>(Card.randomABuffCard(),Card.randomADebuffCard());
-        Pair<Card,Card> choice2 = new Pair<>(Card.randomABuffCard(),Card.randomADebuffCard());
-        return new Pair<>(choice1,choice2);
 
+        Card buff1,debuff1,buff2,debuff2;
+        int count;
+        do{
+            buff1 = Card.randomABuffCard();
+            count=0;
+            for(Card c : buffCards)
+                if(c.getClass() == buff1.getClass())
+                    count++;
+        } while (count>0);
+        do{
+            buff2 = Card.randomABuffCard();
+            count=1;
+            if(buff1.getClass()==buff2.getClass())
+                continue;
+            count=0;
+            for(Card c : buffCards)
+                if(c.getClass() == buff2.getClass())
+                    count++;
+        } while (count>0);
+        do{
+            debuff1 = Card.randomADebuffCard();
+            count=0;
+            for(Card c : buffCards)
+                if(c.getClass() == debuff1.getClass())
+                    count++;
+        } while (count>0);
+        do{
+            debuff2 = Card.randomADebuffCard();
+            count=1;
+            if(debuff1.getClass()==debuff2.getClass())
+                continue;
+            count=0;
+            for(Card c : buffCards)
+                if(c.getClass() == debuff2.getClass())
+                    count++;
+        } while (count>0);
+        Pair<Card,Card> choice1 = new Pair<>(buff1,debuff1);
+        Pair<Card,Card> choice2 = new Pair<>(buff2,debuff2);
+        return new Pair<>(choice1,choice2);
     }
     public void addAChoice(Pair<Card,Card> p){
         buffCards.add(p.first);

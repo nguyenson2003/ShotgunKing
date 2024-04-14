@@ -83,7 +83,6 @@ public abstract class Card {
                 }
             }
         }
-         System.out.println(cardList.size());
     }
 
     /**
@@ -104,4 +103,5 @@ public abstract class Card {
     public void setFlip(boolean flip) {
         this.flip = flip;
     }
+
 }

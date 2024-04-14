@@ -1,9 +1,6 @@
 package view.gameplay;
 
-import model.BlackKing;
-import model.Gameplay;
-import model.Pair;
-import model.WhitePiece;
+import model.*;
 import model.card.Card;
 import view.gameover.GameOverRoom;
 import view.general.General;
@@ -31,7 +28,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     private InfoAmmoBlackKing infoAmmoBlackKing = new InfoAmmoBlackKing();
     private InfoWhitePieceView infoWhitePieceView = new InfoWhitePieceView();
     private InfoBlackKingView infoBlackKingView=new InfoBlackKingView();
-    private ChoiceCardView choiceCardView;
+    private ChoiceCardView choiceCardView ;
     private InfoCardView info = new InfoCardView();
     public GameplayRoom(){
         ins = this;
@@ -119,9 +116,26 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         infoAmmoBlackKing.reload();
     }
     public void endOneFloor(){
+        System.out.println("test");
         hideInfoWhitePiece();
         if(gameplay.checkBlackWinGame()){
-            makeTwoChoice();
+            new Thread(()->{
+                for(PieceView pv : boardView.whitePieceViewList){
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    pv.beDestroyed();
+                }
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                makeTwoChoice();
+
+            }).start();
         }else {
             new Thread(()->{
                 try {
@@ -130,7 +144,6 @@ public class GameplayRoom extends TRoom implements ComponentListener {
                     throw new RuntimeException(e);
                 }
                 General.getGeneralFrame().setRoom(new GameOverRoom(false));
-
             }).start();
         }
     }
