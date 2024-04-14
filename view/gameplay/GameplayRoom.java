@@ -66,8 +66,8 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         new Thread(() -> {
             try {
                 Thread.sleep(1000);
-                this.setVisible(false);
-                this.setVisible(true);
+//                this.setVisible(false);
+//                this.setVisible(true);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
@@ -139,8 +139,8 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         choiceCardView = new ChoiceCardView(p);
         centerCenterPanel.remove(boardView);
         centerCenterPanel.add(choiceCardView);
-        this.setVisible(false);
-        this.setVisible(true);
+//        this.setVisible(false);
+//        this.setVisible(true);
     }
     public void selectAChoice(Pair<Card,Card> p){
         gameplay.addAChoice(p);
@@ -151,8 +151,8 @@ public class GameplayRoom extends TRoom implements ComponentListener {
         centerCenterPanel.remove(choiceCardView);
         centerCenterPanel.add(boardView);
         hideInfoCard();
-        this.setVisible(false);
-        this.setVisible(true);
+//        this.setVisible(false);
+//        this.setVisible(true);
     }
     @Override
     public void componentResized(ComponentEvent e) {

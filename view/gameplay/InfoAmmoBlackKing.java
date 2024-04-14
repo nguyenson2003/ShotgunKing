@@ -105,8 +105,8 @@ public class InfoAmmoBlackKing extends JPanel implements ComponentListener {
         numShield.setPreferredSize(new Dimension(0,0));
         this.add(numShield, gbc);
 //        this.repaint();
-        this.setVisible(false);
-        this.setVisible(true);
+//        this.setVisible(false);
+//        this.setVisible(true);
     }
 
     @Override

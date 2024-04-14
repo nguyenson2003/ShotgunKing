@@ -72,21 +72,21 @@ public class TFrame extends JFrame {
                     int height2 = getContentPane().getHeight();
                     rm.setSize(Math.min(wight1,width2),Math.min(height1,height2));
                     rm.setLocation(getContentPane().getWidth() / 2 - rm.getWidth() / 2, getContentPane().getHeight() / 2 - rm.getHeight() / 2);
-                    rm.setVisible(false);
-                    isResize=true;
-                    new Thread(() -> {
-                        try {
-                            Thread.sleep(100);
-                            isResize=false;
-                            Thread.sleep(100);
-                            if(!isResize) {
-                                rm.setVisible(true);
-                            }
-                        } catch (InterruptedException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        isResize=false;
-                    }).start();
+//                    rm.setVisible(false);
+//                    isResize=true;
+//                    new Thread(() -> {
+//                        try {
+//                            Thread.sleep(100);
+//                            isResize=false;
+//                            Thread.sleep(100);
+//                            if(!isResize) {
+//                                rm.setVisible(true);
+//                            }
+//                        } catch (InterruptedException ex) {
+//                            throw new RuntimeException(ex);
+//                        }
+//                        isResize=false;
+//                    }).start();
 
 
                 }catch(Exception exc){}
@@ -116,7 +116,11 @@ public class TFrame extends JFrame {
             while (true){
                 try {
                     Thread.sleep(100);
-                    if(rm!=null)rm.repaint();
+                    if(rm!=null){
+//                        rm.repaint();
+                        rm.setVisible(false);
+                        rm.setVisible(true);
+                    }
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }

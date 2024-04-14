@@ -157,8 +157,8 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             ComponentAnimation.setLocation(pv,temp.x+3,temp.y+1,200);
         }
         GameplayRoom.getIns().reloadInfoWhitePiece();
-        this.setVisible(false);
-        this.setVisible(true);
+//        this.setVisible(false);
+//        this.setVisible(true);
     }
     public void  updateAfterMoveWhitePiece(){
         for(PieceView pv : whitePieceViewList){
@@ -280,8 +280,8 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
 
             if(((WhitePiece)pv.getModel()).canMove() && gp.isPlaying())
                 ComponentAnimation.shakeInfinity(pv,2,0,1000/60*5);
-            pv.setVisible(false);
-            pv.setVisible(true);
+//            pv.setVisible(false);
+//            pv.setVisible(true);
         }
 
         Tile t = blackPieceView.getModel().getStanding();

@@ -46,8 +46,8 @@ public class InfoBlackKingView extends JPanel implements ComponentListener {
         gbc.gridy = 5;
         this.add(numSpreadLabel, gbc);
 //        this.repaint();
-        this.setVisible(false);
-        this.setVisible(true);
+//        this.setVisible(false);
+//        this.setVisible(true);
     }
 
     @Override

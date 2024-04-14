@@ -54,8 +54,8 @@ public class InfoWhitePieceView extends JPanel implements ComponentListener {
         gbc.gridy = 5;
         this.add(waitMove, gbc);
 //        this.repaint();
-        this.setVisible(false);
-        this.setVisible(true);
+//        this.setVisible(false);
+//        this.setVisible(true);
         new Thread(() -> {
             try {
                 Thread.sleep(10);
@@ -91,8 +91,8 @@ public class InfoWhitePieceView extends JPanel implements ComponentListener {
     public void hideInfo() {
         temp = null;
         this.removeAll();
-        this.setVisible(false);
-        this.setVisible(true);
+//        this.setVisible(false);
+//        this.setVisible(true);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class InfoWhitePieceView extends JPanel implements ComponentListener {
         hpBar.setPreferredSize(new Dimension(this.getWidth()-20, (int) (this.getWidth()/4.5)));
         imgPiece.setBorder(BorderFactory.createLineBorder(Color.black,this.getWidth()/10));
         imgPiece.setPreferredSize(new Dimension(this.getWidth()/3*2,this.getWidth()/3*2));
-        this.setVisible(false);
-        this.setVisible(true);
+//        this.setVisible(false);
+//        this.setVisible(true);
     }
 
     @Override

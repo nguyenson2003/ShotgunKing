@@ -25,8 +25,8 @@ public class ChoiceCardView extends JPanel implements ComponentListener {
         choice2=new SingleChoice(p.second);
         this.add(choice1);
         this.add(choice2);
-        this.setVisible(false);
-        this.setVisible(true);
+//        this.setVisible(false);
+//        this.setVisible(true);
     }
 
 
