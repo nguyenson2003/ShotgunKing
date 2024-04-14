@@ -110,7 +110,8 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         while(it.hasNext()){
             PieceView pv = it.next();
             if(((WhitePiece)pv.getModel()).isDied()){
-                this.remove(pv);
+//                this.remove(pv);
+                pv.beDestroyed();
                 it.remove();
             }
         }

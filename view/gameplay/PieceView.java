@@ -22,7 +22,14 @@ public class PieceView extends JLabel {
         this.boardView=boardView;
 //        this.addMouseListener(this);
     }
-
+    public void beDestroyed(){
+        for(int i = 0;i<5;i++) {
+            PieceParticle pp = new PieceParticle(this.getX(),this.getY());
+            pp.setSize(this.getWidth()/2,this.getHeight()/2);
+            this.getParent().add(pp);
+        }
+        this.getParent().remove(this);
+    }
     public Piece getModel() {
         return model;
     }
