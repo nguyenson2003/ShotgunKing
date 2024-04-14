@@ -18,12 +18,12 @@ public class Board {
     public boolean isHasPawnOnBoard=false;
     public boolean isHasKingOnBoard=false;
 
-    private int initKnight = 0,initTurnKnight=3,initHpKnight = 3;
-    private int initBishop = 0,initTurnBishop=5,initHpBishop=4;
-    private int initKing = 1,initTurnKing=4,initHpKing=8;
+    private int initKnight = 1,initTurnKnight=3,initHpKnight = 3;
+    private int initBishop = 1,initTurnBishop=5,initHpBishop=4;
+    private int initKing = 1,initTurnKing=4,initHpKing=10;
     private int initQueen = 0,initTurnQueen=4,initHpQueen=5;
-    private int initPawn = 1,initTurnPawn=2,initHpPawn=1;
-    private int initRook = 1,initTurnRook=4,initHpRook=5;
+    private int initPawn = 4,initTurnPawn=5,initHpPawn=3;
+    private int initRook = 0,initTurnRook=4,initHpRook=5;
 
     
     public int getInitTurnBishop() {

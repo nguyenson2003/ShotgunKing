@@ -23,7 +23,7 @@ public class TinhChinhSung extends Card{
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
         if(gp.getBoard().dataBuff.isTinhChinhSung){
-            bk.setSpread(Math.max(0, bk.getSpread()-40*Math.PI/180));
+            bk.setSpread(Math.max(0, bk.getSpread()-15*Math.PI/180));
             bk.setFirePower(bk.getFirePower()+1);
         }
     }
@@ -49,7 +49,7 @@ public class TinhChinhSung extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Độ lệch giảm 40 độ và tăng thêm 1 dame cho vua đen";
+        return "Độ lệch giảm 15 độ và tăng thêm 1 dame cho vua đen";
     }
 
     @Override
