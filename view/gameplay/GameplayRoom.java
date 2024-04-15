@@ -139,7 +139,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
                     General.getGeneralFrame().setRoom(new GameOverRoom(false));
                 else
                     makeTwoChoice();
-                maxFloor++;
+                floor++;
             }).start();
         }else {
             new Thread(()->{

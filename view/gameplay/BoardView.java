@@ -195,7 +195,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
                 this.setCursor(Cursor.getDefaultCursor());
             }else {
                 borderHover.setSize(0,0);
-//                this.setCursor(c);
+                this.setCursor(c);
             }
             Piece p = gp.getBoard().getPiece(t);
             if(p instanceof WhitePiece wp){
@@ -235,6 +235,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             updatePositionBlackPiece();
             GameplayRoom.getIns().reloadInfoBlackPiece();
             updateBeforeMoveWhitePiece();
+            GameplayRoom.getIns().reloadInfoWhitePiece();
             try {
                 Thread.sleep(200);
             } catch (InterruptedException ex) {
