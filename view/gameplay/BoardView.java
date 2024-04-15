@@ -251,7 +251,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             }
             updateMoveWhitePiece();
             try {
-                Thread.sleep(310);
+                Thread.sleep(350);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }

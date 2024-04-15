@@ -263,7 +263,7 @@ public class Gameplay {
             debuff1 = Card.randomADebuffCard();
             count=0;
             for(Card c : debuffCards)
-                if(c.getClass() == debuff1.getClass()|| debuff1 instanceof HoangHauSatThu)
+                if(c.getClass() == debuff1.getClass() || debuff1 instanceof HoangHauSatThu)
                     count++;
         } while (count>0);
         do{
