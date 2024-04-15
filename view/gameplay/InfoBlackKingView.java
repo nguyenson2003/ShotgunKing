@@ -24,7 +24,7 @@ public class InfoBlackKingView extends JPanel implements ComponentListener {
         model = p;
         removeAll();
         numFirepowerLabel.setText(p.getFirePower()+"");
-        numRangeLabel.setText(p.getFireRange()+"");
+        numRangeLabel.setText((p.getFireRange()-1)+" - "+(p.getFireRange()+1));
         numSpreadLabel.setText(Math.round(Math.toDegrees(p.getSpread()))+"°");
         addTextInfo();
     }

@@ -31,7 +31,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     private ChoiceCardView choiceCardView ;
     private InfoCardView info = new InfoCardView();
     int floor = 1;
-    int maxFloor = 10;
+    int maxFloor = 11;
     public GameplayRoom(){
         ins = this;
         gameplay = new Gameplay();
@@ -136,7 +136,7 @@ public class GameplayRoom extends TRoom implements ComponentListener {
                     throw new RuntimeException(e);
                 }
                 if(floor==maxFloor)
-                    General.getGeneralFrame().setRoom(new GameOverRoom(false));
+                    General.getGeneralFrame().setRoom(new GameOverRoom(true));
                 else
                     makeTwoChoice();
                 floor++;
