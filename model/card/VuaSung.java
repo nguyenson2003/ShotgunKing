@@ -26,7 +26,7 @@ public class VuaSung extends Card{
         if(gp.getBoard().dataBuff.isVuaSung){
             bk.setFirePower(bk.getFirePower()+1);
             bk.setFireRange(bk.getFireRange()+1);
-            bk.setSpread(bk.getSpread()/2);
+            //giảm 1 nửa độ lệch trong gameplay
         }
     }
 
