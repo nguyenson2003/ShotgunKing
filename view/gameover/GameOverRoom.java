@@ -5,7 +5,6 @@ import view.general.General;
 import view.general.TButton;
 import view.general.TRoom;
 import view.home.HomeRoom;
-import view.setting.SettingRoom;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -30,7 +29,7 @@ public class GameOverRoom extends TRoom implements ComponentListener {
         northPanel.setLayout(new BorderLayout());
         northPanel.setOpaque(false);
         northPanel.add(titleLabel);
-        centerPanel.setLayout(new GridLayout(20,20));
+        centerPanel.setLayout(new GridLayout(1,2,20,20));
         centerPanel.setOpaque(false);
         centerPanel.add(playButton);
         centerPanel.add(homeButton);
@@ -46,7 +45,7 @@ public class GameOverRoom extends TRoom implements ComponentListener {
     @Override
     public void componentResized(ComponentEvent e) {
         northPanel.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()/2));
-        titleLabel.setFont(new Font(titleLabel.getFont().getName(),Font.BOLD,this.getHeight()/5));
+        titleLabel.setFont(new Font(titleLabel.getFont().getName(),Font.BOLD,this.getHeight()/7));
         Font fontBtn = new Font(titleLabel.getFont().getName(),Font.PLAIN,this.getWidth()/3/10);
         playButton.setFont(fontBtn);
         homeButton.setFont(fontBtn);

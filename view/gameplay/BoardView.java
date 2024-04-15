@@ -1,6 +1,7 @@
 package view.gameplay;
 
 import model.*;
+import resource.AudioResource;
 import resource.ImageResource;
 import view.general.ComponentAnimation;
 import view.general.TImage;
@@ -71,12 +72,15 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
         return new Point(x,y);
     }
     public void drawABullet(double startBulletX, double startBulletY,double endBulletX, double endBulletY){
+        AudioResource.playSound(AudioResource.instance.shoot);
+
         ComponentAnimation.shake(GameplayRoom.getIns(),5,5,200,200/4);
         Point p1 = tileDoubleToPixel(startBulletX,startBulletY);
         Point p12= tileDoubleToPixel((startBulletX+endBulletX)/2,(startBulletY+endBulletY)/2);
         Point p2 = tileDoubleToPixel(endBulletX,endBulletY);
         new Thread(() -> {
-            Graphics g = getGraphics();
+            Graphics2D g = (Graphics2D) getGraphics();
+            g.setStroke(new BasicStroke(3));
             int count = 0;
 //            do {
 //                count++;

@@ -1,5 +1,7 @@
 package view.general;
 
+import resource.AudioResource;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,6 +23,7 @@ public class TButton extends JButton {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                AudioResource.playSound(AudioResource.instance.button);
             }
 
             @Override

@@ -1,5 +1,6 @@
 package view.gameplay;
 
+import resource.AudioResource;
 import resource.ImageResource;
 import view.general.ComponentAnimation;
 import view.general.TImage;
@@ -45,6 +46,8 @@ public class PieceParticle extends JLayeredPane {
                 z += vz;
                 if(z<0){
                     z = -z;vz = -vz/10*7;
+                    if(vz>3)
+                        AudioResource.playSound(AudioResource.instance.particle);
                 }
 
                 this.setLocation((int) this.x, (int) (this.y-this.z/2));

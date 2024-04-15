@@ -1,6 +1,7 @@
 package view.gameplay;
 
 import model.*;
+import resource.AudioResource;
 import resource.ImageResource;
 import view.general.TImage;
 
@@ -49,6 +50,8 @@ public class PieceView extends JLayeredPane implements ComponentListener {
         }).start();
     }
     public void beDestroyed(){
+        AudioResource.playSound(AudioResource.instance.broke);
+
         for(int i = 0;i<5;i++) {
             PieceParticle pp;
             if(this.getModel() instanceof WhitePiece)
