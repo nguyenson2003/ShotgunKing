@@ -29,7 +29,7 @@ public class ChienMa extends Card{
     public void actionAfterWhiteAction(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        if(gp.getNumberOfTurn()%7==0){
+        if(gp.getNumberOfTurn()%7==0&&gp.getBoard().dataBuff.isChienMa==true){
             b.addPiece(new Knight(b.getRandomTileEmpty(), b.getInitTurnKnight(), b.getInitHpKnight(), b));
         }
     }
@@ -51,8 +51,11 @@ public class ChienMa extends Card{
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
         gp.getBoard().dataBuff.isChienMa=true;
-        if(gp.getBoard().dataBuff.isChienMa&&b.getInitPawn()>=1){
-            b.setInitPawn(b.getInitPawn()-1);
+        if(gp.getBoard().dataBuff.isChienMa){
+            if(b.getInitPawn()>=1)
+                b.setInitPawn(b.getInitPawn()-1);
+            else
+                gp.getBoard().dataBuff.isChienMa=false;
         }
     }
 

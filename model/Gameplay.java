@@ -74,7 +74,10 @@ public class Gameplay {
         }
         //update after init 
         updateAfterInit();
-
+        //vua Súng độ lệch giảm 1 nửa
+        BlackKing bk=this.getBoard().getBlackKing();
+        if(this.getBoard().dataBuff.isVuaSung)
+            bk.setSpread(bk.getSpread()/2);
     }
     /**
      * gán giá trị lại cho độ lệch và sát thương
