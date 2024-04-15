@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 
-public class TFrame extends JFrame {
+public class TFrame extends JFrame implements ComponentListener{
     private TRoom rm ;
 
     public TRoom getRm() {
@@ -24,8 +26,7 @@ public class TFrame extends JFrame {
         this.add(this.rm);
         this.addKeyListener(this.rm);
         this.requestFocus();
-        this.setVisible(false);
-        this.setVisible(true);
+        this.componentResized(null);
     }
     static boolean isResize = false;
     public TFrame() {
@@ -64,45 +65,7 @@ public class TFrame extends JFrame {
         // //chỉnh kích thước room bên trong
         // room.setSize(getHeight(), getHeight());
         // room.setLocation(getWidth()/2-room.getWidth()/2,0);
-        this.addComponentListener(new ComponentListener() {
-            public void componentResized(ComponentEvent e) {
-                try{
-                    int wight1 = getContentPane().getWidth();
-                    int height1 = (int) (getContentPane().getWidth()/1920.0*1080);
-                    int width2 = (int) (getContentPane().getHeight()/1080.0*1920);
-                    int height2 = getContentPane().getHeight();
-                    rm.setSize(Math.min(wight1,width2),Math.min(height1,height2));
-                    rm.setLocation(getContentPane().getWidth() / 2 - rm.getWidth() / 2, getContentPane().getHeight() / 2 - rm.getHeight() / 2);
-//                    rm.setVisible(false);
-//                    isResize=true;
-//                    new Thread(() -> {
-//                        try {
-//                            Thread.sleep(100);
-//                            isResize=false;
-//                            Thread.sleep(100);
-//                            if(!isResize) {
-//                                rm.setVisible(true);
-//                            }
-//                        } catch (InterruptedException ex) {
-//                            throw new RuntimeException(ex);
-//                        }
-//                        isResize=false;
-//                    }).start();
-
-
-                }catch(Exception exc){}
-            }
-
-            public void componentMoved(ComponentEvent e) {
-            }
-
-            public void componentShown(ComponentEvent e) {
-            }
-
-            public void componentHidden(ComponentEvent e) {
-            }
-
-        });
+        this.addComponentListener(this);
 
         // hiển thị phòng
         new Thread(() -> {
@@ -127,7 +90,43 @@ public class TFrame extends JFrame {
                 }
             }
         }).start();
+
+    }
+    public void componentResized(ComponentEvent e) {
+        try{
+            int wight1 = getContentPane().getWidth();
+            int height1 = (int) (getContentPane().getWidth()/1920.0*1080);
+            int width2 = (int) (getContentPane().getHeight()/1080.0*1920);
+            int height2 = getContentPane().getHeight();
+            rm.setSize(Math.min(wight1,width2),Math.min(height1,height2));
+            rm.setLocation(getContentPane().getWidth() / 2 - rm.getWidth() / 2, getContentPane().getHeight() / 2 - rm.getHeight() / 2);
+//                    rm.setVisible(false);
+//                    isResize=true;
+//                    new Thread(() -> {
+//                        try {
+//                            Thread.sleep(100);
+//                            isResize=false;
+//                            Thread.sleep(100);
+//                            if(!isResize) {
+//                                rm.setVisible(true);
+//                            }
+//                        } catch (InterruptedException ex) {
+//                            throw new RuntimeException(ex);
+//                        }
+//                        isResize=false;
+//                    }).start();
+
+
+        }catch(Exception exc){}
     }
 
+    public void componentMoved(ComponentEvent e) {
+    }
+
+    public void componentShown(ComponentEvent e) {
+    }
+
+    public void componentHidden(ComponentEvent e) {
+    }
     
 }

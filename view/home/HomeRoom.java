@@ -1,5 +1,6 @@
 package view.home;
 
+import resource.AudioResource;
 import view.gameplay.GameplayRoom;
 import view.general.General;
 import view.general.TButton;
@@ -37,18 +38,19 @@ public class HomeRoom extends TRoom implements ComponentListener {
             General.getGeneralFrame().setRoom(new GameplayRoom());
         });
         settingButton.addActionListener(e -> {
-            General.getGeneralFrame().setRoom(new SettingRoom());
+            General.getGeneralFrame().setRoom(new SettingRoom(this));
         });
         exitButton.addActionListener(e -> {
             System.exit(0);
         });
         this.addComponentListener(this);
+        AudioResource.playMusic(AudioResource.instance.music);
     }
 
     @Override
     public void componentResized(ComponentEvent e) {
         northPanel.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()/2));
-        titleLabel.setFont(new Font(titleLabel.getFont().getName(),Font.BOLD,this.getHeight()/5));
+        titleLabel.setFont(new Font(titleLabel.getFont().getName(),Font.BOLD,this.getHeight()/7));
         Font fontBtn = new Font(titleLabel.getFont().getName(),Font.PLAIN,this.getWidth()/3/10);
         playButton.setFont(fontBtn);
         settingButton.setFont(fontBtn);
