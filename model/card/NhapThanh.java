@@ -36,7 +36,8 @@ public class NhapThanh extends Card{
                     listRook.add((Rook)wp);
                 }
             }
-            if(listRook.size()>0){
+            if(listRook.size()>0&&whiteKing.isMate(b.getBlackKing().getStanding())==false &&
+            rook.isMate(b.getBlackKing().getStanding())==false){
                 rook=listRook.get(random%listRook.size());
                 rook.setTurn(rook.getTurn()+1);
                 whiteKing.setTurn(whiteKing.getTurn()+1);
@@ -67,12 +68,10 @@ public class NhapThanh extends Card{
             }
         if(isCanSwap){
             isCanSwap=false;
-            if(whiteKing.isMate(b.getBlackKing().getStanding())==false &&
-                rook.isMate(b.getBlackKing().getStanding())==false){
-                Tile tempStd=whiteKing.getStanding();
-                whiteKing.setStanding(rook.getStanding());
-                rook.setStanding(tempStd);
-            }
+            Tile tempStd=whiteKing.getStanding();
+            whiteKing.setStanding(rook.getStanding());
+            rook.setStanding(tempStd);
+            
         }
     }
 
@@ -86,7 +85,7 @@ public class NhapThanh extends Card{
     public void actionBeforeBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        if(whiteKing==null&&b.isHasKingOnBoard){
+        if(whiteKing==null&& b.isHasKingOnBoard){
             for(WhitePiece wp:b.getWhitePieces())
                 if(wp instanceof King){
                     whiteKing=(King)wp;
