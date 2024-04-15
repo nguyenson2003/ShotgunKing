@@ -46,7 +46,7 @@ public class PieceParticle extends JLayeredPane {
                 z += vz;
                 if(z<0){
                     z = -z;vz = -vz/10*7;
-                    if(vz>3)
+                    if(vz>5)
                         AudioResource.playSound(AudioResource.instance.particle);
                 }
 
