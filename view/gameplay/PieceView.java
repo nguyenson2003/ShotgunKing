@@ -62,6 +62,7 @@ public class PieceView extends JLayeredPane implements ComponentListener {
             this.getParent().add(pp);
         }
         this.getParent().remove(this);
+        this.setVisible(false);
     }
     public Piece getModel() {
         return model;

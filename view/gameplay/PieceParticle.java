@@ -60,6 +60,7 @@ public class PieceParticle extends JLayeredPane {
             }
             if(this.getParent()!=null)
                 this.getParent().remove(this);
+            this.setVisible(false);
         }).start();
         ComponentAnimation.twink(this,2000,50);
     }
