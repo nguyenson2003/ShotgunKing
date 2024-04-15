@@ -108,23 +108,26 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             blackPieceView.goToLocation(temp.x+3,temp.y+1);
     }
     public void updateBeforeMoveWhitePiece(){
-        Iterator<PieceView> it= whitePieceViewList.iterator();
-        while(it.hasNext()){
-            PieceView pv = it.next();
-            if(((WhitePiece)pv.getModel()).isDied()){
-                pv.beDestroyed();
-                it.remove();
-            }
-        }
+
         for(PieceView pv : whitePieceViewList){
             WhitePiece model = (WhitePiece)pv.getModel();
             ComponentAnimation.shakeStop(pv);
             if(model.isMateFlag() && gp.isPlaying()){
                 ComponentAnimation.twink(pv,500,1000/60*3);
             }
-            if(model.isTakeDamageFlag() && gp.isPlaying()){
+            if(model.isTakeDamageFlag()>0 && gp.isPlaying()){
+                Point p = tileToPixel(model.getStanding());
+                this.add(new deltaHpView(model.isTakeDamageFlag(),p.x,p.y),0);
                 ComponentAnimation.shake(pv,5,5,200,200/4);
-                ComponentAnimation.twink(pv,200,200/4);
+//                ComponentAnimation.twink(pv,200,200/4);
+            }
+        }
+        Iterator<PieceView> it= whitePieceViewList.iterator();
+        while(it.hasNext()){
+            PieceView pv = it.next();
+            if(((WhitePiece)pv.getModel()).isDied()){
+                pv.beDestroyed();
+                it.remove();
             }
         }
     }
@@ -176,6 +179,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
             if(model.canMove() && gp.isPlaying()){
                 ComponentAnimation.shakeInfinity(pv,1,0,1000/60*5);
             }
+            model.resetFlag();
         }
     }
     @Override

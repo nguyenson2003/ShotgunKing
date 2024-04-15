@@ -30,6 +30,8 @@ public class ImageResource {
     public final ImageIcon[] particle = new ImageIcon[5];
     public final ImageIcon[] blackParticle = new ImageIcon[5];
     public final ImageIcon shadowParticle;
+    // ../img/number/....png
+    public final ImageIcon[] number = new ImageIcon[10];
     private ImageResource(){
         // 1
         {
@@ -99,13 +101,21 @@ public class ImageResource {
             pngVuaMau = createImg("../img/card/VuaMau.png");
         }
         // 4
-        for(int i= 0;i<5;i++){
-            particle[i] = createImg("../img/particle/particle"+i+".png");
+        {
+            for (int i = 0; i < 5; i++) {
+                particle[i] = createImg("../img/particle/particle" + i + ".png");
+            }
+            for (int i = 0; i < 5; i++) {
+                blackParticle[i] = createImg("../img/particle/bparticle" + i + ".png");
+            }
+            shadowParticle = createImg("../img/particle/shadowParticle.png");
         }
-        for(int i= 0;i<5;i++){
-            blackParticle[i] = createImg("../img/particle/bparticle"+i+".png");
+        //5
+        {
+            for(int i=0;i<10;i++){
+                number[i]= createImg("../img/number/num"+i+".png");
+            }
         }
-        shadowParticle = createImg("../img/particle/shadowParticle.png");
     }
     private static ImageIcon createImg(String relativePath){
         return new ImageIcon(URLDecoder.decode(

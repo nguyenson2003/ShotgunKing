@@ -1,6 +1,7 @@
 package view.general;
 
 import view.gameplay.GameplayRoom;
+import view.home.HomeRoom;
 
 import java.awt.*;
 import java.io.File;
@@ -16,7 +17,7 @@ public class General {
     public static void run(){
         setUIFont();
         GeneralFrame = new TFrame();
-        GeneralFrame.setRoom(new GameplayRoom());
+        GeneralFrame.setRoom(new HomeRoom());
     }
     private static TFrame GeneralFrame;
 
