@@ -195,7 +195,7 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
                 this.setCursor(Cursor.getDefaultCursor());
             }else {
                 borderHover.setSize(0,0);
-                this.setCursor(c);
+//                this.setCursor(c);
             }
             Piece p = gp.getBoard().getPiece(t);
             if(p instanceof WhitePiece wp){
@@ -217,18 +217,19 @@ public class BoardView extends TImage implements MouseMotionListener,MouseListen
     public void mousePressed(MouseEvent e) {
         if(!canClickMouse)return;
         Tile t = pixelToTile(e.getX(),e.getY());
-        assert t != null;
+        if(t==null)return;
         if(t.equals(blackPieceView.getModel().getStanding()))return;
         Point blackKingPoint = blackPieceView.getLocation();
         blackKingPoint.x+=blackPieceView.getWidth()/2;
-        blackKingPoint.y+=blackPieceView.getHeight()/2;
+        blackKingPoint.y+=blackPieceView.getWidth()/2;
         Point mousePoint = e.getPoint();
         double distance = Math.sqrt(Math.pow(blackKingPoint.x-mousePoint.x,2)+Math.pow(blackKingPoint.y-mousePoint.y,2));
         double angleCos = Math.acos((mousePoint.x-blackKingPoint.x)/distance);
         double angleSin = Math.asin((mousePoint.y-blackKingPoint.y)/distance);
         double angle = angleCos;
         if(angleSin<0)angle=-angle;
-        gp.blackMoveAction(t, angle, this);
+        System.out.println(angle);
+        gp.blackMoveAction(t, angle);
         new Thread(() -> {
             canClickMouse=false;
             updatePositionBlackPiece();

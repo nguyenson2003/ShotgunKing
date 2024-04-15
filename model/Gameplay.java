@@ -94,11 +94,12 @@ public class Gameplay {
         return numberOfTurn;
     }
 
-    public void blackMoveAction(Tile nextMove, double shootAngle, BoardView view){
+    public void blackMoveAction(Tile nextMove, double shootAngle){
         if(checkBlackWinGame())return;//check black is win game
         //calculator move or shoot (before black action)
+        if(!isPlaying)return;
         boolean willShoot = false;
-        // if(b.getBlackKing().standing.equals(nextMove))return;
+        if(b.getBlackKing().standing.equals(nextMove))return;
         if(!b.getBlackKing().canMoveTo(nextMove)){
             nextMove=b.getBlackKing().standing;
             willShoot=true;
@@ -148,6 +149,7 @@ public class Gameplay {
         }
         //start white action
         whiteAction();
+        if(!isPlaying)return;
         numberOfTurn++;
         for(Card c:buffCards){
             if(c.isFlip())continue;
@@ -214,7 +216,8 @@ public class Gameplay {
         // buffCards.add(new LaChanThep());
         // buffCards.add(new ChienMa());
         // buffCards.add(new ChienXa());
-        // buffCards.add(new CuoiNguaHanhQuan());
+//         buffCards.add(new CuoiNguaHanhQuan());
+//        buffCards.add(new BachPhatBachTrung());
     }
 
     public Pair<Pair<Card,Card>,Pair<Card,Card>> makeTwoChoiceOfCard(){
