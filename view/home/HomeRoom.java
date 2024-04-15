@@ -7,6 +7,7 @@ import view.general.TRoom;
 import view.setting.SettingRoom;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -19,6 +20,7 @@ public class HomeRoom extends TRoom implements ComponentListener {
     JPanel northPanel = new JPanel();
     JPanel centerPanel = new JPanel();
     public HomeRoom(){
+        titleLabel.setHorizontalAlignment(JLabel.CENTER);
         this.setBackground(General.DEFAULT_COLOR);
         this.setLayout(new BorderLayout());
         this.add(northPanel, BorderLayout.NORTH);
@@ -26,20 +28,11 @@ public class HomeRoom extends TRoom implements ComponentListener {
         northPanel.setLayout(new BorderLayout());
         northPanel.setOpaque(false);
         northPanel.add(titleLabel);
-        centerPanel.setLayout(new GridBagLayout());
+        centerPanel.setLayout(new GridLayout(1,3,20,20));
         centerPanel.setOpaque(false);
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.ipadx = 10;
-        gbc.weightx=0.2;
-        gbc.insets.left=10;
-        gbc.insets.right=10;
-        gbc.gridx=0;
-        centerPanel.add(playButton,gbc);
-        gbc.gridx=1;
-        centerPanel.add(settingButton,gbc);
-        gbc.gridx=2;
-        centerPanel.add(exitButton,gbc);
+        centerPanel.add(playButton);
+        centerPanel.add(settingButton);
+        centerPanel.add(exitButton);
         playButton.addActionListener(e -> {
             General.getGeneralFrame().setRoom(new GameplayRoom());
         });
@@ -60,6 +53,7 @@ public class HomeRoom extends TRoom implements ComponentListener {
         playButton.setFont(fontBtn);
         settingButton.setFont(fontBtn);
         exitButton.setFont(fontBtn);
+        centerPanel.setBorder(new EmptyBorder(getHeight()/6,getWidth()/20,getHeight()/6,getWidth()/20));
     }
 
     @Override
