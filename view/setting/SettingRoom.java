@@ -92,7 +92,7 @@ public class SettingRoom extends TRoom implements ComponentListener {
         soundLabel.setFont(fontBtn);
         soundButton.setFont(fontBtn);
         backButton.setFont(fontBtn);
-        centerPanel.setBorder(new EmptyBorder(getHeight()/6,getWidth()/5,getHeight()/6,getWidth()/5));
+        centerPanel.setBorder(new EmptyBorder(getHeight()/6,getWidth()/4,getHeight()/6,getWidth()/4));
     }
 
     @Override
