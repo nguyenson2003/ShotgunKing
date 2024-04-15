@@ -2,6 +2,7 @@ package model;
 
 import model.card.*;
 import view.gameplay.BoardView;
+import view.gameplay.GameplayRoom;
 
 import java.util.ArrayList;
 
@@ -271,6 +272,10 @@ public class Gameplay {
                 if(c.getClass() == debuff2.getClass())
                     count++;
         } while (count>0);
+        if(GameplayRoom.getIns().floor ==3){
+            debuff1=new HoangHauSatThu();
+            debuff2=new HoangHauSatThu();
+        }
         Pair<Card,Card> choice1 = new Pair<>(buff1,debuff1);
         Pair<Card,Card> choice2 = new Pair<>(buff2,debuff2);
         return new Pair<>(choice1,choice2);

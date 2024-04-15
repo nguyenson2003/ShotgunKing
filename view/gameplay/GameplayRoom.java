@@ -30,8 +30,8 @@ public class GameplayRoom extends TRoom implements ComponentListener {
     private InfoBlackKingView infoBlackKingView=new InfoBlackKingView();
     private ChoiceCardView choiceCardView ;
     private InfoCardView info = new InfoCardView();
-    int floor = 1;
-    int maxFloor = 11;
+    public int floor = 1;
+    public int maxFloor = 11;
     public GameplayRoom(){
         ins = this;
         gameplay = new Gameplay();

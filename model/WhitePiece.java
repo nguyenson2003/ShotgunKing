@@ -29,7 +29,7 @@ public abstract class WhitePiece extends Piece{
 
 
     boolean mateFlag=false; //đánh dấu chiếu tướng ô tiếp theo, nhấp nháy view 1 lần
-    boolean takeDamageFlag=false;
+    int takeDamageFlag=0;
     /**
      * kiểm tra có chiếu ô x, y hay ko
      * @param nextCell nước đi tiếp theo của vua đen
@@ -86,7 +86,7 @@ public abstract class WhitePiece extends Piece{
 
     public void takeDamage(){
         hp--;
-        takeDamageFlag=true;
+        takeDamageFlag++;
         if(isDied())onBoard.removePiece(this);
     }
     public boolean isDied(){
@@ -94,19 +94,15 @@ public abstract class WhitePiece extends Piece{
     }
 
     public boolean isMateFlag() {
-        if (mateFlag){
-            mateFlag = false;
-            return true;
-        }
-        return false;
+        return mateFlag;
     }
 
-    public boolean isTakeDamageFlag() {
-        if (takeDamageFlag){
-            takeDamageFlag = false;
-            return true;
-        }
-        return false;
+    public int isTakeDamageFlag() {
+        return takeDamageFlag;
+    }
+    public void resetFlag(){
+        mateFlag=false;
+        takeDamageFlag=0;
     }
 
     public int getHp() {
