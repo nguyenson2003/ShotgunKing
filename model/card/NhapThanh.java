@@ -36,9 +36,12 @@ public class NhapThanh extends Card{
                     listRook.add((Rook)wp);
                 }
             }
-            if(listRook.size()>0&&whiteKing.isMate(b.getBlackKing().getStanding())==false &&
-            rook.isMate(b.getBlackKing().getStanding())==false){
+            if(listRook.size()>0){
                 rook=listRook.get(random%listRook.size());
+                
+                if(!(whiteKing.isMate(b.getBlackKing().getStanding())==false &&
+                rook.isMate(b.getBlackKing().getStanding())==false)) return;
+
                 rook.setTurn(rook.getTurn()+1);
                 whiteKing.setTurn(whiteKing.getTurn()+1);
                 isCanSwap=true;

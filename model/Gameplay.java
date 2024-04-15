@@ -221,7 +221,7 @@ public class Gameplay {
         // buffCards.add(new NgaiVangBoTrong());
         // buffCards.add(new SucManhVoHan());
         // buffCards.add(new SuyGiamNhueKhi());
-        debuffCards.add(new NhapThanh());
+        // debuffCards.add(new NhapThanh());
         // buffCards.add(new XungPhong());
         // buffCards.add(new UyQuyenQuanVuong());
         // debuffCards.add(new TuDo());
