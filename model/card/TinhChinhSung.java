@@ -23,7 +23,7 @@ public class TinhChinhSung extends Card{
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
         if(gp.getBoard().dataBuff.isTinhChinhSung){
-            bk.setSpread(Math.max(0, bk.getSpread()-15*Math.PI/180));
+            bk.setSpread(bk.getSpread()-15*Math.PI/180);
             bk.setFirePower(bk.getFirePower()+1);
         }
     }

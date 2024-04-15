@@ -25,9 +25,7 @@ public class DanDuTru extends Card{
         BlackKing bk=gp.getBoard().getBlackKing();
         if(gp.getBoard().dataBuff.isDanDuTru){
             bk.setMaxShellAmmo(bk.getMaxShellAmmo()+1);
-            bk.setShellAmmo(bk.getMaxShellAmmo());
-            bk.setMaxSpareAmmo(Math.max(1, bk.getMaxSpareAmmo()-1));
-            bk.setSpareAmmo(bk.getMaxSpareAmmo());
+            bk.setMaxSpareAmmo(bk.getMaxSpareAmmo()-1);
         }
     }
 

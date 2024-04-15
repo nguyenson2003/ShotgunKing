@@ -31,8 +31,8 @@ public class BachPhatBachTrung extends Card{
         Board b=gp.getBoard();
         BlackKing bk=b.getBlackKing();
         if(b.dataBuff.isBachPhatBachTrung){
-            bk.setFirePower(Math.max(1,bk.getFirePower()-2));
-            bk.setSpread(0);
+            bk.setFirePower(bk.getFirePower()-2);
+            bk.setSpread(Integer.MIN_VALUE);
         }
     }
 
@@ -50,9 +50,6 @@ public class BachPhatBachTrung extends Card{
     @Override
     public void actionBeforeBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
-        if(gp.getBoard().dataBuff.isBachPhatBachTrung){
-            gp.getBoard().getBlackKing().setSpread(0);
-        }
     }
 
     @Override

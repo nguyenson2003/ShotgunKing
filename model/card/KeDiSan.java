@@ -35,7 +35,7 @@ public class KeDiSan extends Card{
             if(isBuffed){
                 isBuffed=false;
                 bk.setSpread(spreadBef);
-                bk.setFirePower(Math.max(1,bk.getFirePower()-2));
+                bk.setFirePower(bk.getFirePower()-2);
             }
         }
             
