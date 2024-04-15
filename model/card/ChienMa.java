@@ -51,7 +51,7 @@ public class ChienMa extends Card{
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
         gp.getBoard().dataBuff.isChienMa=true;
-        if(gp.getBoard().dataBuff.isChienMa){
+        if(gp.getBoard().dataBuff.isChienMa&&b.getInitPawn()>=1){
             b.setInitPawn(b.getInitPawn()-1);
         }
     }
@@ -59,7 +59,7 @@ public class ChienMa extends Card{
     @Override
     public String getDescription() {
         // TODO Auto-generated method stub
-        return "Quân trắng bị giảm 1 tốt nhưng được thêm 1 mã mỗi 7 lượt";
+        return "Quân trắng bị giảm 1 tốt nhưng được thêm 1 mã mỗi 7 lượt điều kiện phải có ít nhất 1 tốt";
     }
 
     @Override

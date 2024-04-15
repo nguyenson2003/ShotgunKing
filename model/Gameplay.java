@@ -71,8 +71,23 @@ public class Gameplay {
             if(c.isFlip())continue;
             c.actionAfterInitBoard(this);
         }
-    }
+        //update after init 
+        updateAfterInit();
 
+    }
+    /**
+     * gán giá trị lại cho độ lệch và sát thương
+     * 
+     */
+    void updateAfterInit(){
+        BlackKing bk=this.getBoard().getBlackKing();
+        bk.setFirePower(Math.max(1,bk.getFirePower()));
+        bk.setSpread(Math.max(0,bk.getSpread()));
+        bk.setMaxSpareAmmo(Math.max(1,bk.getMaxSpareAmmo()));
+        bk.setMaxShellAmmo(Math.max(1,bk.getMaxShellAmmo()));
+        bk.setSpareAmmo(bk.getMaxSpareAmmo());
+        bk.setShellAmmo(bk.getMaxShellAmmo());
+    }
 
     /**
      * Khi muốn tạo lại 1 màn chơi, nên xài hàm này
