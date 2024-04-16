@@ -27,7 +27,7 @@ public class NhapThanh extends Card{
     public void actionAfterBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        if(b.isHasKingOnBoard&&whiteKing.getHp()!=hpWhiteKingBef){
+        if(b.dataBuff.isNhapThanh&&b.isHasKingOnBoard&&whiteKing.getHp()!=hpWhiteKingBef){
             int detalHp=hpWhiteKingBef-whiteKing.getHp();
             int random=(int)(Math.random()*100);
             ArrayList<Rook>listRook=new ArrayList<>();
@@ -88,7 +88,7 @@ public class NhapThanh extends Card{
     public void actionBeforeBlackAction(Gameplay gp) {
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
-        if(whiteKing==null&& b.isHasKingOnBoard){
+        if(b.isHasKingOnBoard&&b.dataBuff.isNhapThanh){
             for(WhitePiece wp:b.getWhitePieces())
                 if(wp instanceof King){
                     whiteKing=(King)wp;
@@ -96,7 +96,7 @@ public class NhapThanh extends Card{
                 }
             
         }
-        if(whiteKing!=null)
+        if(whiteKing!=null&&b.dataBuff.isNhapThanh)
             hpWhiteKingBef=whiteKing.getHp();
     }
 
