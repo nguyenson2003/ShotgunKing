@@ -67,7 +67,10 @@ public class NhapThanh extends Card{
         Board b=gp.getBoard();
         if(b.dataBuff.isNhapThanh)
             if(gp.getNumberOfTurn()%10==0){
-                b.addPiece(new Rook(b.getRandomTileEmpty(),b.getInitTurnRook(),b.getInitHpRook(),b));
+                Rook r=new Rook(b.getRandomTileEmpty(),b.getInitTurnRook(),b.getInitHpRook(),b);
+                if(b.dataBuff.isDichBenh)
+                    r.takeDamage();
+                b.addPiece(r);
             }
         if(isCanSwap){
             isCanSwap=false;

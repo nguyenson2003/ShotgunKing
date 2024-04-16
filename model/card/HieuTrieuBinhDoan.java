@@ -29,7 +29,10 @@ public class HieuTrieuBinhDoan extends Card{
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
         if(gp.getNumberOfTurn()%5==0){
-            b.addPiece(new Pawn(b.getRandomTileEmpty(), b.getInitTurnPawn(), b.getInitHpPawn(), b));
+            Pawn p=new Pawn(b.getRandomTileEmpty(), b.getInitTurnPawn(), b.getInitHpPawn(), b);
+            if(b.dataBuff.isDichBenh)
+                p.takeDamage();
+            b.addPiece(p);
         }
     }
 

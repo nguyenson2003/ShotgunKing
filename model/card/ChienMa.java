@@ -30,7 +30,10 @@ public class ChienMa extends Card{
         // TODO Auto-generated method stub
         Board b=gp.getBoard();
         if(gp.getNumberOfTurn()%7==0&&gp.getBoard().dataBuff.isChienMa==true){
-            b.addPiece(new Knight(b.getRandomTileEmpty(), b.getInitTurnKnight(), b.getInitHpKnight(), b));
+            Knight k=new Knight(b.getRandomTileEmpty(), b.getInitTurnKnight(), b.getInitHpKnight(), b);
+            if(b.dataBuff.isDichBenh)
+                k.takeDamage();
+            b.addPiece(k);
         }
     }
 
