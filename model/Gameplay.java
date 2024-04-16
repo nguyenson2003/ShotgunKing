@@ -194,6 +194,7 @@ public class Gameplay {
 
         //quân trắng di chuyển
         int whitePieceSizeTemp = b.getWhitePieces().size();
+        
         for (int i = 0; i< whitePieceSizeTemp; i++) {
             WhitePiece piece = b.getWhitePieces().get(i);
             piece.move(piece.bestMove());
