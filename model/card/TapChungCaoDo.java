@@ -23,7 +23,7 @@ public class TapChungCaoDo extends Card{
         // TODO Auto-generated method stub
         BlackKing bk=gp.getBoard().getBlackKing();
         if(gp.getBoard().dataBuff.isTapChungCaoDo){
-            bk.setSpread(Math.max(0,bk.getSpread()-30*Math.PI/180));
+            bk.setSpread(bk.getSpread()-30*Math.PI/180);
         }
     }
 
