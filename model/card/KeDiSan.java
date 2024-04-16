@@ -20,9 +20,11 @@ public class KeDiSan extends Card{
         checkAndBuffOrDebuff(gp);  
     }
     private void checkAndBuffOrDebuff(Gameplay gp) {
+        if(gp.getBoard().dataBuff.isKeDiSan==false) return;
         BlackKing bk=gp.getBoard().getBlackKing();
         gp.getBoard();
         for(WhitePiece wp:gp.getBoard().getWhitePieces()){
+            if(wp.isDied()) continue;
             int absx=Math.abs(wp.getStanding().x-bk.getStanding().x);
             int absy=Math.abs(wp.getStanding().y-bk.getStanding().y);
             if(absx<=1&&absy<=1&&!isBuffed){
@@ -44,7 +46,7 @@ public class KeDiSan extends Card{
     @Override
     public void actionAfterInitBoard(Gameplay gp) {
         // TODO Auto-generated method stub
-        
+        isBuffed=false;
     }
 
     @Override
