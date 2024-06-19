@@ -16,7 +16,7 @@ public class DiemBanHoanHao extends Card{
     int oldFireRange=0;
     private void checkAndBuffOrDebuff(Gameplay gp){
         BlackKing bk=gp.getBoard().getBlackKing();
-        if(gp.getBoard().dataBuff.isDiemBanHoanHao&&bk.getStanding().x==1||bk.getStanding().x==8||bk.getStanding().y==1||bk.getStanding().y==8){
+        if((bk.getStanding().x==1||bk.getStanding().x==8||bk.getStanding().y==1||bk.getStanding().y==8)){
             if(!isBuffed){
                 isBuffed=true;
                 oldFireRange=bk.getFireRange();
